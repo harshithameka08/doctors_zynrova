@@ -7,11 +7,13 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-grid">
                 <div className="footer-col">
-                    <div className="nav-logo" style={{ justifyContent: 'flex-start', marginBottom: '20px', alignItems: 'center', display: 'flex', gap: '12px' }}>
-                        <img src="/zynrova_logo.svg" alt="Zynrova" style={{ height: '35px', objectFit: 'contain' }} />
-                        <span className="nav-logo-text" style={{ color: 'white', fontSize: '28px', fontWeight: '700', letterSpacing: '-0.5px' }}>zynrova</span>
+                    <div className="nav-logo" style={{ marginBottom: '24px', display: 'flex', flexDirection: 'column' }}>
+                        <img src="/zynrova_logo.svg" alt="Zynrova Logo" style={{ height: '85px', objectFit: 'contain', marginBottom: '16px', alignSelf: 'center' }} />
+                        <span className="nav-logo-text" style={{ color: '#ccc', fontSize: '13px', fontWeight: '500', letterSpacing: '0.5px', textTransform: 'lowercase', alignSelf: 'center', textAlign: 'center' }}>
+                            powered by zynrova software solutions
+                        </span>
                     </div>
-                    <p>Building reliable digital solutions for modern businesses.</p>
+                    <p style={{ marginTop: '0', color: '#999', lineHeight: '1.6' }}>Building reliable digital solutions for modern businesses.</p>
                 </div>
                 <div className="footer-col">
                     <h3>SERVICES</h3>

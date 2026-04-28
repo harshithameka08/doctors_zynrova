@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ChatProvider } from './context/ChatContext';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -10,11 +11,13 @@ import Symptoms from './pages/Symptoms';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Booking from './pages/Booking';
+import Chatbot from './components/Chatbot';
 import './App.css';
 
 function App() {
   return (
-    <AuthProvider>
+    <ChatProvider>
+      <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -28,8 +31,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/booking" element={<Booking />} />
         </Routes>
+        <Chatbot />
       </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </ChatProvider>
   );
 }
 

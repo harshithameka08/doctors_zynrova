@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
     FaSearch, FaMapMarkerAlt, FaVideo, FaStar, FaFilter,
-    FaCheckCircle, FaHeart, FaUserMd, FaShieldAlt, FaRegStar
+    FaCheckCircle, FaHeart, FaUserMd, FaShieldAlt, FaRegStar, FaBriefcase
 } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../lib/api';
 import './FindDoctors.css';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 import { FaHeartbeat, FaArrowRight } from 'react-icons/fa';
 
 const FindDoctors = () => {
@@ -17,60 +18,107 @@ const FindDoctors = () => {
     const mockDoctors = [
         {
             id: 1,
-            full_name: 'Dr. Sarah Johnson',
+            full_name: 'Dr. James Wilson',
+            image: '/Ellipse 4031.png',
             specialization: 'General Physician',
-            experience_years: 8,
-            rating: 4.8,
-            consultation_fee: '$80',
-            languages: ['English', 'Spanish'],
-            next_slot: '10:00 AM',
-            image: '/dr_sarah_johnson_1.png'
+            bio: 'Dr. James Wilson is a dedicated General Physician with a focus on comprehensive health care.'
         },
         {
             id: 2,
-            full_name: 'Dr. Michael Chen',
-            specialization: 'Cardiologist',
-            experience_years: 12,
-            rating: 4.9,
-            consultation_fee: '$120',
-            languages: ['English', 'Mandarin'],
-            next_slot: '11:30 AM',
-            image: '/dr_sarah_johnson_1.png'
+            full_name: 'Dr. David Kim',
+            image: '/Ellipse 4032.png',
+            specialization: 'General Physician',
+            bio: 'Dr. David Kim brings a wealth of knowledge to his practice as a General Physician.'
         },
         {
             id: 3,
-            full_name: 'Dr. Emily Rodriguez',
-            specialization: 'Dermatologist',
-            experience_years: 6,
-            rating: 4.7,
-            consultation_fee: '$90',
-            languages: ['English', 'Spanish'],
-            next_slot: '2:00 PM',
-            image: '/dr_sarah_johnson_1.png'
+            full_name: 'Dr. Robert Fox',
+            image: '/Ellipse 4033.png',
+            specialization: 'General Physician',
+            bio: 'Dr. Robert Fox is known for his thorough examinations and friendly demeanor.'
         },
         {
             id: 4,
-            full_name: 'Dr. James Williams',
-            specialization: 'Pediatrician',
-            experience_years: 10,
-            rating: 4.9,
-            consultation_fee: '$100',
-            languages: ['English'],
-            next_slot: '3:30 PM',
-            image: '/dr_sarah_johnson_1.png'
+            full_name: 'Dr. Linda Gregory',
+            image: '/Ellipse 4034.png',
+            specialization: 'General Physician',
+            bio: 'Dr. Linda Gregory has a strong background in family medicine and preventive care.'
         },
         {
             id: 5,
+            full_name: 'Dr. Sarah Mitchell',
+            image: '/Ellipse 4035.png',
+            specialization: 'General Physician',
+            bio: 'Dr. Sarah Mitchell specializes in preventive care and comprehensive adult medicine.'
+        },
+        {
+            id: 6,
             full_name: 'Dr. Priya Sharma',
-            specialization: 'Neurologist',
-            experience_years: 15,
-            rating: 4.8,
-            consultation_fee: '$150',
-            languages: ['English', 'Hindi'],
-            next_slot: '4:00 PM',
-            image: '/dr_sarah_johnson_1.png'
-        }
+            image: '/Ellipse 4031.png',
+            specialization: 'Cardiologist',
+            bio: 'Dr. Priya Sharma is a leading Cardiologist with 12 years of experience in advanced heart and vascular care.'
+        },
+        {
+            id: 7,
+            full_name: 'Dr. Arjun Mehta',
+            image: '/Ellipse 4032.png',
+            specialization: 'Cardiologist',
+            bio: 'Dr. Arjun Mehta specializes in interventional cardiology, offering cutting-edge diagnostics and treatment.'
+        },
+        {
+            id: 8,
+            full_name: 'Dr. Neha Kapoor',
+            image: '/Ellipse 4033.png',
+            specialization: 'Dentist',
+            bio: 'Dr. Neha Kapoor is a skilled Dentist offering comprehensive oral health treatments from routine cleaning to complex surgery.'
+        },
+        {
+            id: 9,
+            full_name: 'Dr. Rahul Verma',
+            image: '/Ellipse 4034.png',
+            specialization: 'Dentist',
+            bio: 'Dr. Rahul Verma provides personalized dental care with a focus on patient comfort and advanced treatment methods.'
+        },
+        {
+            id: 10,
+            full_name: 'Dr. Suresh Patel',
+            image: '/Ellipse 4035.png',
+            specialization: 'Orthopedic',
+            bio: 'Dr. Suresh Patel is an expert Orthopedic surgeon specializing in musculoskeletal injuries, joint replacement, and bone health.'
+        },
+        {
+            id: 11,
+            full_name: 'Dr. Anjali Singh',
+            image: '/Ellipse 4031.png',
+            specialization: 'Orthopedic',
+            bio: 'Dr. Anjali Singh offers specialist care for sports injuries, spinal issues, and complex orthopedic conditions.'
+        },
     ];
+
+    const location = useLocation();
+    const incomingSpecialty = location.state?.specialty || null;
+
+    const allSpecialties = [
+        'General Physician', 'Dentist', 'Cardiologist', 'Orthopedic', 
+        'Pediatrician', 'Dermatologist', 'Gynecologist', 'Neurologist', 
+        'Psychiatrist', 'Endocrinologist', 'Ophthalmologist', 'ENT Specialist'
+    ];
+
+    const [selectedSpecialties, setSelectedSpecialties] = useState(
+        incomingSpecialty ? [incomingSpecialty] : ['General Physician']
+    );
+
+    const toggleSpecialty = (specialty) => {
+        setSelectedSpecialties(prev =>
+            prev.includes(specialty)
+                ? prev.filter(s => s !== specialty)
+                : [...prev, specialty]
+        );
+    };
+
+    const clearFilters = () => {
+        setSelectedSpecialties(['General Physician']);
+    };
 
     // Fetch doctors with TanStack Query, fallback to mock data on error
     const { data: doctors, isLoading, isError } = useQuery({
@@ -85,7 +133,12 @@ const FindDoctors = () => {
     });
 
     // Use mock data if API fails
-    const displayDoctors = isError ? mockDoctors : (doctors || mockDoctors);
+    const allDoctors = isError ? mockDoctors : (doctors || mockDoctors);
+
+    // Filter by selected specialties
+    const displayDoctors = selectedSpecialties.length > 0
+        ? allDoctors.filter(d => selectedSpecialties.includes(d.specialization))
+        : allDoctors;
 
     if (isLoading) {
         return (
@@ -97,45 +150,27 @@ const FindDoctors = () => {
 
     return (
         <div className="find-doctors-container">
-            {/* Navbar (Duplicated for consistency) */}
-            <nav className="navbar" style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: '1000' }}>
-                <div className="nav-logo">
-                    <div className="nav-logo-icon"><FaHeartbeat /></div>
-                    <span className="nav-logo-text">Healthcare</span>
-                    <span className="nav-logo-sub">Medical Services</span>
-                </div>
-                <ul className="nav-links">
-                    <li><a href="/" onClick={(e) => { e.preventDefault(); navigate('/'); }}>Home</a></li>
-                    <li><a href="#" className="active" style={{ color: '#27B992' }}>Find Doctors</a></li>
-                    <li><a onClick={() => navigate('/specialties')} style={{ cursor: 'pointer' }}>Specialities</a></li>
-                    <li><a onClick={() => navigate('/symptoms')} style={{ cursor: 'pointer' }}>Symptoms</a></li>
-                    <li><a onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>About Us</a></li>
-                    <li><a onClick={() => navigate('/contact')} style={{ cursor: 'pointer' }}>Contact</a></li>
-                </ul>
-                <div className="nav-actions">
-                    <a className="login-link" onClick={() => navigate('/login')}>Login / Sign Up</a>
-                    <button className="btn-primary" onClick={() => navigate('/booking')}>Book Appointment <FaArrowRight /></button>
-                </div>
-            </nav>
+            {/* Navbar */}
+            <Navbar />
 
             {/* Header Section */}
             <header className="finder-header">
                 <h1 className="finder-title">Find Doctors <span style={{ color: '#27B992' }}>Near You</span></h1>
-                <p className="finder-subtitle">Search doctors by speciality, symptoms, or location with ease. Get expert medical care anytime, anywhere you need it.</p>
+                <p className="finder-subtitle">Search doctors by speciality, symptoms, or location with ease.Get<br />expert medical care anytime, anywhere you need it.</p>
 
                 <div className="finder-search-box">
                     <div className="finder-search-field">
                         <label>Search</label>
                         <div className="finder-input-wrapper">
                             <FaSearch />
-                            <input type="text" placeholder="Ex. Doctor, speciality or symptoms..." />
+                            <input type="text" placeholder="Doctors, specialty or symptoms..." />
                         </div>
                     </div>
                     <div className="finder-search-field">
                         <label>Location</label>
                         <div className="finder-input-wrapper">
                             <FaMapMarkerAlt />
-                            <input type="text" placeholder="Select location (via GPS)..." />
+                            <input type="text" placeholder="Near by clinic, hospitals..." />
                         </div>
                     </div>
                     <div className="finder-search-field">
@@ -158,19 +193,22 @@ const FindDoctors = () => {
                 <aside className="filters-sidebar">
                     <div className="filter-header">
                         <h3>Filters</h3>
-                        <button className="clear-btn">Clear All</button>
+                        <button className="clear-btn" onClick={clearFilters}>Clear All</button>
                     </div>
 
                     {/* Speciality */}
                     <div className="filter-group">
                         <div className="checkbox-list">
-                            <label className="checkbox-item"><input type="checkbox" defaultChecked /> General Physician</label>
-                            <label className="checkbox-item"><input type="checkbox" /> Cardiologist</label>
-                            <label className="checkbox-item"><input type="checkbox" /> Dermatologist</label>
-                            <label className="checkbox-item"><input type="checkbox" /> Neurologist</label>
-                            <label className="checkbox-item"><input type="checkbox" /> Pediatrician</label>
-                            <label className="checkbox-item"><input type="checkbox" /> Psychiatrist</label>
-                            <label className="checkbox-item"><input type="checkbox" /> Gastroenterologist</label>
+                            {allSpecialties.map(spec => (
+                                <label className="checkbox-item" key={spec}>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedSpecialties.includes(spec)}
+                                        onChange={() => toggleSpecialty(spec)}
+                                    />
+                                    {' '}{spec}
+                                </label>
+                            ))}
                         </div>
                     </div>
 
@@ -193,7 +231,7 @@ const FindDoctors = () => {
 
                     {/* Availability */}
                     <div className="filter-group">
-                        <h4>Availability</h4>
+                        <h4 style={{ color: '#333' }}>Availability</h4>
                         <div className="availability-toggles">
                             <button className="toggle-btn active">All</button>
                             <button className="toggle-btn">Today</button>
@@ -203,9 +241,9 @@ const FindDoctors = () => {
 
                     {/* Experience Slider */}
                     <div className="filter-group">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                            <h4>Experience</h4>
-                            <span style={{ fontSize: '12px', color: '#27B992' }}>0+ Yrs</span>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', alignItems: 'center' }}>
+                            <h4 style={{ margin: 0, color: '#333' }}>Experience</h4>
+                            <span style={{ fontSize: '13px', color: '#27B992' }}>0+ Yrs</span>
                         </div>
                         <div className="range-slider-container">
                             <input type="range" min="0" max="20" defaultValue="0" className="range-slider" />
@@ -214,9 +252,9 @@ const FindDoctors = () => {
 
                     {/* Fees Slider */}
                     <div className="filter-group">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                            <h4>Fees Max</h4>
-                            <span style={{ fontSize: '12px', color: '#27B992' }}>$500</span>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', alignItems: 'center' }}>
+                            <h4 style={{ margin: 0, color: '#333' }}>Fees Max</h4>
+                            <span style={{ fontSize: '13px', color: '#27B992' }}>$500</span>
                         </div>
                         <div className="range-slider-container">
                             <input type="range" min="0" max="1000" defaultValue="500" className="range-slider" />
@@ -225,7 +263,7 @@ const FindDoctors = () => {
 
                     {/* Rating */}
                     <div className="filter-group">
-                        <h4>Minimum Rating</h4>
+                        <h4 style={{ color: '#333' }}>Minimum Rating</h4>
                         <div className="rating-select">
                             <FaRegStar /><FaRegStar /><FaRegStar /><FaRegStar /><FaRegStar />
                         </div>
@@ -237,7 +275,9 @@ const FindDoctors = () => {
                 {/* Doctors List */}
                 <main className="doctors-list-section">
                     <div className="list-header">
-                        <span className="doctors-found"><b>{displayDoctors?.length || 0}</b> Doctors Found</span>
+                        <span className="doctors-found"><b>{displayDoctors?.length || 0}</b> Doctors Found
+                            {incomingSpecialty && <span style={{ marginLeft: '10px', color: '#27B992', fontSize: '13px', fontWeight: '500' }}>for {selectedSpecialties.join(', ')}</span>}
+                        </span>
                         <div className="sort-options">
                             <span className="sort-item active">Relevance</span>
                             <span className="sort-item">Experience</span>
@@ -249,42 +289,47 @@ const FindDoctors = () => {
 
                     {displayDoctors && displayDoctors.map((doctor) => (
                         <div className="doctor-card-horizontal" key={doctor.id}>
-                            <div className="card-image-col">
-                                <img src={'/dr_sarah_johnson_1.png'} alt={doctor.full_name} />
-                                <span className="availability-tag">Now Available</span>
-                            </div>
-                            <div className="card-info-col">
-                                <h3>{doctor.full_name}</h3>
-                                <span className="doc-specialty">{doctor.specialization || 'General Physician'}</span>
-                                <div className="doc-details">
-                                    <div className="doc-detail-row">
-                                        <span><FaUserMd color="#aaa" /> {doctor.experience_years || '5'} yrs experience</span>
-                                        <span style={{ margin: '0 10px', color: '#ccc' }}>|</span>
-                                        <span><FaStar color="orange" /> 4.8</span>
-                                    </div>
-                                    <div className="doc-detail-row">
-                                        <span style={{ color: '#999' }}><span style={{ marginRight: '5px' }}>Aa</span> Languages: English</span>
+                            <div className="card-profile-section">
+                                <div className="card-image-col">
+                                    <img src={doctor.image || '/dr_sarah_johnson_1.png'} alt={doctor.full_name} />
+                                    <div className="availability-tag-container">
+                                        <span className="availability-tag">Next Available</span>
                                     </div>
                                 </div>
-                                <div className="card-tags">
-                                    <span className="tag">Fever</span>
-                                    <span className="tag">Fatigue</span>
+                                <div className="card-info-col">
+                                    <h3>{doctor.full_name}</h3>
+                                    <span className="doc-specialty">{doctor.specialization}</span>
+                                    <div className="doc-details">
+                                        <div className="doc-detail-row">
+                                            <FaBriefcase color="#bbb" size={12} />
+                                            <span>8 yrs experience</span>
+                                            <FaStar color="#FFD700" size={12} style={{ marginLeft: '12px' }} />
+                                            <span style={{ color: '#EAA300', fontWeight: 'bold', fontSize: '13px' }}>4.4</span>
+                                        </div>
+                                        <div className="doc-detail-row">
+                                            <span className="lang-icon">文A</span>
+                                            <span>Languages: English</span>
+                                        </div>
+                                    </div>
+                                    <div className="card-tags">
+                                        <span className="tag">Fever</span>
+                                        <span className="tag">Fatigue</span>
+                                    </div>
                                 </div>
                             </div>
                             <div className="card-action-col">
-                                <div className="price-row">
-                                    <span className="fee-label">Consultation Fee</span>
-                                    <span className="fee-value">$80</span>
+                                <div className="price-row" style={{ textAlign: 'right', marginBottom: '18px', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div style={{ fontSize: '12px', color: '#888' }}>Consultation Fee</div>
+                                    <div style={{ fontSize: '24px', fontWeight: '800', color: '#27B992' }}>₹80</div>
                                 </div>
                                 <div className="slot-container">
                                     <span className="slot-label">Next Slot</span>
                                     <span className="slot-value">10:00 AM</span>
                                 </div>
                                 <div style={{ width: '100%' }}>
-                                    {/* Pass flattened doctor object for simpler handling in Booking page */}
-                                    <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: doctor.full_name, id: doctor.id, specialty: doctor.specialization, image: '/dr_sarah_johnson_1.png', consultation_fee: '$80', location: 'Heartcare Specialist Center' } } })}>Book Appointment</button>
-                                    <div style={{ textAlign: 'center', marginTop: '8px' }}>
-                                        <a onClick={() => navigate('/doctor-profile')} className="view-profile" style={{ cursor: 'pointer' }}>View Profile</a>
+                                    <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { ...doctor, consultation_fee: '₹80', location: 'Heartcare Specialist Center' } } })}>Book Appointment</button>
+                                    <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                                        <a onClick={() => navigate('/doctor-profile', { state: { doctor } })} className="view-profile" style={{ cursor: 'pointer' }}>View Profile</a>
                                     </div>
                                 </div>
                             </div>
@@ -297,17 +342,17 @@ const FindDoctors = () => {
             {/* Trust Banner */}
             <div className="trust-banner">
                 <div className="trust-item">
-                    <div className="trust-icon-box"><FaShieldAlt /></div>
+                    <div className="trust-icon-box"><img src="/heartbox.png" alt="Verified" style={{ width: '22px', height: '22px', objectFit: 'contain' }} /></div>
                     <h4>Verified Doctors Only</h4>
                     <p>Stringent background checks for your peace of mind.</p>
                 </div>
                 <div className="trust-item">
-                    <div className="trust-icon-box"><FaCheckCircle /></div>
+                    <div className="trust-icon-box"><img src="/heartbox.png" alt="Booking" style={{ width: '22px', height: '22px', objectFit: 'contain' }} /></div>
                     <h4>Instant Booking</h4>
                     <p>Book slots in real-time with zero waiting time.</p>
                 </div>
                 <div className="trust-item">
-                    <div className="trust-icon-box"><FaHeartbeat /></div>
+                    <div className="trust-icon-box"><img src="/heartbox.png" alt="Secure" style={{ width: '22px', height: '22px', objectFit: 'contain' }} /></div>
                     <h4>Secure Medical Data</h4>
                     <p>Your privacy is our priority with HIPAA compliance.</p>
                 </div>

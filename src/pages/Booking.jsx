@@ -1,29 +1,42 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaChevronLeft, FaCheckCircle, FaMapMarkerAlt, FaRegClock, FaUser, FaPhoneAlt, FaCalendarAlt, FaStethoscope } from 'react-icons/fa';
+import { FaChevronLeft, FaCheckCircle, FaMapMarkerAlt, FaRegClock, FaUser, FaPhoneAlt, FaCalendarAlt, FaStethoscope, FaChevronRight } from 'react-icons/fa';
 import api from '../lib/api';
 import './Booking.css';
+
+const DAYS_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
 
 const Booking = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     // Initial state from navigation or defaults
     const [step, setStep] = useState(1);
-    const [selectedDate, setSelectedDate] = useState(3); // Default to 3rd Feb as in image - should be real date
-    const [selectedTime, setSelectedTime] = useState('01:30 PM');
+    // Calendar state
+    const [calViewDate, setCalViewDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
+    const [selectedDateObj, setSelectedDateObj] = useState(today);
+    const [showCalendar, setShowCalendar] = useState(false);
+
+    const [selectedTime, setSelectedTime] = useState('09:30 AM');
     const [timePeriod, setTimePeriod] = useState('Morning'); // Morning, Afternoon, Evening
     const [isBooking, setIsBooking] = useState(false);
 
     // Patient Details State
     const [patientDetails, setPatientDetails] = useState({
-        fullName: 'Suresh peddinti', // Hardcoded as per image placeholder/value
-        age: '21 Yrs',
+        fullName: '',
+        age: '',
         gender: 'Male',
-        phoneNumber: '+91 9618344086',
-        reason: 'Fever With Last 2 Weeks',
+        phoneNumber: '',
+        reason: '',
         bookingForSomeoneElse: false
     });
+
+    const [formErrors, setFormErrors] = useState({});
 
     const [paymentMethod, setPaymentMethod] = useState('');
 
@@ -43,13 +56,69 @@ const Booking = () => {
     const tax = Math.round(fee * 0.18);
     const total = fee + tax;
 
+    // ---- Calendar helpers ----
+    const getDaysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
+    const getFirstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
+
+    const isSameDay = (a, b) =>
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate();
+
+    const formatDate = (d) => {
+        const day = DAYS_SHORT[d.getDay()];
+        const month = MONTHS[d.getMonth()].slice(0, 3);
+        return { day, date: d.getDate(), month, year: d.getFullYear(), full: d };
+    };
+
+    // Generate 8 dates starting from selectedDateObj for the strip
+    const generateStrip = () => {
+        return Array.from({ length: 8 }, (_, i) => {
+            const d = new Date(selectedDateObj);
+            d.setDate(d.getDate() + i);
+            return formatDate(d);
+        });
+    };
+
+    const stripDates = generateStrip();
+
+    const prevMonth = () => {
+        setCalViewDate(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    };
+    const nextMonth = () => {
+        setCalViewDate(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    };
+
+    const handleDayClick = (year, month, day) => {
+        const clicked = new Date(year, month, day);
+        clicked.setHours(0, 0, 0, 0);
+        if (clicked < today) return; // disable past dates
+        setSelectedDateObj(clicked);
+        setCalViewDate(new Date(year, month, 1));
+        setShowCalendar(false); // close calendar after picking a date
+    };
+
+    const buildCalendarGrid = () => {
+        const year = calViewDate.getFullYear();
+        const month = calViewDate.getMonth();
+        const daysInMonth = getDaysInMonth(year, month);
+        const firstDay = getFirstDayOfMonth(year, month);
+        const cells = [];
+        for (let i = 0; i < firstDay; i++) cells.push(null);
+        for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+        return { year, month, cells };
+    };
+
+    const { year: calYear, month: calMonth, cells } = buildCalendarGrid();
+
     const handleBooking = async () => {
         setIsBooking(true);
         try {
             // Convert time to 24H format for Backend
             // Mocking conversion for '01:30 PM' -> '13:30:00'
             const time24 = "13:30:00";
-            const dateISO = "2026-02-10"; // Hardcoded next available date for Phase 2 demo
+            const dateISO = selectedDateObj.toISOString().split('T')[0]; // Use selectedDateObj
+            // const dateISO = "2026-02-10"; // Hardcoded next available date for Phase 2 demo
 
             await api.post('/appointments/book', {
                 doctor_id: doctor.id,
@@ -111,15 +180,56 @@ const Booking = () => {
                 <div className="booking-card">
                     <div className="card-header-row">
                         <h3>Select Date</h3>
-                        <span className="current-month-year"><FaCalendarAlt /> February 2025</span>
+                        <span
+                            className={`current-month-year cal-toggle-btn${showCalendar ? ' cal-toggle-active' : ''}`}
+                            onClick={() => setShowCalendar(prev => !prev)}
+                            title={showCalendar ? 'Close calendar' : 'Open calendar'}
+                        >
+                            <FaCalendarAlt /> {MONTHS[selectedDateObj.getMonth()]} {selectedDateObj.getFullYear()}
+                        </span>
                     </div>
+
+                    {/* ── Inline Calendar (toggled by calendar icon) ── */}
+                    {showCalendar && <div className="inline-calendar">
+                        <div className="cal-nav">
+                            <button className="cal-nav-btn" onClick={prevMonth}><FaChevronLeft /></button>
+                            <span className="cal-month-label">{MONTHS[calMonth]} {calYear}</span>
+                            <button className="cal-nav-btn" onClick={nextMonth}><FaChevronRight /></button>
+                        </div>
+
+                        <div className="cal-grid">
+                            {DAYS_SHORT.map(d => (
+                                <div key={d} className="cal-day-header">{d}</div>
+                            ))}
+                            {cells.map((day, idx) => {
+                                if (!day) return <div key={idx} className="cal-cell empty" />;
+                                const cellDate = new Date(calYear, calMonth, day);
+                                cellDate.setHours(0, 0, 0, 0);
+                                const isPast = cellDate < today;
+                                const isSelected = isSameDay(cellDate, selectedDateObj);
+                                const isToday = isSameDay(cellDate, today);
+                                return (
+                                    <div
+                                        key={idx}
+                                        className={`cal-cell${isPast ? ' past' : ''}${isSelected ? ' selected' : ''}${isToday && !isSelected ? ' today' : ''}`}
+                                        onClick={() => !isPast && handleDayClick(calYear, calMonth, day)}
+                                    >
+                                        {day}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>}
+
+                    {/* ── Horizontal date strip (driven by selectedDateObj) ── */}
+                    <div className="strip-label">Available from selected date</div>
                     <div className="dates-scroller">
-                        {[
-                            { day: 'Mon', date: 3 }, { day: 'Mon', date: 3 }, { day: 'Mon', date: 3 },
-                            { day: 'Mon', date: 3 }, { day: 'Mon', date: 3 }, { day: 'Mon', date: 3 },
-                            { day: 'Mon', date: 3 }, { day: 'Mon', date: 3 }
-                        ].map((d, i) => ( // Using loops to match the repetitive image style for demo
-                            <div key={i} className={`date-box ${i === 0 ? 'active' : ''}`}>
+                        {stripDates.map((d, i) => (
+                            <div
+                                key={i}
+                                className={`date-box${i === 0 ? ' active' : ''}`}
+                                onClick={() => handleDayClick(d.full.getFullYear(), d.full.getMonth(), d.full.getDate())}
+                            >
                                 <span className="day-name">{d.day}</span>
                                 <span className="date-num">{d.date}</span>
                             </div>
@@ -137,8 +247,17 @@ const Booking = () => {
                         </div>
                     </div>
                     <div className="time-slots-grid">
-                        {['01:30 PM', '01:30 PM', '01:30 PM', '01:30 PM', '01:30 PM', '01:30 PM', '01:30 PM'].map((t, i) => (
-                            <button key={i} className={`time-slot-btn ${i === 0 ? 'active' : ''}`}>{t}</button>
+                        {(timePeriod === 'Morning'
+                            ? ['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM']
+                            : timePeriod === 'Afternoon'
+                                ? ['12:00 PM', '12:30 PM', '01:00 PM', '01:30 PM', '02:00 PM', '02:30 PM']
+                                : ['05:00 PM', '05:30 PM', '06:00 PM', '06:30 PM', '07:00 PM', '07:30 PM']
+                        ).map((t, i) => (
+                            <button
+                                key={i}
+                                className={`time-slot-btn ${t === selectedTime ? 'active' : ''}`}
+                                onClick={() => setSelectedTime(t)}
+                            >{t}</button>
                         ))}
                     </div>
                 </div>
@@ -172,7 +291,9 @@ const Booking = () => {
                     <div className="selected-slot-box">
                         <div>
                             <span className="slot-label-sm">Selected Slot</span>
-                            <span className="slot-value-lg">Feb 3, 01:30 PM</span>
+                            <span className="slot-value-lg">
+                                {MONTHS[selectedDateObj.getMonth()].slice(0, 3)} {selectedDateObj.getDate()}, {selectedTime}
+                            </span>
                         </div>
                         <FaCheckCircle className="check-icon" />
                     </div>
@@ -183,88 +304,95 @@ const Booking = () => {
     );
 
     // Step 2: Patient Details
-    const renderPatientDetails = () => (
+    const renderPatientDetails = () => {
+        const handleProceedToReview = () => {
+            const errors = {};
+            if (!patientDetails.fullName.trim())
+                errors.fullName = 'Full name is required.';
+            if (!patientDetails.age || Number(patientDetails.age) <= 0 || Number(patientDetails.age) > 120)
+                errors.age = 'Please enter a valid age (1–120).';
+            if (!patientDetails.phoneNumber.trim() || patientDetails.phoneNumber.trim().length < 7)
+                errors.phoneNumber = 'Please enter a valid phone number.';
+            if (!patientDetails.reason.trim())
+                errors.reason = 'Please describe your reason for visit.';
+            setFormErrors(errors);
+            if (Object.keys(errors).length === 0) setStep(3);
+        };
+        return (
         <div className="booking-body-centered">
             <div className="booking-card-lg">
                 <h3>Patient Details</h3>
                 <p className="sub-text">Please provide accurate info for the medical records.</p>
                 <hr className="divider" />
-
-                <form className="patient-form">
+                <form className="patient-form" onSubmit={(e) => e.preventDefault()}>
                     <div className="form-row">
                         <div className="form-group half">
-                            <label>Full Name</label>
+                            <label>Full Name <span className="required-star">*</span></label>
                             <input
                                 type="text"
-                                placeholder="Suresh peddinti"
+                                placeholder="Enter your full name"
                                 value={patientDetails.fullName}
-                                onChange={(e) => setPatientDetails({ ...patientDetails, fullName: e.target.value })}
+                                className={formErrors.fullName ? 'input-error' : ''}
+                                onChange={(e) => { setPatientDetails({ ...patientDetails, fullName: e.target.value }); if (formErrors.fullName) setFormErrors({ ...formErrors, fullName: '' }); }}
                             />
+                            {formErrors.fullName && <span className="error-msg">{formErrors.fullName}</span>}
                         </div>
                         <div className="form-group half">
-                            <label>Age</label>
+                            <label>Age <span className="required-star">*</span></label>
                             <input
-                                type="text"
-                                placeholder="Suresh peddinti"
+                                type="number"
+                                placeholder="Enter age (e.g. 25)"
+                                min="1"
+                                max="120"
                                 value={patientDetails.age}
-                                onChange={(e) => setPatientDetails({ ...patientDetails, age: e.target.value })}
+                                className={formErrors.age ? 'input-error' : ''}
+                                onChange={(e) => { setPatientDetails({ ...patientDetails, age: e.target.value }); if (formErrors.age) setFormErrors({ ...formErrors, age: '' }); }}
                             />
+                            {formErrors.age && <span className="error-msg">{formErrors.age}</span>}
                         </div>
                     </div>
-
                     <div className="form-group">
                         <label>Gender</label>
                         <div className="gender-options">
                             {['Male', 'Female', 'Other'].map(g => (
-                                <button
-                                    key={g}
-                                    type="button"
-                                    className={`gender-btn ${patientDetails.gender === g ? 'active' : ''}`}
-                                    onClick={() => setPatientDetails({ ...patientDetails, gender: g })}
-                                >
-                                    {g}
-                                </button>
+                                <button key={g} type="button" className={`gender-btn ${patientDetails.gender === g ? 'active' : ''}`} onClick={() => setPatientDetails({ ...patientDetails, gender: g })}>{g}</button>
                             ))}
                         </div>
                     </div>
-
                     <div className="form-group">
-                        <label>Phone Number</label>
+                        <label>Phone Number <span className="required-star">*</span></label>
                         <input
-                            type="text"
-                            placeholder="Suresh peddinti"
+                            type="tel"
+                            placeholder="+91 XXXXX XXXXX"
                             value={patientDetails.phoneNumber}
-                            onChange={(e) => setPatientDetails({ ...patientDetails, phoneNumber: e.target.value })}
+                            className={formErrors.phoneNumber ? 'input-error' : ''}
+                            onChange={(e) => { setPatientDetails({ ...patientDetails, phoneNumber: e.target.value }); if (formErrors.phoneNumber) setFormErrors({ ...formErrors, phoneNumber: '' }); }}
                         />
+                        {formErrors.phoneNumber && <span className="error-msg">{formErrors.phoneNumber}</span>}
                     </div>
-
                     <div className="form-group">
-                        <label>Reason For Visit</label>
+                        <label>Reason For Visit <span className="required-star">*</span></label>
                         <textarea
-                            placeholder="Suresh peddinti"
+                            placeholder="Describe your reason for visit (e.g. Fever, chest pain...)"
                             value={patientDetails.reason}
-                            onChange={(e) => setPatientDetails({ ...patientDetails, reason: e.target.value })}
+                            className={formErrors.reason ? 'input-error' : ''}
+                            onChange={(e) => { setPatientDetails({ ...patientDetails, reason: e.target.value }); if (formErrors.reason) setFormErrors({ ...formErrors, reason: '' }); }}
                         ></textarea>
+                        {formErrors.reason && <span className="error-msg">{formErrors.reason}</span>}
                     </div>
-
                     <div className="form-group checkbox-row">
-                        <input
-                            type="checkbox"
-                            id="others"
-                            checked={patientDetails.bookingForSomeoneElse}
-                            onChange={(e) => setPatientDetails({ ...patientDetails, bookingForSomeoneElse: e.target.checked })}
-                        />
+                        <input type="checkbox" id="others" checked={patientDetails.bookingForSomeoneElse} onChange={(e) => setPatientDetails({ ...patientDetails, bookingForSomeoneElse: e.target.checked })} />
                         <label htmlFor="others">Booking for someone else?</label>
                     </div>
-
                     <div className="form-actions">
                         <button type="button" className="btn-back-light" onClick={() => setStep(1)}>Back</button>
-                        <button type="button" className="btn-continue" onClick={() => setStep(3)}>Procced To Payment</button>
+                        <button type="button" className="btn-continue" onClick={handleProceedToReview}>Proceed To Payment</button>
                     </div>
                 </form>
             </div>
         </div>
-    );
+        );
+    };
 
     // Step 3: Review Appointment
     const renderReview = () => (
@@ -285,10 +413,11 @@ const Booking = () => {
                     </div>
                     <div className="review-details-grid">
                         <div className="review-item">
-                            <FaCalendarAlt className="icon-teal" /> <span>Feb 3, 2026</span>
+                            <FaCalendarAlt className="icon-teal" />
+                            <span>{MONTHS[selectedDateObj.getMonth()].slice(0, 3)} {selectedDateObj.getDate()}, {selectedDateObj.getFullYear()}</span>
                         </div>
                         <div className="review-item">
-                            <FaRegClock className="icon-teal" /> <span>01:30 PM</span>
+                            <FaRegClock className="icon-teal" /> <span>{selectedTime}</span>
                         </div>
                         <div className="review-item">
                             <FaMapMarkerAlt className="icon-teal" /> <span>Clinic Visit</span>

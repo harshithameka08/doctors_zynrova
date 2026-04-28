@@ -4,6 +4,7 @@ import { FaArrowRight, FaSearch, FaRegFolderOpen, FaRegClock, FaMapMarkerAlt, Fa
 import { FaHeartbeat as LogoIcon } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import './Contact.css';
+import Navbar from '../components/Navbar';
 
 const Contact = () => {
     const navigate = useNavigate();
@@ -23,28 +24,7 @@ const Contact = () => {
     return (
         <div className="contact-page">
             {/* Navbar */}
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-                <nav className="navbar-pill">
-                    <div className="nav-logo">
-                        <div className="nav-logo-icon"><LogoIcon /></div>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <span className="nav-logo-text" style={{ fontSize: '18px', lineHeight: '1' }}>HEALTHCARE</span>
-                        </div>
-                    </div>
-                    <ul className="nav-links">
-                        <li><a onClick={() => navigate('/')} style={{ cursor: 'pointer', color: '#333' }}>Home</a></li>
-                        <li><a onClick={() => navigate('/find-doctors')} style={{ cursor: 'pointer', color: '#333' }}>Find Doctors</a></li>
-                        <li><a onClick={() => navigate('/specialties')} style={{ cursor: 'pointer', color: '#333' }}>Specialities</a></li>
-                        <li><a onClick={() => navigate('/symptoms')} style={{ cursor: 'pointer', color: '#333' }}>Symptoms</a></li>
-                        <li><a onClick={() => navigate('/about')} style={{ cursor: 'pointer', color: '#333' }}>About Us</a></li>
-                        <li><a href="#" className="active" style={{ fontWeight: 'bold', color: '#555' }}>Contact</a></li>
-                        <li><a className="login-link" onClick={() => navigate('/login')} style={{ fontWeight: 'bold', color: '#333', cursor: 'pointer' }}>Login / Sign Up</a></li>
-                    </ul>
-                    <div className="nav-actions">
-                        <button className="btn-primary" onClick={() => navigate('/booking')} style={{ borderRadius: '50px', padding: '10px 25px', background: '#27B992', color: 'white', border: 'none' }}>Book Appointment <FaArrowRight /></button>
-                    </div>
-                </nav>
-            </div>
+            <Navbar />
 
             {/* Hero Section */}
             <section className="contact-hero">
@@ -89,15 +69,15 @@ const Contact = () => {
                     <div className="form-grid">
                         <div className="form-group">
                             <label>Full Name</label>
-                            <input type="text" placeholder="Sarah Johnson" />
+                            <input type="text" placeholder="Full Name" />
                         </div>
                         <div className="form-group">
                             <label>Email Address</label>
-                            <input type="email" placeholder="sarah@post.com" />
+                            <input type="email" placeholder="Email Address" />
                         </div>
                         <div className="form-group">
                             <label>Phone Number</label>
-                            <input type="tel" placeholder="Sarah Johnson" />
+                            <input type="tel" placeholder="Phone Number" />
                         </div>
                         <div className="form-group">
                             <label>Subject</label>
@@ -110,7 +90,7 @@ const Contact = () => {
                     </div>
                     <div className="form-group" style={{ marginBottom: '30px' }}>
                         <label>Message</label>
-                        <textarea placeholder="How can we help you?"></textarea>
+                        <textarea placeholder="How we can help you ?"></textarea>
                     </div>
                     <button type="button" className="btn-send-msg">Send Message</button>
                 </form>

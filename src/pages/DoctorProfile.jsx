@@ -4,35 +4,28 @@ import {
     FaGlobe, FaVideo, FaGraduationCap, FaMapMarkerAlt,
     FaLock, FaHeartbeat, FaArrowRight, FaShieldAlt
 } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { FaCircleDot } from 'react-icons/fa6';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './DoctorProfile.css';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const DoctorProfile = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { doctor } = location.state || {};
+
+    const profileDoctor = doctor || {
+        full_name: 'Dr. James Wilson',
+        specialization: 'Cardiologist',
+        image: '/dr_sarah_johnson_1.png',
+        bio: 'Dr. James Wilson is a world-renowned cardiologist specializing in preventive heart care and complex cardiac conditions. With over 15 years of experience, he combines cutting-edge technology with a compassionate, patient-centered approach to ensure the best outcomes for heart health.'
+    };
 
     return (
         <div className="profile-container">
             {/* Navbar (Duplicated for Consistency in this task) */}
-            <nav className="navbar" style={{ position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)', zIndex: '1000' }}>
-                <div className="nav-logo">
-                    <div className="nav-logo-icon"><FaHeartbeat /></div>
-                    <span className="nav-logo-text">Healthcare</span>
-                    <span className="nav-logo-sub">Medical Services</span>
-                </div>
-                <ul className="nav-links">
-                    <li><a onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</a></li>
-                    <li><a onClick={() => navigate('/find-doctors')} className="active" style={{ color: '#27B992', cursor: 'pointer' }}>Find Doctors</a></li>
-                    <li><a onClick={() => navigate('/specialties')} style={{ cursor: 'pointer' }}>Specialities</a></li>
-                    <li><a onClick={() => navigate('/symptoms')} style={{ cursor: 'pointer' }}>Symptoms</a></li>
-                    <li><a onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>About Us</a></li>
-                    <li><a onClick={() => navigate('/contact')} style={{ cursor: 'pointer' }}>Contact</a></li>
-                </ul>
-                <div className="nav-actions">
-                    <a className="login-link" onClick={() => navigate('/login')}>Login / Sign Up</a>
-                    <button className="btn-primary" onClick={() => navigate('/booking')}>Book Appointment <FaArrowRight /></button>
-                </div>
-            </nav>
+            <Navbar />
 
             {/* Header Section */}
             <div className="profile-header-area">
@@ -49,11 +42,11 @@ const DoctorProfile = () => {
                 <div className="left-column">
                     {/* Basic Info Card */}
                     <div className="profile-card doctor-header-card">
-                        <div className="verified-badge"><FaCheckCircle /></div>
-                        <img src="/dr_sarah_johnson_1.png" alt="Dr. James Wilson" className="doc-profile-img" />
+                        <img src="/verified_symbol.png" alt="Verified" className="verified-badge" style={{ background: 'transparent', mixBlendMode: 'normal' }} />
+                        <img src={profileDoctor.image} alt={profileDoctor.full_name} className="doc-profile-img" />
                         <div className="doc-info-main">
-                            <h2>Dr. James Wilson</h2>
-                            <span className="specialty-text">Cardiologist</span>
+                            <h2>{profileDoctor.full_name}</h2>
+                            <span className="specialty-text">{profileDoctor.specialization}</span>
                             <div className="rating-row">
                                 <div className="stars">
                                     <FaStar /><FaStar /><FaStar /><FaStar /><FaStar style={{ color: '#ffd700' }} /> {/* 4 full + maybe half? Image shows 4.5 but stars look full. Keeping simpler */}
@@ -70,28 +63,28 @@ const DoctorProfile = () => {
                     {/* Quick Stats */}
                     <div className="stats-grid">
                         <div className="stat-box">
-                            <div className="stat-icon"><FaUserMd /></div>
+                            <div className="stat-icon"><img src="/Group heart.png" alt="icon" style={{ width: '34px' }} /></div>
                             <div className="stat-text">
                                 <h5>Experience</h5>
                                 <p>15 Yrs</p>
                             </div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-icon"><FaGlobe /></div>
+                            <div className="stat-icon"><img src="/Group heart.png" alt="icon" style={{ width: '34px' }} /></div>
                             <div className="stat-text">
                                 <h5>Languages</h5>
                                 <p>English</p>
                             </div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-icon"><FaVideo /></div>
+                            <div className="stat-icon"><img src="/Group heart.png" alt="icon" style={{ width: '34px' }} /></div>
                             <div className="stat-text">
                                 <h5>Consultation</h5>
                                 <p>Both</p>
                             </div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-icon"><FaStar /></div>
+                            <div className="stat-icon"><img src="/Group heart.png" alt="icon" style={{ width: '34px' }} /></div>
                             <div className="stat-text">
                                 <h5>Rating</h5>
                                 <p>4.9/5.0</p>
@@ -103,30 +96,30 @@ const DoctorProfile = () => {
                     <div className="profile-card">
                         <h3 className="section-header">About Doctor</h3>
                         <p className="about-text">
-                            Dr. Sarah Mitchell is a world-renowned cardiologist specializing in preventive heart care and complex cardiac conditions. With over 15 years of experience, she combines cutting-edge technology with a compassionate, patient-centered approach to ensure the best outcomes for heart health.
+                            {profileDoctor.bio}
                         </p>
                     </div>
 
                     {/* Education & Experience */}
-                    <div className="profile-card">
+                    <div className="profile-card education-card">
                         <h3 className="section-header">Education & Experience</h3>
                         <div className="timeline">
                             <div className="timeline-item">
-                                <div className="timeline-icon"></div>
+                                <div className="timeline-icon"><FaCircleDot size={22} color="var(--primary-color)" /></div>
                                 <div className="timeline-content">
                                     <h4>Doctor Of Medicine</h4>
                                     <p>Harvard Medical School • 2008</p>
                                 </div>
                             </div>
                             <div className="timeline-item">
-                                <div className="timeline-icon"></div>
+                                <div className="timeline-icon"><FaCircleDot size={22} color="var(--primary-color)" /></div>
                                 <div className="timeline-content">
                                     <h4>Residency In Cardiology</h4>
                                     <p>Johns Hopkins Hospital • 2012</p>
                                 </div>
                             </div>
                             <div className="timeline-item">
-                                <div className="timeline-icon"></div>
+                                <div className="timeline-icon"><FaCircleDot size={22} color="var(--primary-color)" /></div>
                                 <div className="timeline-content">
                                     <h4>Fellowship In Interventional Cardiology</h4>
                                     <p>Mayo Clinic • 2015</p>
@@ -146,8 +139,7 @@ const DoctorProfile = () => {
                         </div>
                     </div>
 
-                    {/* Clinic & Location */}
-                    <div className="profile-card">
+                    <div className="profile-card clinic-location-card">
                         <h3 className="section-header">Clinic & Location</h3>
                         <div className="clinic-card-content">
                             <div className="clinic-info">
@@ -162,9 +154,7 @@ const DoctorProfile = () => {
                                 </div>
                             </div>
                             <div className="clinic-map">
-                                {/* Placeholder map image or actual map integration would go here. */}
-                                {/* Using a placeholder div pattern for map */}
-                                <img src="/location_map.png" alt="Map Location" style={{ width: '100%', height: '100%', background: '#eee' }} />
+                                <img src="/map.png" alt="Map Location" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '10px' }} />
                             </div>
                         </div>
                     </div>
@@ -176,7 +166,7 @@ const DoctorProfile = () => {
                     <div className="booking-card">
                         <div className="booking-header">
                             <span>Consultation Fee</span>
-                            <span className="booking-price">$150</span>
+                            <span className="booking-price">₹80</span>
                         </div>
 
                         <div className="date-section">
@@ -214,7 +204,7 @@ const DoctorProfile = () => {
                             </div>
                         </div>
 
-                        <button className="btn-book-lg" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. James Wilson', specialty: 'Cardiologist', image: '/dr_sarah_johnson_1.png', location: 'Heart & Vascular Center', consultation_fee: '150' } } })}>Book Appointment</button>
+                        <button className="btn-book-lg" onClick={() => navigate('/booking', { state: { doctor: { ...profileDoctor, consultation_fee: '₹80', location: 'Heart & Vascular Center' } } })}>Book Appointment</button>
                         <button className="btn-cancel">Cancel</button>
 
                         <div className="secure-note">

@@ -1,117 +1,133 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     FaSearch, FaUserMd, FaTooth, FaHeartbeat, FaBone,
     FaNotesMedical, FaEye, FaVideo, FaMapMarkerAlt,
     FaArrowRight, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn,
-    FaCheckCircle, FaStar, FaPlus
+    FaCheckCircle, FaStar, FaPlus, FaMinus, FaStethoscope, FaHeadSideCough,
+    FaHandHoldingMedical
 } from 'react-icons/fa';
-import { RiCalendarCheckLine, RiShieldCheckLine, RiServiceLine } from "react-icons/ri";
+import { RiCalendarCheckLine, RiShieldCheckLine, RiServiceLine, RiStethoscopeLine } from "react-icons/ri";
+import { FiClock, FiUser, FiSearch, FiArrowRight, FiMessageCircle, FiHelpCircle, FiUserCheck } from "react-icons/fi";
+import { BiSupport } from "react-icons/bi";
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import { useChat } from '../context/ChatContext';
 
 import './Home.css';
 
 const Home = () => {
     const navigate = useNavigate();
+    const { openChatWithMsg } = useChat();
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchSubmit = (e) => {
+        if (e) e.preventDefault();
+        if (searchQuery.trim()) {
+            openChatWithMsg(searchQuery);
+            setSearchQuery('');
+        }
+    };
+
+    const [openFaq, setOpenFaq] = useState(null);
+
+    const toggleFaq = (index) => {
+        setOpenFaq(openFaq === index ? null : index);
+    };
+
+    const faqs = [
+        { q: "How Does Your Interior Design Process Work?", a: "We start with a consultation to understand your needs, followed by design concepts, revisions, and final implementation." },
+        { q: "Do You Provide Customized Interior Solutions?", a: "Yes, every project is tailored specifically to the client's preferences and space requirements." },
+        { q: "How Long Does An Interior Project Usually Take?", a: "Timelines vary by project size, but typically range from 2 weeks for single rooms to a few months for full homes." },
+        { q: "Can I Choose My Own Materials And Finishes?", a: "Absolutely! We encourage client involvement/selection to ensure the final result feels personal to you." }
+    ];
 
     return (
         <div className="home-container">
             {/* Navbar */}
-            <nav className="navbar">
-                <div className="nav-logo">
-                    <div className="nav-logo-icon"><FaHeartbeat /></div>
-                    <span className="nav-logo-text">Healthcare</span>
-                    <span className="nav-logo-sub">Medical Services</span>
-                </div>
-                <ul className="nav-links">
-                    <li><a onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>Home</a></li>
-                    <li><a onClick={() => navigate('/find-doctors')} style={{ cursor: 'pointer' }}>Find Doctors</a></li>
-                    <li><a onClick={() => navigate('/specialties')} style={{ cursor: 'pointer' }}>Specialities</a></li>
-                    <li><a onClick={() => navigate('/symptoms')} style={{ cursor: 'pointer' }}>Symptoms</a></li>
-                    <li><a onClick={() => navigate('/about')} style={{ cursor: 'pointer' }}>About Us</a></li>
-                    <li><a onClick={() => navigate('/contact')} style={{ cursor: 'pointer' }}>Contact</a></li>
-                </ul>
-                <div className="nav-actions">
-                    <a className="login-link" onClick={() => navigate('/login')}>Login / Sign Up</a>
-                    <button className="btn-primary" onClick={() => navigate('/booking')}>Book Appointment <FaArrowRight /></button>
-                </div>
-            </nav>
-
+            <Navbar />
 
             {/* Hero Section */}
             <header className="hero-section" id="home">
-                <div className="hero-overlay"></div>
+                <div className="hero-content-left">
+                    <div className="trust-badge">
+                        <div className="trust-avatars">
+                            <img src="/dr_sarah_johnson_1.png" alt="Patient" />
+                            <img src="/dr_sarah_johnson.png" alt="Patient" />
+                            <img src="/dr_sarah_johnson_2.png" alt="Patient" />
+                        </div>
+                        <span className="trust-text">TRUSTED BY 10K+ PATIENTS</span>
+                    </div>
 
-                <div className="hero-content">
                     <h1 className="hero-title">
-                        Find The Right Doctor.<br />
-                        Book <span className="green-text">Appointments Instantly.</span>
+                        Find The Right Doctor. Book<br />
+                        <span className="green-text">Appointments Instantly.</span>
                     </h1>
+                    
                     <p className="hero-subtitle">
                         Easily schedule appointments with the best doctors near you in India's best trusted medical network anytime, anywhere.
                     </p>
+
+                    <form className="hero-search-bar" onSubmit={handleSearchSubmit}>
+                        <FiSearch className="hero-search-icon" />
+                        <input 
+                            type="text" 
+                            placeholder="Describe how you feel..." 
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button type="submit" className="btn-search-hero">
+                            Start Analysis <FiArrowRight strokeWidth={3} />
+                        </button>
+                    </form>
                 </div>
 
-                <div className="hero-search-box">
-                    <div className="search-field">
-                        <label>Search</label>
-                        <div className="search-input-wrapper">
-                            <FaSearch />
-                            <input type="text" placeholder="Doctors, specialty or symptoms..." />
+                <div className="hero-content-right">
+                    <div className="hero-grid">
+                        <div className="hero-card doctor-card-large">
+                            <img src="/doctor_teal_scrubs.png" alt="Dr. Sarah Johnson" />
+                            <div className="floating-badge bottom-left-badge">
+                                <span className="badge-specialty">DERMATOLOGIST</span>
+                                <span className="badge-name">Dr. Sarah Johnson</span>
+                            </div>
+                        </div>
+                        
+                        <div className="hero-card doctor-card-small top-right-img">
+                            <div className="floating-badge top-right-badge">
+                                <div className="shield-icon-wrapper">
+                                    <RiShieldCheckLine size={20} />
+                                </div>
+                                <div className="badge-text-group">
+                                    <span className="badge-title">VERIFIED SECURE</span>
+                                    <span className="badge-subtitle">HIPAA Compliant Care</span>
+                                </div>
+                            </div>
+                            <img src="/doctor_bw_labcoat.png" alt="Doctor" />
+                        </div>
+
+                        <div className="hero-card stats-card-dark">
+                            <div className="stat-group">
+                                <h2>150+</h2>
+                                <span className="green-label">SPECIALISTS</span>
+                            </div>
+                            <div className="stat-group">
+                                <h2>24/7</h2>
+                                <span className="green-label">AVAILABILITY</span>
+                            </div>
+                            <div className="stat-group">
+                                <h2><FaStar className="star-icon" /> 4.9</h2>
+                                <span className="green-label">RATING</span>
+                            </div>
+                        </div>
+
+                        <div className="hero-card doctor-card-small bottom-right-img">
+                            <img src="/doctor_blue_scrubs.png" alt="Doctor" />
                         </div>
                     </div>
-                    <div className="search-field">
-                        <label>Location</label>
-                        <div className="search-input-wrapper">
-                            <FaMapMarkerAlt />
-                            <input type="text" placeholder="Near by clinic, hospitals..." />
-                        </div>
-                    </div>
-                    <div className="search-field">
-                        <label>Consultation Type</label>
-                        <div className="search-input-wrapper">
-                            <FaVideo />
-                            <select style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', color: '#555' }}>
-                                <option>Online</option>
-                                <option>Clinic Visit</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button className="btn-search">Search</button>
                 </div>
             </header>
 
-            {/* Stats Bar */}
-            <div className="stats-bar">
-                <div className="stat-item">
-                    <div className="stat-icon bg-punk-light"><RiCalendarCheckLine /></div>
-                    <div className="stat-info">
-                        <h3>5,000+</h3>
-                        <p>Verified Doctors</p>
-                    </div>
-                </div>
-                <div className="stat-item">
-                    <div className="stat-icon bg-peach-light"><FaHeartbeat /></div>
-                    <div className="stat-info">
-                        <h3>20+</h3>
-                        <p>Medical Specialities</p>
-                    </div>
-                </div>
-                <div className="stat-item">
-                    <div className="stat-icon bg-purple-light"><FaUserMd /></div>
-                    <div className="stat-info">
-                        <h3>1M+</h3>
-                        <p>Happy Patients</p>
-                    </div>
-                </div>
-                <div className="stat-item">
-                    <div className="stat-icon bg-yellow-light"><RiShieldCheckLine /></div>
-                    <div className="stat-info">
-                        <h3>24/7</h3>
-                        <p>Booking Support</p>
-                    </div>
-                </div>
-            </div>
+
 
             {/* Specialties Section */}
             <section className="section" id="specialists">
@@ -120,84 +136,145 @@ const Home = () => {
 
                 <div className="specialties-grid">
                     <div className="specialty-card">
-                        <div className="specialty-icon"><FaUserMd /></div>
+                        <div className="specialty-icon"><FaStethoscope size={24} /></div>
                         <h4>General Physician</h4>
                         <p>Diagnosis and treatment for common illnesses and preventive care.</p>
-                        <a href="#" className="read-more">Read more <FaArrowRight size={12} /></a>
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                        </div>
                     </div>
                     <div className="specialty-card">
-                        <div className="specialty-icon"><FaTooth /></div>
+                        <div className="specialty-icon"><FaTooth size={24} /></div>
                         <h4>Dentist</h4>
                         <p>Complete dental care including checkups and treatments.</p>
-                        <a href="#" className="read-more">Read more <FaArrowRight size={12} /></a>
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                        </div>
                     </div>
                     <div className="specialty-card">
-                        <div className="specialty-icon"><FaHeartbeat /></div>
+                        <div className="specialty-icon"><FaHeadSideCough size={24} /></div>
                         <h4>Cardiologist</h4>
                         <p>Heart health consultation and cardiac care.</p>
-                        <a href="#" className="read-more">Read more <FaArrowRight size={12} /></a>
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                        </div>
                     </div>
                     <div className="specialty-card">
-                        <div className="specialty-icon"><FaBone /></div>
+                        <div className="specialty-icon"><FaBone size={24} /></div>
                         <h4>Orthopedic Care</h4>
                         <p>Specialized care for bone, joint, and muscle conditions.</p>
-                        <a href="#" className="read-more">Read more <FaArrowRight size={12} /></a>
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                        </div>
                     </div>
                     <div className="specialty-card">
-                        <div className="specialty-icon"><FaNotesMedical /></div>
+                        <div className="specialty-icon"><FaHeartbeat size={24} /></div>
                         <h4>Pediatrician</h4>
                         <p>Medical care for infants and children. And growth</p>
-                        <a href="#" className="read-more">Read more <FaArrowRight size={12} /></a>
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                        </div>
                     </div>
                     <div className="specialty-card">
-                        <div className="specialty-icon"><FaNotesMedical /></div>
+                        <div className="specialty-icon"><FaHandHoldingMedical size={24} /></div>
                         <h4>Dermatologist</h4>
                         <p>Guided recovery programs for post-surgical patients.</p>
-                        <a href="#" className="read-more">Read more <FaArrowRight size={12} /></a>
+                        <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CareFlow AI Section */}
+            <section className="section careflow-help-section">
+                <h2 className="careflow-title">How CareFlow AI helps you</h2>
+                <p className="careflow-subtitle">A seamless path from describing symptoms to receiving professional care.</p>
+                
+                <div className="careflow-grid">
+                    <div className="careflow-item">
+                        <div className="careflow-icon-circle icon-blue">
+                            <FiMessageCircle />
+                        </div>
+                        <div className="careflow-text-box">
+                            <h4>Tell your problem</h4>
+                            <p>Simply describe your symptoms or health concerns in natural language.</p>
+                        </div>
+                    </div>
+
+                    <div className="careflow-item">
+                        <div className="careflow-icon-circle icon-purple">
+                            <FiHelpCircle />
+                        </div>
+                        <div className="careflow-text-box">
+                            <h4>Answer simple questions</h4>
+                            <p>AI asks specific clarifying questions to understand your condition perfectly.</p>
+                        </div>
+                    </div>
+
+                    <div className="careflow-item">
+                        <div className="careflow-icon-circle icon-teal">
+                            <FiUserCheck />
+                        </div>
+                        <div className="careflow-text-box">
+                            <h4>Get recommendations</h4>
+                            <p>Receive immediate guidance on which specialist category you should visit.</p>
+                        </div>
+                    </div>
+
+                    <div className="careflow-item">
+                        <div className="careflow-icon-circle icon-green">
+                            <RiStethoscopeLine />
+                        </div>
+                        <div className="careflow-text-box">
+                            <h4>Book your care</h4>
+                            <p>Browse matched doctors and book a slot instantly for clinic or video visit.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Booking Steps Section */}
-            <section className="section booking-section section-bg-gray">
-                <div className="booking-content">
-                    <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '20px' }}>
-                        How Appointment <span className="green-text">Booking Works</span>
-                    </h2>
-                    <div className="step-list">
-                        <div className="step-item">
-                            <div className="step-icon"><FaSearch /></div>
-                            <div className="step-info">
-                                <h4>Step 1 - Search Doctor</h4>
-                                <p>Search specifically via specialty, location, or name.</p>
+            <section className="section booking-section">
+                <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '40px' }}>
+                    How Appointment <span className="green-text">Booking<br />Works</span>
+                </h2>
+                <div className="booking-columns">
+                    <div className="booking-content">
+                        <div className="step-list">
+                            <div className="step-item">
+                                <div className="step-icon step-icon-1"><FaSearch /></div>
+                                <div className="step-info">
+                                    <h4>Step 1 – Search Doctor</h4>
+                                    <p>Find doctors by speciality, symptom, or name.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="step-item">
-                            <div className="step-icon"><RiCalendarCheckLine /></div>
-                            <div className="step-info">
-                                <h4>Step 2 - Choose Slot</h4>
-                                <p>Select available date and time as per convenience.</p>
+                            <div className="step-item">
+                                <div className="step-icon step-icon-2"><RiCalendarCheckLine /></div>
+                                <div className="step-info">
+                                    <h4>Step 2 – Choose Slot</h4>
+                                    <p>Select available date and time.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="step-item">
-                            <div className="step-icon"><FaUserMd /></div>
-                            <div className="step-info">
-                                <h4>Step 3 - Book Appointment</h4>
-                                <p>Confirm your appointment instantly.</p>
+                            <div className="step-item">
+                                <div className="step-icon step-icon-3"><FaUserMd /></div>
+                                <div className="step-info">
+                                    <h4>Step 3 – Book Appointment</h4>
+                                    <p>Confirm booking instantly.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div className="step-item">
-                            <div className="step-icon"><RiServiceLine /></div>
-                            <div className="step-info">
-                                <h4>Step 4 - Get Care</h4>
-                                <p>Consult online or visit clinic.</p>
+                            <div className="step-item">
+                                <div className="step-icon step-icon-4"><RiServiceLine /></div>
+                                <div className="step-info">
+                                    <h4>Step 4 – Get Care</h4>
+                                    <p>Consult online or visit clinic.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="booking-image">
-                    {/* Using appointment_page.png as it seems most appropriate for 'booking context' visual */}
-                    <img src="/appointment_page.png" alt="Booking Process" />
+                    <div className="booking-image">
+                        <img src="/appointment_page.png" alt="Booking Process" />
+                    </div>
                 </div>
             </section>
 
@@ -230,42 +307,42 @@ const Home = () => {
 
                 <div className="symptoms-grid">
                     <div className="symptom-card">
-                        <div className="symptom-icon bg-red-soft"><FaHeartbeat /></div>
+                        <div className="symptom-icon"><img src="/icons/temperature.png" alt="Fever" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <div className="symptom-info">
                             <h4>Fever</h4>
                             <p>Consult general physicians for diagnosis and care.</p>
                         </div>
                     </div>
                     <div className="symptom-card">
-                        <div className="symptom-icon bg-blue-soft"><FaBone /></div>
+                        <div className="symptom-icon"><img src="/icons/back-pain.png" alt="Back Pain" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <div className="symptom-info">
                             <h4>Back Pain</h4>
                             <p>Find orthopedic specialists for relief.</p>
                         </div>
                     </div>
                     <div className="symptom-card">
-                        <div className="symptom-icon bg-blue-soft"><FaTooth /></div>
+                        <div className="symptom-icon"><img src="/icons/tooth_attack.png" alt="Tooth Ache" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <div className="symptom-info">
                             <h4>Tooth Ache</h4>
                             <p>Book trusted dental professionals.</p>
                         </div>
                     </div>
                     <div className="symptom-card">
-                        <div className="symptom-icon bg-orange-soft"><FaNotesMedical /></div>
+                        <div className="symptom-icon"><img src="/icons/rashes.png" alt="Skin Allergy" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <div className="symptom-info">
                             <h4>Skin Allergy</h4>
                             <p>Consult dermatologists for skin issues.</p>
                         </div>
                     </div>
                     <div className="symptom-card">
-                        <div className="symptom-icon bg-red-soft"><FaHeartbeat /></div>
+                        <div className="symptom-icon"><img src="/icons/heart_attack.png" alt="Heart Issues" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <div className="symptom-info">
                             <h4>Heart Issues</h4>
                             <p>Get expert cardiac consultation.</p>
                         </div>
                     </div>
                     <div className="symptom-card">
-                        <div className="symptom-icon bg-orange-soft"><FaBone /></div>
+                        <div className="symptom-icon"><img src="/icons/leg_pain.png" alt="Joint Pain" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <div className="symptom-info">
                             <h4>Joint Pain</h4>
                             <p>Orthopedic care for joints and muscles.</p>
@@ -329,7 +406,7 @@ const Home = () => {
             </section>
 
             {/* Testimonials Section */}
-            <section className="section">
+            <section className="section" id="testimonials">
                 <h2 className="section-title">What Our Patients <span className="green-text">Say</span></h2>
                 <p style={{ marginTop: '-40px', marginBottom: '60px', color: '#777' }}>Real stories from our healthy community.</p>
                 <div className="testimonials-grid">
@@ -370,7 +447,7 @@ const Home = () => {
             </section>
 
             {/* Consultation Mode Section */}
-            <section className="section">
+            <section className="section" id="consultation">
                 <div className="consultation-banner">
                     <div className="consult-mode-card online">
                         <div className="mode-icon"><FaVideo /></div>
@@ -384,6 +461,7 @@ const Home = () => {
                         <h3>Clinic Visit</h3>
                         <p>Prefer face-to-face? Book an appointment at one of our nearby modern medical clinics.</p>
                         <div className="mode-feature"><FaCheckCircle /> Nearby Medical Facilities</div>
+
                         <button className="btn-mode clinic-btn">Find Clinics</button>
                     </div>
                 </div>
@@ -393,22 +471,17 @@ const Home = () => {
             <section className="section" id="faq">
                 <h2 className="section-title">Frequently Asked <span className="green-text">Questions</span></h2>
                 <div className="faq-list">
-                    <div className="faq-item">
-                        <h4>How Does Your Interior Design Process Work?</h4>
-                        <FaPlus className="faq-icon" />
-                    </div>
-                    <div className="faq-item">
-                        <h4>Do You Provide Customized Interior Solutions?</h4>
-                        <FaPlus className="faq-icon" />
-                    </div>
-                    <div className="faq-item">
-                        <h4>How Long Does An Interior Project Usually Take?</h4>
-                        <FaPlus className="faq-icon" />
-                    </div>
-                    <div className="faq-item">
-                        <h4>Can I Choose My Own Materials And Finishes?</h4>
-                        <FaPlus className="faq-icon" />
-                    </div>
+                    {faqs.map((item, idx) => (
+                        <div className={`faq-item ${openFaq === idx ? 'active' : ''}`} key={idx} onClick={() => toggleFaq(idx)}>
+                            <div className="faq-header">
+                                {item.q}
+                                <span className="faq-icon">{openFaq === idx ? <FaMinus /> : <FaPlus />}</span>
+                            </div>
+                            <div className="faq-content">
+                                {item.a}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </section>
 

@@ -5,6 +5,7 @@ import { FaUserMd, FaBone } from 'react-icons/fa'; // Substituting bones/icons
 import Footer from '../components/Footer';
 import './About.css';
 import { FaHeartbeat as LogoIcon } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
 
 const About = () => {
     const navigate = useNavigate();
@@ -13,28 +14,7 @@ const About = () => {
     return (
         <div className="about-page">
             {/* Navbar */}
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-                <nav className="navbar-pill">
-                    <div className="nav-logo">
-                        <div className="nav-logo-icon"><LogoIcon /></div>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <span className="nav-logo-text" style={{ fontSize: '18px', lineHeight: '1' }}>HEALTHCARE</span>
-                        </div>
-                    </div>
-                    <ul className="nav-links">
-                        <li><a onClick={() => navigate('/')} style={{ cursor: 'pointer', color: '#333' }}>Home</a></li>
-                        <li><a onClick={() => navigate('/find-doctors')} style={{ cursor: 'pointer', color: '#333' }}>Find Doctors</a></li>
-                        <li><a onClick={() => navigate('/specialties')} style={{ cursor: 'pointer', color: '#333' }}>Specialities</a></li>
-                        <li><a onClick={() => navigate('/symptoms')} style={{ cursor: 'pointer', color: '#333' }}>Symptoms</a></li>
-                        <li><a href="#" className="active" style={{ fontWeight: 'bold', color: '#555' }}>About Us</a></li>
-                        <li><a onClick={() => navigate('/contact')} style={{ cursor: 'pointer', color: '#333' }}>Contact</a></li>
-                        <li><a className="login-link" onClick={() => navigate('/login')} style={{ fontWeight: 'bold', color: '#333', cursor: 'pointer' }}>Login / Sign Up</a></li>
-                    </ul>
-                    <div className="nav-actions">
-                        <button className="btn-primary" onClick={() => navigate('/booking')} style={{ borderRadius: '50px', padding: '10px 25px', background: '#27B992', color: 'white', border: 'none' }}>Book Appointment <FaArrowRight /></button>
-                    </div>
-                </nav>
-            </div>
+            <Navbar />
 
             {/* Hero Section */}
             <section className="about-hero">
@@ -92,22 +72,22 @@ const About = () => {
 
                 <div className="features-grid">
                     <div className="feature-card">
-                        <div className="feature-icon"><FaHeartbeat color="#e74c3c" size={24} /></div>
+                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <h4>Verified Medical Network</h4>
                         <p>Every doctor is carefully verified for credentials and experience.</p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon"><FaSearch color="#e74c3c" size={24} /></div>
+                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <h4>Smart Discovery</h4>
                         <p>Find doctors by specialty, symptoms, or location effortlessly.</p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon"><FaCalendarCheck color="#e74c3c" size={24} /></div>
+                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <h4>Flexible Consultations</h4>
                         <p>Book in-clinic or online consultations with ease.</p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon"><FaShieldAlt color="#e74c3c" size={24} /></div>
+                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
                         <h4>Secure & Private</h4>
                         <p>Your health data is protected with industry-grade security.</p>
                     </div>
@@ -178,17 +158,17 @@ const About = () => {
 
                 <div className="how-steps">
                     <div className="how-step">
-                        <FaSearch className="step-icon-dynamic" />
+                        <img src="/orthopedic.png" alt="icon" style={{ width: '36px', height: '36px', objectFit: 'contain' }} className="step-icon-img" />
                         <h4>Search Doctor Or Symptom</h4>
                         <p>Find specialized care in seconds.</p>
                     </div>
                     <div className="how-step">
-                        <FaCalendarCheck className="step-icon-dynamic" />
+                        <img src="/orthopedic.png" alt="icon" style={{ width: '36px', height: '36px', objectFit: 'contain' }} className="step-icon-img" />
                         <h4>Compare Availability</h4>
                         <p>Pick a time that works for you.</p>
                     </div>
                     <div className="how-step">
-                        <FaUserMd className="step-icon-dynamic" />
+                        <img src="/orthopedic.png" alt="icon" style={{ width: '36px', height: '36px', objectFit: 'contain' }} className="step-icon-img" />
                         <h4>Book & Consult</h4>
                         <p>Consult with confidence and ease.</p>
                     </div>
@@ -215,3 +195,4 @@ const About = () => {
 };
 
 export default About;
+

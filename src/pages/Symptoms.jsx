@@ -9,6 +9,7 @@ import { GiStomach, GiJoint } from 'react-icons/gi';
 import Footer from '../components/Footer';
 import './Symptoms.css';
 import { FaHeartbeat as LogoIcon } from 'react-icons/fa'; // Navbar Logo reuse
+import Navbar from '../components/Navbar';
 
 const Symptoms = () => {
     const navigate = useNavigate();
@@ -19,41 +20,41 @@ const Symptoms = () => {
         'Fever': {
             description: "A temporary increase in body temperature, often due to an illness. It's a sign that something out of the ordinary is going on in your body.",
             departments: [
-                { name: 'General Physician', sub: 'Board Certified Experts', icon: <FaUserMd /> },
-                { name: 'Pediatrician', sub: 'Board Certified Experts', icon: <FaBaby /> }
+                { name: 'General Physician', sub: 'Board Certified Experts', icon: <FaUserMd />, doctor: { full_name: 'Dr. James Wilson', specialization: 'General Physician', image: '/Ellipse 4031.png', bio: 'Dr. James Wilson is a dedicated General Physician with a focus on comprehensive health care. With over 8 years of experience, he provides personalized treatment plans and advocates for preventive medicine.' } },
+                { name: 'Pediatrician', sub: 'Board Certified Experts', icon: <FaBaby />, doctor: { full_name: 'Dr. Linda Gregory', specialization: 'Pediatrician', image: '/Ellipse 4034.png', bio: 'Dr. Linda Gregory has a strong background in family medicine and preventive care. Her clinical expertise and compassionate bedside manner make her a highly recommended choice for patients of all ages.' } }
             ]
         },
         'Back Pain': {
             description: "Physical discomfort occurring anywhere on the spine or back, ranging from mild to disabling. Common causes include muscle strain and poor posture.",
             departments: [
-                { name: 'Orthopedic', sub: 'Bone & Joint Specialists', icon: <FaBone /> },
-                { name: 'Physiotherapist', sub: 'Rehabilitation Experts', icon: <FaUserMd /> }
+                { name: 'Orthopedic', sub: 'Bone & Joint Specialists', icon: <FaBone />, doctor: { full_name: 'Dr. Robert Fox', specialization: 'Orthopedic Specialist', image: '/Ellipse 4033.png', bio: 'Dr. Robert Fox is known for his thorough examinations and friendly demeanor. With extensive experience in orthopedics, he excels at managing bone and joint conditions.' } },
+                { name: 'Physiotherapist', sub: 'Rehabilitation Experts', icon: <FaUserMd />, doctor: { full_name: 'Dr. David Kim', specialization: 'Physiotherapist', image: '/Ellipse 4032.png', bio: 'Dr. David Kim brings a wealth of knowledge to rehabilitation therapy. He is passionate about patient education and ensuring optimal recovery outcomes.' } }
             ]
         },
         'Tooth Ache': {
             description: "Pain in or around a tooth, often caused by tooth decay, an abscess, or gum infection. Early treatment can prevent complications.",
             departments: [
-                { name: 'Dentist', sub: 'Dental Care Experts', icon: <FaUserMd /> }
+                { name: 'Dentist', sub: 'Dental Care Experts', icon: <FaUserMd />, doctor: { full_name: 'Dr. Sarah Mitchell', specialization: 'Dentist', image: '/Ellipse 4035.png', bio: 'Dr. Sarah Mitchell is a world-renowned physician specializing in comprehensive dental care. She combines cutting-edge technology with a compassionate, patient-centered approach.' } }
             ]
         },
         'Skin Allergy': {
             description: "An immune system reaction that causes skin irritation, rashes, or swelling. Common triggers include certain foods, pollen, or pet dander.",
             departments: [
-                { name: 'Dermatologist', sub: 'Skin Care Specialists', icon: <FaUserMd /> }
+                { name: 'Dermatologist', sub: 'Skin Care Specialists', icon: <FaUserMd />, doctor: { full_name: 'Dr. Linda Gregory', specialization: 'Dermatologist', image: '/Ellipse 4034.png', bio: 'Dr. Linda Gregory has a strong background in dermatology and skin care. Her clinical expertise ensures the best outcomes for patients with skin conditions.' } }
             ]
         },
         'Headache': {
             description: "Pain or discomfort in the head or face. Causes can range from stress and dehydration to more complex neurological issues.",
             departments: [
-                { name: 'General Physician', sub: 'Primary Care', icon: <FaUserMd /> },
-                { name: 'Neurologist', sub: 'Brain & Nerve Specialists', icon: <FaBrain /> }
+                { name: 'General Physician', sub: 'Primary Care', icon: <FaUserMd />, doctor: { full_name: 'Dr. James Wilson', specialization: 'General Physician', image: '/Ellipse 4031.png', bio: 'Dr. James Wilson is a dedicated General Physician with a focus on comprehensive health care including headache and neurological symptoms management.' } },
+                { name: 'Neurologist', sub: 'Brain & Nerve Specialists', icon: <FaBrain />, doctor: { full_name: 'Dr. David Kim', specialization: 'Neurologist', image: '/Ellipse 4032.png', bio: 'Dr. David Kim specializes in brain and nerve disorders. He brings a wealth of knowledge to treating neurological symptoms including headaches and migraines.' } }
             ]
         },
         'Joint Pain': {
             description: "Discomfort, aches, or soreness in any of the body's joints. It is a common complaint and can be caused by injury or arthritis.",
             departments: [
-                { name: 'Orthopedic', sub: 'Joint Specialists', icon: <GiJoint /> },
-                { name: 'Rheumatologist', sub: 'Arthritis Experts', icon: <FaUserMd /> }
+                { name: 'Orthopedic', sub: 'Joint Specialists', icon: <GiJoint />, doctor: { full_name: 'Dr. Robert Fox', specialization: 'Orthopedic Specialist', image: '/Ellipse 4033.png', bio: 'Dr. Robert Fox specializes in joint disorders and musculoskeletal conditions. His thorough approach helps patients manage chronic joint pain effectively.' } },
+                { name: 'Rheumatologist', sub: 'Arthritis Experts', icon: <FaUserMd />, doctor: { full_name: 'Dr. Sarah Mitchell', specialization: 'Rheumatologist', image: '/Ellipse 4035.png', bio: 'Dr. Sarah Mitchell is an expert rheumatologist focused on arthritis and autoimmune joint conditions, providing targeted relief strategies for her patients.' } }
             ]
         }
     };
@@ -74,41 +75,22 @@ const Symptoms = () => {
 
     return (
         <div className="symptoms-page">
-            {/* Navbar (Duplicated for consistency) */}
-            {/* Navbar (Custom Pill Style for Symptoms Page) */}
-            <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '30px' }}>
-                <nav className="navbar-pill">
-                    <div className="nav-logo">
-                        <div className="nav-logo-icon"><LogoIcon /></div>
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <span className="nav-logo-text" style={{ fontSize: '18px', lineHeight: '1' }}>HEALTHCARE</span>
-                        </div>
-                    </div>
-                    <ul className="nav-links">
-                        <li><a onClick={() => navigate('/')} style={{ cursor: 'pointer', color: '#333' }}>Home</a></li>
-                        <li><a onClick={() => navigate('/find-doctors')} style={{ cursor: 'pointer', color: '#333' }}>Find Doctors</a></li>
-                        <li><a onClick={() => navigate('/specialties')} style={{ cursor: 'pointer', color: '#333' }}>Specialities</a></li>
-                        <li><a href="#" className="active" style={{ color: '#555', fontWeight: 'bold' }}>Symptoms</a></li>
-                        <li><a onClick={() => navigate('/about')} style={{ cursor: 'pointer', color: '#333' }}>About Us</a></li>
-                        <li><a onClick={() => navigate('/contact')} style={{ cursor: 'pointer', color: '#333' }}>Contact</a></li>
-                        <li><a className="login-link" onClick={() => navigate('/login')} style={{ fontWeight: 'bold', color: '#333', cursor: 'pointer' }}>Login / Sign Up</a></li>
-                    </ul>
-                    <div className="nav-actions">
-                        <button className="btn-primary" onClick={() => navigate('/booking')} style={{ borderRadius: '50px', padding: '10px 25px', background: '#27B992', color: 'white', border: 'none' }}>Book Appointment <FaArrowRight /></button>
-                    </div>
-                </nav>
-            </div>
+            <Navbar />
+            
+            {/* Nav + Hero wrapper — shared mint background */}
+            <div className="sym-hero-wrapper">
+                {/* Hero Section */}
+                <header className="sym-hero">
+                    <div className="sym-hero-inner">
+                    <div className="health-assist-badge">Health Assistance</div>
+                    <h1>Find The Right Doctor<br />Based On <span>Your Symptoms</span></h1>
+                    <p>Tell us how you're feeling, and we'll guide you to the right medical specialist.</p>
 
-            {/* Hero Section */}
-            <header className="sym-hero">
-                <div style={{ marginBottom: '20px' }}><span style={{ border: '1px solid #27B992', padding: '5px 15px', borderRadius: '20px', fontSize: '12px', background: '#fff', color: '#27B992' }}>Health Assistance</span></div>
-                <h1>Find The Right Doctor<br />Based On <span>Your Symptoms</span></h1>
-                <p>Tell us how you're feeling, and we'll guide you to the right medical specialist.</p>
-
-                <div className="sym-search-box">
-                    <FaSearch />
-                    <input type="text" placeholder="search symptoms like fever, backpain, skin allergy...." />
-                    <button className="btn-find-spec">Find Specialists</button>
+                    <div className="sym-search-box">
+                        <FaSearch />
+                        <input type="text" placeholder="search symptoms like fever, backpain, skin allergy...." />
+                        <button className="btn-find-spec">Find Specialists</button>
+                    </div>
                 </div>
 
                 <div className="quick-tags">
@@ -123,6 +105,7 @@ const Symptoms = () => {
                     ))}
                 </div>
             </header>
+            </div>{/* end sym-hero-wrapper */}
 
             {/* Highlight Section */}
             <section className="sym-highlight-section">
@@ -133,7 +116,11 @@ const Symptoms = () => {
                     <div style={{ fontSize: '12px', color: '#27B992', fontWeight: 'bold', marginBottom: '15px' }}>Recommended Departments</div>
                     <div className="rec-depts">
                         {symptomsData[activeSymptom].departments.map((dept, idx) => (
-                            <div className="dept-pill" key={idx}>
+                            <div
+                                className="dept-pill"
+                                key={idx}
+                                onClick={() => navigate('/doctor-profile', { state: { doctor: dept.doctor } })}
+                            >
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px', flex: 1 }}>
                                     <div>
                                         <div style={{ fontSize: '14px', fontWeight: '700', color: '#333' }}>{dept.name}</div>
@@ -221,22 +208,22 @@ const Symptoms = () => {
                 <h2 className="section-head-center">What Happens Next?</h2>
                 <div className="steps-container">
                     <div className="step-box-center">
-                        <div className="step-icon-lg"><FaCheckCircle /></div>
+                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 1" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
                         <p>Step 01</p>
                         <h4>Select Symptom</h4>
                     </div>
                     <div className="step-box-center">
-                        <div className="step-icon-lg"><FaUserMd /></div>
+                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 2" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
                         <p>Step 02</p>
                         <h4>See Specialists</h4>
                     </div>
                     <div className="step-box-center">
-                        <div className="step-icon-lg"><FaStethoscope /></div>
+                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 3" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
                         <p>Step 03</p>
                         <h4>Choose Visit</h4>
                     </div>
                     <div className="step-box-center">
-                        <div className="step-icon-lg"><FaShieldAlt /></div>
+                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 4" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
                         <p>Step 04</p>
                         <h4>Book Securely</h4>
                     </div>
