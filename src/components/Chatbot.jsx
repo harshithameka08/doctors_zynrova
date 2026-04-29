@@ -55,7 +55,7 @@ const Chatbot = () => {
     if (!apiKey) {
       const errorMessage = {
         id: Date.now() + 1,
-        text: "AI service is temporarily unavailable",
+        text: "AI service is temporarily unavailable (API Key missing)",
         sender: 'bot',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
@@ -65,28 +65,15 @@ const Chatbot = () => {
 
     setIsTyping(true);
     try {
-      // Using gemini-flash-latest and header-based auth as per latest requirements
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-goog-api-key': apiKey
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{ text: `${SYSTEM_PROMPT}\n\nUser Question: ${userText}` }]
-          }]
-        })
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ 
+        model: "gemini-1.5-flash",
+        systemInstruction: SYSTEM_PROMPT 
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Gemini API error:", errorData);
-        throw new Error("AI service is temporarily unavailable");
-      }
-
-      const data = await response.json();
-      const botResponse = data.candidates[0].content.parts[0].text;
+      const result = await model.generateContent(userText);
+      const response = await result.response;
+      const botResponse = response.text();
 
       const botMessage = {
         id: Date.now() + 1,
@@ -98,9 +85,14 @@ const Chatbot = () => {
     } catch (error) {
       console.error("Chatbot Error:", error);
       
+      let errorText = "AI service is temporarily unavailable";
+      if (error.message?.includes('403')) {
+        errorText = "Access Denied: Please check if the Gemini API is enabled in your Google AI Studio and if your API key is correct.";
+      }
+
       const errorMessage = {
         id: Date.now() + 1,
-        text: "AI service is temporarily unavailable",
+        text: errorText,
         sender: 'bot',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
