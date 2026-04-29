@@ -44,19 +44,22 @@ const Specialties = () => {
             <section className="browse-section">
                 <h2 className="section-head">How Would You <span style={{ color: '#27B992' }}>Like To Browse?</span></h2>
                 <div className="browse-grid">
-                    <div className="browse-card">
+                    <div className="browse-card" onClick={() => navigate('/symptoms')}>
                         <div className="browse-icon-box"><FcSearch size={45} /></div>
                         <h4>By Symptoms</h4>
                         <p>Let our AI guide you</p>
                         <span className="browse-link">Explore <FaArrowRight size={12} /></span>
                     </div>
-                    <div className="browse-card">
+                    <div className="browse-card" onClick={() => {
+                        const el = document.getElementById('directory-section');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}>
                         <div className="browse-icon-box"><FcFolder size={45} /></div>
                         <h4>By Specialty</h4>
                         <p>Browse full directory</p>
                         <span className="browse-link">Explore <FaArrowRight size={12} /></span>
                     </div>
-                    <div className="browse-card">
+                    <div className="browse-card" onClick={() => navigate('/find-doctors', { state: { availability: 'Today' } })}>
                         <div className="browse-icon-box"><FcAlarmClock size={45} /></div>
                         <h4>By Availability</h4>
                         <p>Find who is free today</p>
@@ -78,7 +81,7 @@ const Specialties = () => {
                             <p>Expert primary care for everyday health concerns and preventive wellness.</p>
                         </div>
                         <div className="feature-footer">
-                            <a href="#" className="feature-link">450+ Specialists</a>
+                            <span className="feature-link">450+ Specialists</span>
                             <button className="btn-book-feature" onClick={() => navigate('/find-doctors', { state: { specialty: 'General Physician' } })}>Book Now</button>
                         </div>
                     </div>
@@ -90,7 +93,7 @@ const Specialties = () => {
                             <p>Comprehensive heart and vascular care using state-of-the-art diagnostics.</p>
                         </div>
                         <div className="feature-footer">
-                            <a href="#" className="feature-link">150+ Specialists</a>
+                            <span className="feature-link">150+ Specialists</span>
                             <button className="btn-book-feature" onClick={() => navigate('/find-doctors', { state: { specialty: 'Cardiologist' } })}>Book Now</button>
                         </div>
                     </div>
@@ -102,7 +105,7 @@ const Specialties = () => {
                             <p>Advanced oral health treatments from routine cleaning to complex surgery.</p>
                         </div>
                         <div className="feature-footer">
-                            <a href="#" className="feature-link">280+ Specialists</a>
+                            <span className="feature-link">280+ Specialists</span>
                             <button className="btn-book-feature" onClick={() => navigate('/find-doctors', { state: { specialty: 'Dentist' } })}>Book Now</button>
                         </div>
                     </div>
@@ -114,7 +117,7 @@ const Specialties = () => {
                             <p>Specialized treatment for musculoskeletal injuries and bone health.</p>
                         </div>
                         <div className="feature-footer">
-                            <a href="#" className="feature-link">190+ Specialists</a>
+                            <span className="feature-link">190+ Specialists</span>
                             <button className="btn-book-feature" onClick={() => navigate('/find-doctors', { state: { specialty: 'Orthopedic' } })}>Book Now</button>
                         </div>
                     </div>
@@ -448,7 +451,7 @@ const Specialties = () => {
             </section>
 
             {/* Directory Section */}
-            <section className="directory-section">
+            <section className="directory-section" id="directory-section">
                 <div className="directory-container">
                     <div className="directory-header-row">
                         <h2 className="section-head" style={{ textAlign: 'left', margin: 0 }}>Complete <span style={{ color: '#27B992' }}>Directory</span></h2>

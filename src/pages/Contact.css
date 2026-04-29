@@ -24,7 +24,7 @@
 /* Hero Section */
 .contact-hero {
     max-width: 1200px;
-    margin: 60px auto 80px;
+    margin: 140px auto 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;

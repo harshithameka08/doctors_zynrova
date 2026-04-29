@@ -1,11 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowRight, FaHeartbeat, FaCheckCircle, FaSearch, FaCalendarCheck, FaShieldAlt } from 'react-icons/fa';
-import { FaUserMd, FaBone } from 'react-icons/fa'; // Substituting bones/icons
+import { 
+    FaArrowRight, FaHeartbeat, FaCheckCircle, FaSearch, FaCalendarCheck, 
+    FaShieldAlt, FaUserMd, FaBone, FaBriefcase, FaStar, FaStethoscope 
+} from 'react-icons/fa';
 import Footer from '../components/Footer';
 import './About.css';
 import { FaHeartbeat as LogoIcon } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
+
+const CountUp = ({ end, duration = 2000, suffix = "" }) => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        let startTime = null;
+        let animationFrame = null;
+
+        const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percentage = Math.min(progress / duration, 1);
+            
+            // Easing function (easeOutQuad)
+            const easeOut = 1 - (1 - percentage) * (1 - percentage);
+            
+            const currentCount = easeOut * end;
+            setCount(currentCount);
+
+            if (percentage < 1) {
+                animationFrame = requestAnimationFrame(animate);
+            }
+        };
+
+        animationFrame = requestAnimationFrame(animate);
+        return () => cancelAnimationFrame(animationFrame);
+    }, [end, duration]);
+
+    return (
+        <h3>
+            {Number.isInteger(end) 
+                ? Math.floor(count).toLocaleString() 
+                : count.toFixed(1)}
+            {suffix}
+        </h3>
+    );
+};
 
 const About = () => {
     const navigate = useNavigate();
@@ -21,7 +60,7 @@ const About = () => {
                 <div className="about-hero-content">
                     <h1>Modern Healthcare,<br />Designed <span>Around You</span></h1>
                     <p>A trusted platform that connects patients with verified doctors, making appointments and consultations simple, fast, and reliable.</p>
-                    <button className="btn-primary-about">Find Doctors</button>
+                    <button className="btn-primary-about" onClick={() => navigate('/find-doctors')}>Find Doctors</button>
                 </div>
                 <div className="about-hero-image">
                     <img src="/about_image_1.png" alt="Doctors Team" />
@@ -31,19 +70,23 @@ const About = () => {
             {/* Stats Section */}
             <section className="stats-section">
                 <div className="stat-card">
-                    <h3>50,000+</h3>
+                    <div className="stat-icon-circle"><FaUserMd /></div>
+                    <CountUp end={50000} suffix="+" />
                     <p>Patients Served</p>
                 </div>
                 <div className="stat-card">
-                    <h3>2,000+</h3>
+                    <div className="stat-icon-circle"><FaBriefcase /></div>
+                    <CountUp end={2000} suffix="+" />
                     <p>Verified Doctors</p>
                 </div>
                 <div className="stat-card">
-                    <h3>25+</h3>
+                    <div className="stat-icon-circle"><FaStethoscope /></div>
+                    <CountUp end={25} suffix="+" />
                     <p>Medical Specialties</p>
                 </div>
                 <div className="stat-card">
-                    <h3>4.7★</h3>
+                    <div className="stat-icon-circle"><FaStar /></div>
+                    <CountUp end={4.7} suffix="★" duration={2500} />
                     <p>Average Rating</p>
                 </div>
             </section>
@@ -113,39 +156,39 @@ const About = () => {
                                 <span>📍 New York</span>
                                 <span>12 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm">Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Sarah Johnson', specialty: 'Cardiology Specialist', image: '/dr_sarah_johnson.png', location: 'New York', consultation_fee: '150' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     {/* Card 2 */}
                     <div className="doc-card-about">
                         <div className="doc-img-about">
-                            <img src="/dr_sarah_johnson_1.png" alt="Dr Sarah" />
+                            <img src="/dr_sarah_johnson_1.png" alt="Dr James" />
                             <div className="verified-badge">4.9 ★</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Sarah Johnson</div>
-                            <div className="doc-spec">Cardiology Specialist</div>
+                            <div className="doc-name">Dr. James Wilson</div>
+                            <div className="doc-spec">Dermatology Expert</div>
                             <div className="doc-meta">
-                                <span>📍 New York</span>
-                                <span>12 Years Experience</span>
+                                <span>📍 London</span>
+                                <span>15 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm">Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. James Wilson', specialty: 'Dermatology Expert', image: '/dr_sarah_johnson_1.png', location: 'London', consultation_fee: '180' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     {/* Card 3 */}
                     <div className="doc-card-about">
                         <div className="doc-img-about">
-                            <img src="/dr_sarah_johnson_2.png" alt="Dr Sarah" />
+                            <img src="/dr_sarah_johnson_2.png" alt="Dr Emily" />
                             <div className="verified-badge">4.6 ★</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Sarah Johnson</div>
-                            <div className="doc-spec">Cardiology Specialist</div>
+                            <div className="doc-name">Dr. Emily Davis</div>
+                            <div className="doc-spec">Pediatric Specialist</div>
                             <div className="doc-meta">
-                                <span>📍 New York</span>
-                                <span>12 Years Experience</span>
+                                <span>📍 Chicago</span>
+                                <span>10 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm">Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Emily Davis', specialty: 'Pediatric Specialist', image: '/dr_sarah_johnson_2.png', location: 'Chicago', consultation_fee: '130' } } })}>Book Appointment</button>
                         </div>
                     </div>
                 </div>

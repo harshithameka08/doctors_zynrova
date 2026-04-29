@@ -17,11 +17,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 10% 80px;
+    padding: 140px 10% 80px; /* Increased top padding to fix Navbar overlap */
     background: #f0fbf9;
-    /* Light mint background match */
     max-width: 100%;
-    /* Full width background */
     margin: 0 auto;
 }
 
@@ -214,19 +212,15 @@
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 20px;
-    gap: 15px;
-    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 10px;
 }
 
 .feature-link {
-    font-size: 13px;
+    font-size: 14px;
     color: #27B992;
-    /* Teal color text */
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
-    white-space: nowrap;
 }
 
 .btn-book-feature {

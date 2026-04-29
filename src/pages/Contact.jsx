@@ -9,16 +9,37 @@ import Navbar from '../components/Navbar';
 const Contact = () => {
     const navigate = useNavigate();
     const [openFaq, setOpenFaq] = useState(null);
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        subject: 'General Inquiry',
+        message: ''
+    });
+
+    const handleNameChange = (e) => {
+        const value = e.target.value;
+        // Allow only alphabets and spaces
+        const filteredValue = value.replace(/[^a-zA-Z\s]/g, '');
+        setFormData({ ...formData, fullName: filteredValue });
+    };
+
+    const handlePhoneChange = (e) => {
+        const value = e.target.value;
+        // Allow only numbers
+        const filteredValue = value.replace(/[^0-9]/g, '');
+        setFormData({ ...formData, phone: filteredValue });
+    };
 
     const toggleFaq = (index) => {
         setOpenFaq(openFaq === index ? null : index);
     };
 
     const faqs = [
-        { q: "How Does Your Interior Design Process Work?", a: "We start with a consultation to understand your needs, followed by design concepts, revisions, and final implementation." },
-        { q: "Do You Provide Customized Interior Solutions?", a: "Yes, every project is tailored specifically to the client's preferences and space requirements." },
-        { q: "How Long Does An Interior Project Usually Take?", a: "Timelines vary by project size, but typically range from 2 weeks for single rooms to a few months for full homes." },
-        { q: "Can I Choose My Own Materials And Finishes?", a: "Absolutely! We encourage client involvement/selection to ensure the final result feels personal to you." }
+        { q: "What should I do if I need to cancel an appointment?", a: "You can cancel or reschedule your appointment through the 'My Bookings' section in your account profile, or by contacting our support team at least 24 hours in advance." },
+        { q: "How do I contact a doctor after my consultation?", a: "Post-consultation follow-ups can be managed through our secure messaging system or by booking a quick follow-up slot as recommended by your physician." },
+        { q: "What information do I need to provide for a booking?", a: "You just need to provide basic details like your name, age, contact information, and a brief description of your symptoms to help the doctor prepare." },
+        { q: "Is there an emergency number for immediate help?", a: "For life-threatening emergencies, please call your local emergency services (like 108 or 102) immediately. CareFlow is for non-emergency medical consultations." }
     ];
 
     return (
@@ -65,23 +86,42 @@ const Contact = () => {
                 <h2>Send Us A Message</h2>
                 <p>We usually respond within 24 hours.</p>
 
-                <form>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <div className="form-grid">
                         <div className="form-group">
                             <label>Full Name</label>
-                            <input type="text" placeholder="Full Name" />
+                            <input 
+                                type="text" 
+                                placeholder="Full Name" 
+                                value={formData.fullName}
+                                onChange={handleNameChange}
+                            />
                         </div>
                         <div className="form-group">
                             <label>Email Address</label>
-                            <input type="email" placeholder="Email Address" />
+                            <input 
+                                type="email" 
+                                placeholder="Email Address" 
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            />
                         </div>
                         <div className="form-group">
                             <label>Phone Number</label>
-                            <input type="tel" placeholder="Phone Number" />
+                            <input 
+                                type="tel" 
+                                placeholder="Phone Number" 
+                                value={formData.phone}
+                                onChange={handlePhoneChange}
+                                maxLength={10}
+                            />
                         </div>
                         <div className="form-group">
                             <label>Subject</label>
-                            <select>
+                            <select 
+                                value={formData.subject}
+                                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                            >
                                 <option>General Inquiry</option>
                                 <option>Support</option>
                                 <option>Partnership</option>
@@ -90,9 +130,13 @@ const Contact = () => {
                     </div>
                     <div className="form-group" style={{ marginBottom: '30px' }}>
                         <label>Message</label>
-                        <textarea placeholder="How we can help you ?"></textarea>
+                        <textarea 
+                            placeholder="How we can help you ?"
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        ></textarea>
                     </div>
-                    <button type="button" className="btn-send-msg">Send Message</button>
+                    <button type="submit" className="btn-send-msg">Send Message</button>
                 </form>
             </section>
 

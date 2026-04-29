@@ -5,6 +5,7 @@
     background-color: #f8fcfb;
     /* Very light mint/white bg for overall page */
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* Nav + Hero Wrapper — shared mint background */

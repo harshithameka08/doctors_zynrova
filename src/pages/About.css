@@ -27,7 +27,7 @@
 /* Hero Section */
 .about-hero {
     max-width: 1200px;
-    margin: 60px auto 100px;
+    margin: 140px auto 100px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
@@ -92,27 +92,52 @@
 
 .stat-card {
     background: #fff;
-    padding: 22px 18px;
-    border-radius: 14px;
-    text-align: left;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.05);
-    min-width: 160px;
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    min-width: 200px;
     flex: 1;
     white-space: nowrap;
+    border: 1px solid #f1f5f9;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(39, 185, 146, 0.1);
+}
+
+.stat-icon-circle {
+    width: 50px;
+    height: 50px;
+    background: #f0fcf9;
+    color: #27B992;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 5px;
 }
 
 .stat-card h3 {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 800;
-    color: #222;
-    margin-bottom: 4px;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1;
 }
 
 .stat-card p {
-    color: #999;
-    font-size: 12px;
-    text-transform: none;
-    letter-spacing: 0;
+    color: #888;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
 }
 
 /* Who We Are Section */

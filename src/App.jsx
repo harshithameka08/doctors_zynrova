@@ -12,6 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Booking from './pages/Booking';
 import Chatbot from './components/Chatbot';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <ChatProvider>
       <AuthProvider>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

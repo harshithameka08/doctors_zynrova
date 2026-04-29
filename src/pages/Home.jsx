@@ -36,10 +36,10 @@ const Home = () => {
     };
 
     const faqs = [
-        { q: "How Does Your Interior Design Process Work?", a: "We start with a consultation to understand your needs, followed by design concepts, revisions, and final implementation." },
-        { q: "Do You Provide Customized Interior Solutions?", a: "Yes, every project is tailored specifically to the client's preferences and space requirements." },
-        { q: "How Long Does An Interior Project Usually Take?", a: "Timelines vary by project size, but typically range from 2 weeks for single rooms to a few months for full homes." },
-        { q: "Can I Choose My Own Materials And Finishes?", a: "Absolutely! We encourage client involvement/selection to ensure the final result feels personal to you." }
+        { q: "How do I book an appointment with a doctor?", a: "Simply search for a doctor by specialty or symptom, choose a convenient time slot, and confirm your booking instantly." },
+        { q: "Are the doctors on CareFlow verified?", a: "Yes, all doctors on our platform undergo a rigorous verification process, including background checks and medical license validation." },
+        { q: "Can I have a video consultation from home?", a: "Absolutely! Many of our specialists offer secure video consultations. Just select the 'Online' option when booking." },
+        { q: "How do I know which specialist to visit?", a: "You can use our CareFlow AI symptom analyzer on the home page. Just describe how you feel, and it will recommend the right specialist." }
     ];
 
     return (
@@ -48,17 +48,8 @@ const Home = () => {
             <Navbar />
 
             {/* Hero Section */}
-            <header className="hero-section" id="home">
+            <header className="hero-section animate-fade-up" id="home">
                 <div className="hero-content-left">
-                    <div className="trust-badge">
-                        <div className="trust-avatars">
-                            <img src="/dr_sarah_johnson_1.png" alt="Patient" />
-                            <img src="/dr_sarah_johnson.png" alt="Patient" />
-                            <img src="/dr_sarah_johnson_2.png" alt="Patient" />
-                        </div>
-                        <span className="trust-text">TRUSTED BY 10K+ PATIENTS</span>
-                    </div>
-
                     <h1 className="hero-title">
                         Find The Right Doctor. Book<br />
                         <span className="green-text">Appointments Instantly.</span>
@@ -82,9 +73,9 @@ const Home = () => {
                     </form>
                 </div>
 
-                <div className="hero-content-right">
+                <div className="hero-content-right animate-scale-in">
                     <div className="hero-grid">
-                        <div className="hero-card doctor-card-large">
+                        <div className="hero-card doctor-card-large animate-float">
                             <img src="/doctor_teal_scrubs.png" alt="Dr. Sarah Johnson" />
                             <div className="floating-badge bottom-left-badge">
                                 <span className="badge-specialty">DERMATOLOGIST</span>
@@ -92,7 +83,7 @@ const Home = () => {
                             </div>
                         </div>
                         
-                        <div className="hero-card doctor-card-small top-right-img">
+                        <div className="hero-card doctor-card-small top-right-img animate-float delay-1">
                             <div className="floating-badge top-right-badge">
                                 <div className="shield-icon-wrapper">
                                     <RiShieldCheckLine size={20} />
@@ -105,7 +96,7 @@ const Home = () => {
                             <img src="/doctor_bw_labcoat.png" alt="Doctor" />
                         </div>
 
-                        <div className="hero-card stats-card-dark">
+                        <div className="hero-card stats-card-dark animate-float delay-2">
                             <div className="stat-group">
                                 <h2>150+</h2>
                                 <span className="green-label">SPECIALISTS</span>
@@ -120,7 +111,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="hero-card doctor-card-small bottom-right-img">
+                        <div className="hero-card doctor-card-small bottom-right-img animate-float delay-3">
                             <img src="/doctor_blue_scrubs.png" alt="Doctor" />
                         </div>
                     </div>
@@ -128,59 +119,70 @@ const Home = () => {
             </header>
 
 
-
             {/* Specialties Section */}
-            <section className="section" id="specialists">
-                <h2 className="section-title">Consult Doctors Across <span className="green-text">Top Specialties</span></h2>
-                <p style={{ marginTop: '-40px', marginBottom: '50px', color: '#777' }}>Book appointments for any medical concern with verified specialists.</p>
+            <section className="section specialties-section" id="specialists">
+                <h2 className="section-title animate-fade-up">Consult Doctors Across <span className="green-text">Top Specialties</span></h2>
+                <p className="animate-fade-up delay-1" style={{ marginTop: '-40px', marginBottom: '50px', color: '#777' }}>Book appointments for any medical concern with verified specialists.</p>
 
                 <div className="specialties-grid">
-                    <div className="specialty-card">
+                    <div className="specialty-card animate-fade-up delay-1" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'General Physician' } })}>
                         <div className="specialty-icon"><FaStethoscope size={24} /></div>
                         <h4>General Physician</h4>
                         <p>Diagnosis and treatment for common illnesses and preventive care.</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
+                                Read more &rarr;
+                            </span>
                         </div>
                     </div>
-                    <div className="specialty-card">
+                    <div className="specialty-card animate-fade-up delay-2" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'Dentist' } })}>
                         <div className="specialty-icon"><FaTooth size={24} /></div>
                         <h4>Dentist</h4>
                         <p>Complete dental care including checkups and treatments.</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
+                                Read more &rarr;
+                            </span>
                         </div>
                     </div>
-                    <div className="specialty-card">
+                    <div className="specialty-card animate-fade-up delay-3" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'Cardiologist' } })}>
                         <div className="specialty-icon"><FaHeadSideCough size={24} /></div>
                         <h4>Cardiologist</h4>
                         <p>Heart health consultation and cardiac care.</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
+                                Read more &rarr;
+                            </span>
                         </div>
                     </div>
-                    <div className="specialty-card">
+                    <div className="specialty-card animate-fade-up delay-4" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'Orthopedic' } })}>
                         <div className="specialty-icon"><FaBone size={24} /></div>
                         <h4>Orthopedic Care</h4>
                         <p>Specialized care for bone, joint, and muscle conditions.</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
+                                Read more &rarr;
+                            </span>
                         </div>
                     </div>
-                    <div className="specialty-card">
+                    <div className="specialty-card animate-fade-up delay-5" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'Pediatrician' } })}>
                         <div className="specialty-icon"><FaHeartbeat size={24} /></div>
                         <h4>Pediatrician</h4>
                         <p>Medical care for infants and children. And growth</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
+                                Read more &rarr;
+                            </span>
                         </div>
                     </div>
-                    <div className="specialty-card">
+                    <div className="specialty-card animate-fade-up delay-6" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'Dermatologist' } })}>
                         <div className="specialty-icon"><FaHandHoldingMedical size={24} /></div>
                         <h4>Dermatologist</h4>
                         <p>Guided recovery programs for post-surgical patients.</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
-                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>Read more &rarr;</span>
+                            <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
+                                Read more &rarr;
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -296,7 +298,13 @@ const Home = () => {
                         <li><FaCheckCircle className="check-circle" /> Easy Appointment Booking</li>
                         <li><FaCheckCircle className="check-circle" /> Online & In-Clinic Consultations</li>
                     </ul>
-                    <button className="btn-primary" style={{ borderRadius: '50px', padding: '12px 35px' }}>Learn More <FaArrowRight style={{ marginLeft: '8px' }} /></button>
+                    <button 
+                        className="btn-primary" 
+                        style={{ borderRadius: '50px', padding: '12px 35px' }}
+                        onClick={() => navigate('/about')}
+                    >
+                        Learn More <FaArrowRight style={{ marginLeft: '8px' }} />
+                    </button>
                 </div>
             </section>
 
@@ -407,41 +415,70 @@ const Home = () => {
 
             {/* Testimonials Section */}
             <section className="section" id="testimonials">
-                <h2 className="section-title">What Our Patients <span className="green-text">Say</span></h2>
-                <p style={{ marginTop: '-40px', marginBottom: '60px', color: '#777' }}>Real stories from our healthy community.</p>
-                <div className="testimonials-grid">
-                    <div className="testimonial-card">
-                        <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                        <p className="testimonial-text">"LuxeService completely transformed our brand perception. Their attention to detail and premium approach is unmatched in the industry."</p>
-                        <div className="testimonial-user">
-                            <div className="user-avatar">R</div>
-                            <div className="user-info">
-                                <h4>Richard James</h4>
-                                <span>CEO, TechCorp</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="testimonial-card">
-                        <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                        <p className="testimonial-text">"The level of care and professionalism displayed by the doctors here is outstanding. I felt heard and well taken care of throughout my visit."</p>
-                        <div className="testimonial-user">
-                            <div className="user-avatar">S</div>
-                            <div className="user-info">
-                                <h4>Sarah Williams</h4>
-                                <span>Patient</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="testimonial-card">
-                        <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                        <p className="testimonial-text">"Booking an appointment was seamless, and the clinic's atmosphere is so calming. Highly recommend this healthcare provider to everyone."</p>
-                        <div className="testimonial-user">
-                            <div className="user-avatar">M</div>
-                            <div className="user-info">
-                                <h4>Michael Brown</h4>
-                                <span>Entrepreneur</span>
-                            </div>
-                        </div>
+                <h2 className="section-title animate-fade-up">What Our Patients <span className="green-text">Say</span></h2>
+                <p className="animate-fade-up delay-1" style={{ marginTop: '-40px', marginBottom: '60px', color: '#777' }}>Real stories from our healthy community.</p>
+                
+                <div className="testimonials-wrapper">
+                    <div className="testimonials-track">
+                        {[1, 2].map(i => (
+                            <React.Fragment key={i}>
+                                <div className="testimonial-card">
+                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                                    <p className="testimonial-text">"LuxeService completely transformed our brand perception. Their attention to detail and premium approach is unmatched in the industry."</p>
+                                    <div className="testimonial-user">
+                                        <div className="user-avatar">R</div>
+                                        <div className="user-info">
+                                            <h4>Richard James</h4>
+                                            <span>CEO, TechCorp</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="testimonial-card">
+                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                                    <p className="testimonial-text">"The level of care and professionalism displayed by the doctors here is outstanding. I felt heard and well taken care of throughout my visit."</p>
+                                    <div className="testimonial-user">
+                                        <div className="user-avatar">S</div>
+                                        <div className="user-info">
+                                            <h4>Sarah Williams</h4>
+                                            <span>Patient</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="testimonial-card">
+                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                                    <p className="testimonial-text">"Booking an appointment was seamless, and the clinic's atmosphere is so calming. Highly recommend this healthcare provider to everyone."</p>
+                                    <div className="testimonial-user">
+                                        <div className="user-avatar">M</div>
+                                        <div className="user-info">
+                                            <h4>Michael Brown</h4>
+                                            <span>Entrepreneur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="testimonial-card">
+                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                                    <p className="testimonial-text">"The doctors are extremely knowledgeable and patient. They took the time to explain everything clearly. Highly satisfied with the service."</p>
+                                    <div className="testimonial-user">
+                                        <div className="user-avatar">A</div>
+                                        <div className="user-info">
+                                            <h4>Anjali Gupta</h4>
+                                            <span>Software Engineer</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="testimonial-card">
+                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                                    <p className="testimonial-text">"Excellent experience! The telemedicine feature is a lifesaver. I could consult with a specialist without leaving my house. 5 stars!"</p>
+                                    <div className="testimonial-user">
+                                        <div className="user-avatar">D</div>
+                                        <div className="user-info">
+                                            <h4>David Miller</h4>
+                                            <span>Freelancer</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </React.Fragment>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -454,7 +491,12 @@ const Home = () => {
                         <h3>Online Consultation</h3>
                         <p>Secure video calls from home with instant booking and direct prescription delivery.</p>
                         <div className="mode-feature"><FaCheckCircle /> High Definition Video</div>
-                        <button className="btn-mode online-btn">Start Consultation</button>
+                        <button 
+                            className="btn-mode online-btn" 
+                            onClick={() => navigate('/find-doctors', { state: { consultationType: 'Online' } })}
+                        >
+                            Start Consultation
+                        </button>
                     </div>
                     <div className="consult-mode-card clinic">
                         <div className="mode-icon"><FaMapMarkerAlt /></div>
@@ -462,7 +504,12 @@ const Home = () => {
                         <p>Prefer face-to-face? Book an appointment at one of our nearby modern medical clinics.</p>
                         <div className="mode-feature"><FaCheckCircle /> Nearby Medical Facilities</div>
 
-                        <button className="btn-mode clinic-btn">Find Clinics</button>
+                        <button 
+                            className="btn-mode clinic-btn"
+                            onClick={() => navigate('/find-doctors', { state: { consultationType: 'Clinic' } })}
+                        >
+                            Find Clinics
+                        </button>
                     </div>
                 </div>
             </section>

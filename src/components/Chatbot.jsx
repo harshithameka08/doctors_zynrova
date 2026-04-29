@@ -20,7 +20,7 @@ const Chatbot = () => {
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
-  
+
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -51,7 +51,7 @@ const Chatbot = () => {
 
   const getBotResponse = async (userText) => {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    
+
     if (!apiKey) {
       const errorMessage = {
         id: Date.now() + 1,
@@ -66,9 +66,9 @@ const Chatbot = () => {
     setIsTyping(true);
     try {
       const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        systemInstruction: SYSTEM_PROMPT 
+      const model = genAI.getGenerativeModel({
+        model: "gemini-1.5-flash-latest",
+        systemInstruction: SYSTEM_PROMPT
       });
 
       const result = await model.generateContent(userText);
@@ -83,11 +83,21 @@ const Chatbot = () => {
       };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
-      console.error("Chatbot Error:", error);
-      
+      console.error("Chatbot Full Error Object:", error);
+
       let errorText = "AI service is temporarily unavailable";
-      if (error.message?.includes('403')) {
-        errorText = "Access Denied: Please check if the Gemini API is enabled in your Google AI Studio and if your API key is correct.";
+
+      // Detailed error messages for debugging
+      if (error.message) {
+        if (error.message.includes('403')) {
+          errorText = "Access Denied (403): Please ensure Gemini API is enabled in Google AI Studio and check your API key restrictions.";
+        } else if (error.message.includes('404')) {
+          errorText = "Model not found (404): The selected Gemini model might not be available in your region.";
+        } else if (error.message.includes('API key')) {
+          errorText = "Invalid API Key: Please check your .env file.";
+        } else {
+          errorText = `Error: ${error.message}`;
+        }
       }
 
       const errorMessage = {
@@ -131,8 +141,8 @@ const Chatbot = () => {
             <h3>CareFlow Support <span className={`status-dot ${apiKey ? 'online' : 'offline'}`}></span></h3>
             <p>{apiKey ? 'Always Online' : 'Connecting...'}</p>
           </div>
-          <button 
-            className="chatbot-close" 
+          <button
+            className="chatbot-close"
             onClick={() => setIsOpen(false)}
           >
             <IoClose size={24} />
@@ -168,9 +178,9 @@ const Chatbot = () => {
         </div>
 
         <form className="chatbot-input" onSubmit={handleSend}>
-          <input 
-            type="text" 
-            placeholder="Ask about our services..." 
+          <input
+            type="text"
+            placeholder="Ask about our services..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
@@ -180,7 +190,7 @@ const Chatbot = () => {
         </form>
       </div>
 
-      <button 
+      <button
         className={`chatbot-button ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
       >

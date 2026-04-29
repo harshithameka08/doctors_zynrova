@@ -10,11 +10,22 @@ import Footer from '../components/Footer';
 import './Symptoms.css';
 import { FaHeartbeat as LogoIcon } from 'react-icons/fa'; // Navbar Logo reuse
 import Navbar from '../components/Navbar';
+import { useChat } from '../context/ChatContext';
 
 const Symptoms = () => {
     const navigate = useNavigate();
+    const { openChatWithMsg } = useChat();
+    const [searchQuery, setSearchQuery] = useState('');
     const [activeBodyArea, setActiveBodyArea] = useState('Head & Neck');
     const [activeSymptom, setActiveSymptom] = useState('Fever');
+
+    const handleSearchSubmit = (e) => {
+        if (e) e.preventDefault();
+        if (searchQuery.trim()) {
+            openChatWithMsg(searchQuery);
+            setSearchQuery('');
+        }
+    };
 
     const symptomsData = {
         'Fever': {
@@ -64,13 +75,17 @@ const Symptoms = () => {
         { name: 'Chest & Respiratory', icon: <FaLungs />, color: '#fff', bg: '#ff6b6b' }, /* Reddish/Pink */
         { name: 'Abdomen & Digestive', icon: <GiStomach />, color: '#fff', bg: '#feca57' }, /* Yellowish */
         { name: 'Joints & Bones', icon: <GiJoint />, color: '#fff', bg: '#54a0ff' }, /* Blueish */
+        { name: 'Skin & Outer Body', icon: <FaShieldAlt />, color: '#fff', bg: '#ff9f43' }, /* Orange */
+        { name: 'Pediatrics & Care', icon: <FaBaby />, color: '#fff', bg: '#ee5253' }, /* Reddish */
     ];
 
     const bodySymptoms = {
         'Head & Neck': ['Headache', 'Migraine', 'Dizziness', 'Vision Blur', 'Sore Throat'],
         'Chest & Respiratory': ['Chest Pain', 'Shortness of Breath', 'Cough', 'Wheezing', 'Congestion'],
         'Abdomen & Digestive': ['Stomach Ache', 'Nausea', 'Indigestion', 'Acid Reflux', 'Bloating'],
-        'Joints & Bones': ['Knee Pain', 'Back Pain', 'Neck Stiffness', 'Arthritis', 'Muscle Cramp']
+        'Joints & Bones': ['Knee Pain', 'Back Pain', 'Neck Stiffness', 'Arthritis', 'Muscle Cramp'],
+        'Skin & Outer Body': ['Skin Rash', 'Itching', 'Sunburn', 'Acne', 'Eczema'],
+        'Pediatrics & Care': ['Fever in Kids', 'Ear Infection', 'Growth Concerns', 'Immunization', 'Colic']
     };
 
     return (
@@ -86,11 +101,16 @@ const Symptoms = () => {
                     <h1>Find The Right Doctor<br />Based On <span>Your Symptoms</span></h1>
                     <p>Tell us how you're feeling, and we'll guide you to the right medical specialist.</p>
 
-                    <div className="sym-search-box">
+                    <form className="sym-search-box" onSubmit={handleSearchSubmit}>
                         <FaSearch />
-                        <input type="text" placeholder="search symptoms like fever, backpain, skin allergy...." />
-                        <button className="btn-find-spec">Find Specialists</button>
-                    </div>
+                        <input 
+                            type="text" 
+                            placeholder="search symptoms like fever, backpain, skin allergy...." 
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button type="submit" className="btn-find-spec">Find Specialists</button>
+                    </form>
                 </div>
 
                 <div className="quick-tags">
