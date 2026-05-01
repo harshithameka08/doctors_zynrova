@@ -274,6 +274,17 @@
     color: #fff;
 }
 
+.time-slot-btn.time-past {
+    border-color: #eee;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.time-slot-btn.time-past:hover {
+    background: transparent;
+}
+
+
 /* Sidebar Summary */
 .booking-summary-card {
     background: #fff;
@@ -552,7 +563,9 @@
 }
 
 .icon-teal {
-    color: #27B992;
+    color: #1e293b; /* Professional Navy Blue instead of Green */
+    font-size: 16px;
+    background: transparent !important;
 }
 
 .patient-info-card {
@@ -633,26 +646,29 @@
 }
 
 .radio-custom {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     border: 2px solid #ddd;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
-.payment-row input:checked+.radio-custom {
+.payment-row input:checked + .radio-custom {
     border-color: #27B992;
 }
 
-.payment-row input:checked+.radio-custom::after {
+.payment-row input:checked + .radio-custom::after {
     content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     background-color: #27B992;
     border-radius: 50%;
+    display: block;
 }
 
 .price-row {
@@ -817,3 +833,112 @@
     color: #e74c3c;
     margin-left: 2px;
 }
+
+/* Success Modal */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+.success-card {
+    background: #fff;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-icon-bg {
+    width: 80px;
+    height: 80px;
+    background-color: #E0F2F1;
+    color: #27B992;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin: 0 auto 20px;
+}
+
+.success-card h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.success-card p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.confirmed-details {
+    background-color: #f7fcfb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item .label {
+    color: #888;
+    font-size: 13px;
+}
+
+.detail-item .value {
+    color: #333;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.btn-done {
+    width: 100%;
+    background-color: #27B992;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-done:hover {
+    background-color: #21a380;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+

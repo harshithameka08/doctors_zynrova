@@ -279,8 +279,8 @@
 }
 
 .education-card {
-    border: 3px solid #0ba1ff;
-    box-shadow: none;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .timeline-content h4 {
@@ -393,7 +393,7 @@
 .booking-price {
     font-size: 24px;
     font-weight: 700;
-    color: var(--primary-color);
+    color: #2563EB !important; /* Force Vibrant Blue */
 }
 
 .date-section {
@@ -442,12 +442,20 @@
     font-size: 12px;
     font-weight: 400;
     margin-bottom: 4px;
+    opacity: 0.5; /* Low opacity for unselected */
 }
 
 .date-item p {
     margin: 0;
     font-size: 16px;
+    font-weight: 400;
+    opacity: 0.5; /* Low opacity for unselected */
+}
+
+.date-item.active h5,
+.date-item.active p {
     font-weight: 700;
+    opacity: 1; /* Full opacity for selected */
 }
 
 /* Time Slots */
@@ -474,10 +482,25 @@
     font-weight: 600;
 }
 
-.time-slot:hover {
+.time-slot:hover,
+.time-slot.active {
     background: var(--primary-color);
     color: white;
 }
+
+.time-slot.disabled {
+    background: #f5f5f5;
+    border-color: #eee;
+    color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.time-slot.disabled:hover {
+    background: #f5f5f5;
+    color: #ccc;
+}
+
 
 .btn-book-lg {
     width: 100%;
@@ -626,4 +649,86 @@
     .clinic-map {
         width: 100%;
     }
+}
+
+/* Reviews Modal Styles */
+.reviews-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    padding: 20px;
+}
+
+.reviews-modal-card {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    padding: 24px 30px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text-dark);
+}
+
+.close-modal-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.2s;
+}
+
+.close-modal-btn:hover {
+    background: #ff6b6b;
+    color: white;
+}
+
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-body .review-card {
+    margin-bottom: 20px;
+    background: #f9fcfb;
+}
+
+.modal-body .review-card:last-child {
+    margin-bottom: 0;
 }

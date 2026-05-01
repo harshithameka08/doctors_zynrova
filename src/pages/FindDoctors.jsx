@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
     FaSearch, FaMapMarkerAlt, FaVideo, FaStar, FaFilter,
-    FaCheckCircle, FaHeart, FaUserMd, FaShieldAlt, FaRegStar, FaBriefcase
+    FaCheckCircle, FaHeart, FaUserMd, FaShieldAlt, FaRegStar, FaBriefcase,
+    FaUserCheck, FaCalendarCheck, FaLock
 } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../lib/api';
@@ -40,133 +41,190 @@ const FindDoctors = () => {
             full_name: 'Dr. James Wilson',
             image: '/Ellipse 4031.png',
             specialization: 'General Physician',
-            bio: 'Dr. James Wilson is a dedicated General Physician with a focus on comprehensive health care.'
+            bio: 'Dr. James Wilson is a dedicated General Physician with a focus on comprehensive health care.',
+            experience: 8,
+            rating: 4.5,
+            fees: 800
         },
         {
             id: 2,
             full_name: 'Dr. David Kim',
             image: '/Ellipse 4032.png',
             specialization: 'General Physician',
-            bio: 'Dr. David Kim brings a wealth of knowledge to his practice as a General Physician.'
+            bio: 'Dr. David Kim brings a wealth of knowledge to his practice as a General Physician.',
+            experience: 12,
+            rating: 4.8,
+            fees: 1500
         },
         {
             id: 3,
             full_name: 'Dr. Robert Fox',
             image: '/Ellipse 4033.png',
             specialization: 'General Physician',
-            bio: 'Dr. Robert Fox is known for his thorough examinations and friendly demeanor.'
+            bio: 'Dr. Robert Fox is known for his thorough examinations and friendly demeanor.',
+            experience: 10,
+            rating: 4.6,
+            fees: 800
         },
         {
             id: 4,
             full_name: 'Dr. Linda Gregory',
             image: '/Ellipse 4034.png',
             specialization: 'General Physician',
-            bio: 'Dr. Linda Gregory has a strong background in family medicine and preventive care.'
+            bio: 'Dr. Linda Gregory has a strong background in family medicine and preventive care.',
+            experience: 14,
+            rating: 4.7,
+            fees: 1500
         },
         {
             id: 5,
             full_name: 'Dr. Sarah Mitchell',
             image: '/Ellipse 4035.png',
             specialization: 'General Physician',
-            bio: 'Dr. Sarah Mitchell specializes in preventive care and comprehensive adult medicine.'
+            bio: 'Dr. Sarah Mitchell specializes in preventive care and comprehensive adult medicine.',
+            experience: 9,
+            rating: 4.4,
+            fees: 800
         },
         {
             id: 6,
             full_name: 'Dr. Priya Sharma',
             image: '/Ellipse 4031.png',
             specialization: 'Cardiologist',
-            bio: 'Dr. Priya Sharma is a leading Cardiologist with 12 years of experience in advanced heart and vascular care.'
+            bio: 'Dr. Priya Sharma is a leading Cardiologist with 12 years of experience in advanced heart and vascular care.',
+            experience: 12,
+            rating: 4.9,
+            fees: 1500
         },
         {
             id: 7,
             full_name: 'Dr. Arjun Mehta',
             image: '/Ellipse 4032.png',
             specialization: 'Cardiologist',
-            bio: 'Dr. Arjun Mehta specializes in interventional cardiology, offering cutting-edge diagnostics and treatment.'
+            bio: 'Dr. Arjun Mehta specializes in interventional cardiology, offering cutting-edge diagnostics and treatment.',
+            experience: 15,
+            rating: 4.8,
+            fees: 2000
         },
         {
             id: 8,
             full_name: 'Dr. Neha Kapoor',
             image: '/Ellipse 4033.png',
             specialization: 'Dentist',
-            bio: 'Dr. Neha Kapoor is a skilled Dentist offering comprehensive oral health treatments from routine cleaning to complex surgery.'
+            bio: 'Dr. Neha Kapoor is a skilled Dentist offering comprehensive oral health treatments from routine cleaning to complex surgery.',
+            experience: 7,
+            rating: 4.7,
+            fees: 800
         },
         {
             id: 9,
             full_name: 'Dr. Rahul Verma',
             image: '/Ellipse 4034.png',
             specialization: 'Dentist',
-            bio: 'Dr. Rahul Verma provides personalized dental care with a focus on patient comfort and advanced treatment methods.'
+            bio: 'Dr. Rahul Verma provides personalized dental care with a focus on patient comfort and advanced treatment methods.',
+            experience: 11,
+            rating: 4.5,
+            fees: 1200
         },
         {
             id: 10,
             full_name: 'Dr. Suresh Patel',
             image: '/Ellipse 4035.png',
             specialization: 'Orthopedic',
-            bio: 'Dr. Suresh Patel is an expert Orthopedic surgeon specializing in musculoskeletal injuries, joint replacement, and bone health.'
+            bio: 'Dr. Suresh Patel is an expert Orthopedic surgeon specializing in musculoskeletal injuries, joint replacement, and bone health.',
+            experience: 20,
+            rating: 4.9,
+            fees: 2500
         },
         {
             id: 11,
             full_name: 'Dr. Anjali Singh',
             image: '/Ellipse 4031.png',
             specialization: 'Orthopedic',
-            bio: 'Dr. Anjali Singh offers specialist care for sports injuries, spinal issues, and complex orthopedic conditions.'
+            bio: 'Dr. Anjali Singh offers specialist care for sports injuries, spinal issues, and complex orthopedic conditions.',
+            experience: 13,
+            rating: 4.6,
+            fees: 1800
         },
         {
             id: 12,
             full_name: 'Dr. Emily Blunt',
             image: '/dr_sarah_johnson_2.png',
             specialization: 'Pediatrician',
-            bio: 'Dr. Emily Blunt is a world-renowned Pediatrician specializing in infant health and child development. With over 15 years of experience, she provides compassionate care for children.'
+            bio: 'Dr. Emily Blunt is a world-renowned Pediatrician specializing in infant health and child development. With over 15 years of experience, she provides compassionate care for children.',
+            experience: 18,
+            rating: 5.0,
+            fees: 1500
         },
         {
             id: 13,
             full_name: 'Dr. Sarah Johnson',
             image: '/dr_sarah_johnson.png',
             specialization: 'Dermatologist',
-            bio: 'Dr. Sarah Johnson is a leading Dermatologist specializing in medical and aesthetic skin treatments, with a focus on patient safety and natural results.'
+            bio: 'Dr. Sarah Johnson is a leading Dermatologist specializing in medical and aesthetic skin treatments, with a focus on patient safety and natural results.',
+            experience: 16,
+            rating: 4.9,
+            fees: 2200
         },
         {
             id: 14,
             full_name: 'Dr. Meera Reddy',
             image: '/dr_sarah_johnson_1.png',
             specialization: 'Gynecologist',
-            bio: 'Dr. Meera Reddy provides comprehensive women\'s health services, from routine checkups to advanced maternal-fetal medicine.'
+            bio: 'Dr. Meera Reddy provides comprehensive women\'s health services, from routine checkups to advanced maternal-fetal medicine.',
+            experience: 14,
+            rating: 4.8,
+            fees: 1600
         },
         {
             id: 15,
             full_name: 'Dr. Alan Turing',
             image: '/Ellipse 4032.png',
             specialization: 'Neurologist',
-            bio: 'Dr. Alan Turing specializes in complex neurological disorders and brain health, utilizing the latest diagnostics and therapies.'
+            bio: 'Dr. Alan Turing specializes in complex neurological disorders and brain health, utilizing the latest diagnostics and therapies.',
+            experience: 17,
+            rating: 4.7,
+            fees: 3000
         },
         {
             id: 16,
             full_name: 'Dr. Sigmund Freud',
             image: '/Ellipse 4033.png',
             specialization: 'Psychiatrist',
-            bio: 'Dr. Sigmund Freud offers compassionate psychiatric care and mental health support, specializing in therapy and medication management.'
+            bio: 'Dr. Sigmund Freud offers compassionate psychiatric care and mental health support, specializing in therapy and medication management.',
+            experience: 25,
+            rating: 4.6,
+            fees: 2500
         },
         {
             id: 17,
             full_name: 'Dr. Rosalind Franklin',
             image: '/Ellipse 4034.png',
             specialization: 'Endocrinologist',
-            bio: 'Dr. Rosalind Franklin is an expert in hormone-related conditions, providing specialized care for diabetes, thyroid issues, and metabolic health.'
+            bio: 'Dr. Rosalind Franklin is an expert in hormone-related conditions, providing specialized care for diabetes, thyroid issues, and metabolic health.',
+            experience: 19,
+            rating: 4.8,
+            fees: 2000
         },
         {
             id: 18,
             full_name: 'Dr. Isaac Newton',
             image: '/Ellipse 4035.png',
             specialization: 'Ophthalmologist',
-            bio: 'Dr. Isaac Newton provides advanced eye care services, from routine vision checkups to complex ophthalmic surgeries.'
+            bio: 'Dr. Isaac Newton provides advanced eye care services, from routine vision checkups to complex ophthalmic surgeries.',
+            experience: 22,
+            rating: 4.9,
+            fees: 2800
         },
         {
             id: 19,
             full_name: 'Dr. Alexander Bell',
             image: '/Ellipse 4031.png',
             specialization: 'ENT Specialist',
-            bio: 'Dr. Alexander Bell specializes in the diagnosis and treatment of ear, nose, and throat conditions, offering both medical and surgical solutions.'
+            bio: 'Dr. Alexander Bell specializes in the diagnosis and treatment of ear, nose, and throat conditions, offering both medical and surgical solutions.',
+            experience: 21,
+            rating: 4.7,
+            fees: 1500
         }
     ];
 
@@ -187,7 +245,7 @@ const FindDoctors = () => {
     const [consultationType, setConsultationType] = useState(incomingType || 'All');
     const [availability, setAvailability] = useState(incomingAvailability);
     const [experience, setExperience] = useState(0);
-    const [maxFees, setMaxFees] = useState(1000);
+    const [maxFees, setMaxFees] = useState(5000);
     const [minRating, setMinRating] = useState(0);
     const [sortBy, setSortBy] = useState('Relevance');
     const [showAll, setShowAll] = useState(false);
@@ -207,7 +265,7 @@ const FindDoctors = () => {
         setConsultationType('All');
         setAvailability('All');
         setExperience(0);
-        setMaxFees(1000);
+        setMaxFees(5000);
         setMinRating(0);
         setSortBy('Relevance');
     };
@@ -257,8 +315,8 @@ const FindDoctors = () => {
         // Experience Filter
         const matchExperience = getDocExp(d.bio) >= experience;
 
-        // Fees Filter (Mocking fees)
-        const docFees = 80; 
+        // Fees Filter
+        const docFees = d.fees || (d.id % 2 === 0 ? 1500 : 800); 
         const matchFees = docFees <= maxFees;
 
         // Rating Filter (Mocking rating)
@@ -271,18 +329,18 @@ const FindDoctors = () => {
     // Apply Sorting
     const displayDoctors = [...filteredDoctors].sort((a, b) => {
         if (sortBy === 'Experience') {
-            return getDocExp(b.bio) - getDocExp(a.bio);
+            const expA = a.experience || getDocExp(a.bio);
+            const expB = b.experience || getDocExp(b.bio);
+            return expB - expA;
         }
         if (sortBy === 'Fees') {
-            // Mock fees for sorting demo: some 80, some 150, some 200
-            const feeA = a.id % 2 === 0 ? 150 : 80;
-            const feeB = b.id % 2 === 0 ? 150 : 80;
+            const feeA = a.fees || (a.id % 2 === 0 ? 1500 : 800);
+            const feeB = b.fees || (b.id % 2 === 0 ? 1500 : 800);
             return feeA - feeB;
         }
         if (sortBy === 'Rating') {
-            // Mock rating for sorting: 4.9 for even IDs, 4.4 for odd
-            const rateA = a.id % 2 === 0 ? 4.9 : 4.4;
-            const rateB = b.id % 2 === 0 ? 4.9 : 4.4;
+            const rateA = a.rating || (a.id % 2 === 0 ? 4.9 : 4.4);
+            const rateB = b.rating || (b.id % 2 === 0 ? 4.9 : 4.4);
             return rateB - rateA;
         }
         if (sortBy === 'Availability') {
@@ -376,21 +434,22 @@ const FindDoctors = () => {
                         <div className="filter-panel-group" style={{ flex: 1.5, paddingLeft: '40px' }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
                                 <span className="filter-panel-label">MAX PRICE:</span>
-                                <span style={{ color: '#27B992', fontWeight: '800', fontSize: '15px' }}>${maxFees}</span>
+                                <span style={{ color: '#27B992', fontWeight: '800', fontSize: '15px' }}>₹{maxFees}</span>
                             </div>
                             <div className="range-slider-container-new">
                                 <input 
                                     type="range" 
-                                    min="50" 
-                                    max="500" 
+                                    min="500" 
+                                    max="5000" 
+                                    step="100"
                                     value={maxFees} 
                                     onChange={(e) => setMaxFees(parseInt(e.target.value))}
                                     className="range-slider-green" 
                                 />
                             </div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px', color: '#888', fontSize: '12px', fontWeight: '600' }}>
-                                <span>$50</span>
-                                <span>$500</span>
+                                <span>₹500</span>
+                                <span>₹5000</span>
                             </div>
                         </div>
                     </div>
@@ -439,9 +498,9 @@ const FindDoctors = () => {
 
                     <div className="doctors-grid-horizontal">
                         {(showAll ? displayDoctors : displayDoctors.slice(0, 10)).map((doctor) => {
-                            const docFee = doctor.id % 2 === 0 ? 150 : 80;
-                            const docRating = doctor.id % 2 === 0 ? 4.9 : 4.4;
-                            const docExp = getDocExp(doctor.bio);
+                            const docFee = doctor.fees || (doctor.id % 2 === 0 ? 1500 : 800);
+                            const docRating = doctor.rating || (doctor.id % 2 === 0 ? 4.9 : 4.4);
+                            const docExp = doctor.experience || getDocExp(doctor.bio);
 
                             return (
                                 <div className="doctor-card-horizontal compact" key={doctor.id}>
@@ -502,17 +561,17 @@ const FindDoctors = () => {
             {/* Trust Banner */}
             <div className="trust-banner">
                 <div className="trust-item">
-                    <div className="trust-icon-box"><img src="/heartbox.png" alt="Verified" style={{ width: '22px', height: '22px', objectFit: 'contain' }} /></div>
+                    <div className="trust-icon-box"><FaUserCheck /></div>
                     <h4>Verified Doctors Only</h4>
                     <p>Stringent background checks for your peace of mind.</p>
                 </div>
                 <div className="trust-item">
-                    <div className="trust-icon-box"><img src="/heartbox.png" alt="Booking" style={{ width: '22px', height: '22px', objectFit: 'contain' }} /></div>
+                    <div className="trust-icon-box"><FaCalendarCheck /></div>
                     <h4>Instant Booking</h4>
                     <p>Book slots in real-time with zero waiting time.</p>
                 </div>
                 <div className="trust-item">
-                    <div className="trust-icon-box"><img src="/heartbox.png" alt="Secure" style={{ width: '22px', height: '22px', objectFit: 'contain' }} /></div>
+                    <div className="trust-icon-box"><FaLock /></div>
                     <h4>Secure Medical Data</h4>
                     <p>Your privacy is our priority with HIPAA compliance.</p>
                 </div>

@@ -218,6 +218,7 @@
     border-radius: 5px;
     outline: none;
     -webkit-appearance: none;
+    appearance: none;
 }
 
 .range-slider-green::-webkit-slider-thumb {
@@ -408,7 +409,7 @@
 }
 
 .rating-select .active {
-    color: #FFD700;
+    color: #FF9800;
 }
 
 .apply-btn {
@@ -431,7 +432,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    padding: 0 10px;
+    padding: 0;
+    max-width: 1030px; /* Match centered grid width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .doctors-found {
@@ -466,9 +470,10 @@
 
 .doctors-grid-horizontal {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(2, minmax(0, 500px));
+    gap: 30px;
     margin-bottom: 60px;
+    justify-content: center; /* Ensures equal space on left and right */
 }
 
 .doctor-card-horizontal {
@@ -476,7 +481,9 @@
     border: 1px solid #f0f0f0;
     border-radius: 12px;
     display: flex;
+    align-items: center; /* Center content vertically */
     padding: 20px;
+    max-width: 500px; /* Reduced width */
     gap: 20px;
     transition: all 0.2s ease;
 }
@@ -487,15 +494,24 @@
 }
 
 .card-image-left {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #f0f0f0;
+    transform: translateY(-20px); /* Shift upward */
+}
+
+.doctor-card-horizontal.compact .card-image-left {
+    width: 150px;
+    height: 150px;
 }
 
 .card-image-left img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     background: transparent;
 }
 
@@ -506,24 +522,21 @@
 }
 
 .doctor-card-horizontal.compact {
-    padding: 20px;
-    gap: 25px;
+    padding: 15px;
+    gap: 15px;
     border-radius: 12px;
-    align-items: center; /* Bring content to middle vertically */
+    align-items: center; /* Center image and content vertically */
 }
 
-.card-image-left {
-    width: 90px;
-    height: 90px;
-    flex-shrink: 0;
-}
+
 
 .card-info-right {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 8px; /* Consistent spacing between items */
+    gap: 8px;
+    padding-left: 15px; /* Shift content slightly to the right */
 }
 
 .card-info-header {
@@ -534,7 +547,7 @@
 }
 
 .name-qual-group h3 {
-    font-size: 18px;
+    font-size: 16px;
     margin: 0;
     color: #1a202c;
     font-weight: 700;
@@ -550,6 +563,8 @@
     text-align: right;
     display: flex;
     flex-direction: column;
+    margin-right: 35px; /* Move left away from the edge */
+    margin-top: 10px;   /* Move down from the top corner */
 }
 
 .fee-box-right .fee-label {
@@ -560,9 +575,9 @@
 }
 
 .fee-box-right .fee-value {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
-    color: #27B992;
+    color: #2563EB; /* Vibrant Royal Blue */
 }
 
 .doc-stats-mini {
@@ -571,6 +586,19 @@
     font-size: 13px;
     color: #4a5568;
     font-weight: 600;
+}
+
+.doc-stats-mini span:first-child svg {
+    color: #FF9800; /* Orange Star */
+    margin-right: 5px;
+}
+
+.doc-stats-mini span:last-child {
+    color: #27B992; /* Teal Experience */
+}
+
+.doc-stats-mini span:last-child svg {
+    margin-right: 5px;
 }
 
 .doc-specialties-list {
@@ -588,6 +616,8 @@
     display: flex;
     gap: 10px;
     margin-top: 4px;
+    padding-left: 0;
+    list-style: none;
 }
 
 .doc-specialties-list ul li {
@@ -623,6 +653,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    transform: translateY(-40px); /* Move upward */
 }
 
 .view-profile-link::after {
@@ -670,6 +701,30 @@
     color: #27B992;
     font-size: 16px;
     margin-bottom: 14px;
+    opacity: 1; /* Visible by default */
+    transform: scale(1); /* Normal size by default */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.trust-item:hover .trust-icon-box {
+    opacity: 1;
+    transform: scale(1);
+    background: #27B992;
+    color: white;
+}
+
+.trust-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    cursor: default;
+    transition: transform 0.3s ease;
+}
+
+.trust-item:hover {
+    transform: translateY(-5px);
 }
 
 .trust-item h4 {

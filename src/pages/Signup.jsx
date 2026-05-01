@@ -14,9 +14,16 @@ const Signup = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        let finalValue = value;
+
+        // Restrict Full Name to alphabets and spaces only
+        if (name === 'fullName') {
+            finalValue = value.replace(/[^a-zA-Z\s]/g, '');
+        }
+
         setFormData(prev => ({
             ...prev,
-            [name]: value
+            [name]: finalValue
         }));
     };
 

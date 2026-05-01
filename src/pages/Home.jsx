@@ -5,7 +5,7 @@ import {
     FaNotesMedical, FaEye, FaVideo, FaMapMarkerAlt,
     FaArrowRight, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn,
     FaCheckCircle, FaStar, FaPlus, FaMinus, FaStethoscope, FaHeadSideCough,
-    FaHandHoldingMedical
+    FaHandHoldingMedical, FaPhoneAlt, FaBrain, FaMapPin
 } from 'react-icons/fa';
 import { RiCalendarCheckLine, RiShieldCheckLine, RiServiceLine, RiStethoscopeLine } from "react-icons/ri";
 import { FiClock, FiUser, FiSearch, FiArrowRight, FiMessageCircle, FiHelpCircle, FiUserCheck } from "react-icons/fi";
@@ -49,6 +49,25 @@ const Home = () => {
 
             {/* Hero Section */}
             <header className="hero-section animate-fade-up" id="home">
+                {/* Decorative Background Elements */}
+                <div className="hero-bg-elements">
+                    <FaHeartbeat className="bg-element el-1" />
+                    <FaStethoscope className="bg-element el-2" />
+                    <FaPlus className="bg-element el-3" />
+                    <FaNotesMedical className="bg-element el-4" />
+                    <div className="bg-element el-5"></div>
+                    <div className="bg-element el-6"></div>
+                    <FaNotesMedical className="bg-element el-7" />
+                    <FaStethoscope className="bg-element el-8" />
+                    <FaHeartbeat className="bg-element el-9" />
+                    <FaTooth className="bg-element el-10" />
+                    <FaBone className="bg-element el-11" />
+                    <FaEye className="bg-element el-12" />
+                    <FaVideo className="bg-element el-13" />
+                    <FaMapMarkerAlt className="bg-element el-14" />
+                    <FaNotesMedical className="bg-element el-15" />
+                </div>
+
                 <div className="hero-content-left">
                     <h1 className="hero-title">
                         Find The Right Doctor. Book<br />
@@ -76,7 +95,7 @@ const Home = () => {
                 <div className="hero-content-right animate-scale-in">
                     <div className="hero-grid">
                         <div className="hero-card doctor-card-large animate-float">
-                            <img src="/doctor_teal_scrubs.png" alt="Dr. Sarah Johnson" />
+                            <img src="/hero_doctor_teal.png" alt="Dr. Sarah Johnson" />
                             <div className="floating-badge bottom-left-badge">
                                 <span className="badge-specialty">DERMATOLOGIST</span>
                                 <span className="badge-name">Dr. Sarah Johnson</span>
@@ -93,7 +112,7 @@ const Home = () => {
                                     <span className="badge-subtitle">HIPAA Compliant Care</span>
                                 </div>
                             </div>
-                            <img src="/doctor_bw_labcoat.png" alt="Doctor" />
+                            <img src="/hero_doctor_labcoat.png" alt="Doctor" />
                         </div>
 
                         <div className="hero-card stats-card-dark animate-float delay-2">
@@ -112,7 +131,7 @@ const Home = () => {
                         </div>
 
                         <div className="hero-card doctor-card-small bottom-right-img animate-float delay-3">
-                            <img src="/doctor_blue_scrubs.png" alt="Doctor" />
+                            <img src="/hero_doctor_blue.png" alt="Doctor" />
                         </div>
                     </div>
                 </div>
@@ -148,7 +167,7 @@ const Home = () => {
                     <div className="specialty-card animate-fade-up delay-3" onClick={() => navigate('/find-doctors#doctors-list', { state: { specialty: 'Cardiologist' } })}>
                         <div className="specialty-icon"><FaHeadSideCough size={24} /></div>
                         <h4>Cardiologist</h4>
-                        <p>Heart health consultation and cardiac care.</p>
+                        <p>Expert heart health consultations and comprehensive cardiac care services.</p>
                         <div style={{ marginTop: 'auto', paddingTop: '20px' }}>
                             <span style={{ color: '#27B992', fontSize: '14px', fontWeight: 'bold' }}>
                                 Read more &rarr;
@@ -189,48 +208,56 @@ const Home = () => {
             </section>
 
             {/* CareFlow AI Section */}
-            <section className="section careflow-help-section">
-                <h2 className="careflow-title">How CareFlow AI helps you</h2>
-                <p className="careflow-subtitle">A seamless path from describing symptoms to receiving professional care.</p>
+            <section className="section careflow-ai-section">
+                <div className="section-header animate-fade-up">
+                    <h2 className="careflow-title">How CareFlow <span className="green-text">AI Helps You</span></h2>
+                    <p className="careflow-subtitle" style={{ marginTop: '-18px' }}>A seamless, AI-powered path from describing symptoms to receiving professional care.</p>
+                </div>
                 
-                <div className="careflow-grid">
-                    <div className="careflow-item">
-                        <div className="careflow-icon-circle icon-blue">
-                            <FiMessageCircle />
+                <div className="careflow-container">
+                    <div className="careflow-grid">
+                        <div className="careflow-card animate-fade-up delay-1">
+                            <div className="step-number">01</div>
+                            <div className="careflow-icon-wrapper icon-blue">
+                                <FiMessageCircle />
+                            </div>
+                            <div className="careflow-content">
+                                <h4>Describe Symptoms</h4>
+                                <p>Simply tell our AI how you feel in your own words. No medical jargon needed.</p>
+                            </div>
                         </div>
-                        <div className="careflow-text-box">
-                            <h4>Tell your problem</h4>
-                            <p>Simply describe your symptoms or health concerns in natural language.</p>
-                        </div>
-                    </div>
 
-                    <div className="careflow-item">
-                        <div className="careflow-icon-circle icon-purple">
-                            <FiHelpCircle />
+                        <div className="careflow-card animate-fade-up delay-2">
+                            <div className="step-number">02</div>
+                            <div className="careflow-icon-wrapper icon-purple">
+                                <FiHelpCircle />
+                            </div>
+                            <div className="careflow-content">
+                                <h4>Clarify Condition</h4>
+                                <p>AI asks smart follow-up questions to pinpoint potential health concerns accurately.</p>
+                            </div>
                         </div>
-                        <div className="careflow-text-box">
-                            <h4>Answer simple questions</h4>
-                            <p>AI asks specific clarifying questions to understand your condition perfectly.</p>
-                        </div>
-                    </div>
 
-                    <div className="careflow-item">
-                        <div className="careflow-icon-circle icon-teal">
-                            <FiUserCheck />
+                        <div className="careflow-card animate-fade-up delay-3">
+                            <div className="step-number">03</div>
+                            <div className="careflow-icon-wrapper icon-orange">
+                                <FaBrain />
+                            </div>
+                            <div className="careflow-content">
+                                <h4>AI Analysis</h4>
+                                <p>Receive an instant recommendation of the best specialist for your specific case.</p>
+                            </div>
                         </div>
-                        <div className="careflow-text-box">
-                            <h4>Get recommendations</h4>
-                            <p>Receive immediate guidance on which specialist category you should visit.</p>
-                        </div>
-                    </div>
 
-                    <div className="careflow-item">
-                        <div className="careflow-icon-circle icon-green">
-                            <RiStethoscopeLine />
-                        </div>
-                        <div className="careflow-text-box">
-                            <h4>Book your care</h4>
-                            <p>Browse matched doctors and book a slot instantly for clinic or video visit.</p>
+                        <div className="careflow-card animate-fade-up delay-4">
+                            <div className="step-number">04</div>
+                            <div className="careflow-icon-wrapper icon-green">
+                                <RiStethoscopeLine />
+                            </div>
+                            <div className="careflow-content">
+                                <h4>Book Expert Care</h4>
+                                <p>Instantly book an appointment with a top-rated specialist near you or online.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -238,44 +265,78 @@ const Home = () => {
 
             {/* Booking Steps Section */}
             <section className="section booking-section">
-                <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '40px' }}>
-                    How Appointment <span className="green-text">Booking<br />Works</span>
-                </h2>
+                <div className="section-header animate-fade-up">
+                    <h2 className="section-title">How Appointment <span className="green-text">Booking Works</span></h2>
+                    <p className="careflow-subtitle" style={{ marginTop: '-40px' }}>Simple, fast, and secure. Your health journey starts here.</p>
+                </div>
+
                 <div className="booking-columns">
-                    <div className="booking-content">
-                        <div className="step-list">
-                            <div className="step-item">
-                                <div className="step-icon step-icon-1"><FaSearch /></div>
-                                <div className="step-info">
-                                    <h4>Step 1 – Search Doctor</h4>
-                                    <p>Find doctors by speciality, symptom, or name.</p>
+                    <div className="booking-content animate-fade-up">
+                        <div className="booking-timeline">
+                            <div className="timeline-line"></div>
+                            
+                            <div className="booking-step-item">
+                                <div className="step-number-node">01</div>
+                                <div className="booking-step-card">
+                                    <div className="step-icon-box"><FaSearch /></div>
+                                    <div className="step-text">
+                                        <h4>Search Your Specialist</h4>
+                                        <p>Find the best doctors near you by name, specialty, or specific symptoms.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="step-item">
-                                <div className="step-icon step-icon-2"><RiCalendarCheckLine /></div>
-                                <div className="step-info">
-                                    <h4>Step 2 – Choose Slot</h4>
-                                    <p>Select available date and time.</p>
+
+                            <div className="booking-step-item">
+                                <div className="step-number-node">02</div>
+                                <div className="booking-step-card">
+                                    <div className="step-icon-box"><RiCalendarCheckLine /></div>
+                                    <div className="step-text">
+                                        <h4>Choose Preferred Slot</h4>
+                                        <p>Select a convenient date and time that perfectly fits your schedule.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="step-item">
-                                <div className="step-icon step-icon-3"><FaUserMd /></div>
-                                <div className="step-info">
-                                    <h4>Step 3 – Book Appointment</h4>
-                                    <p>Confirm booking instantly.</p>
+
+                            <div className="booking-step-item">
+                                <div className="step-number-node">03</div>
+                                <div className="booking-step-card">
+                                    <div className="step-icon-box"><FaUserMd /></div>
+                                    <div className="step-text">
+                                        <h4>Confirm & Secure</h4>
+                                        <p>Finalize your appointment instantly with secure one-click confirmation.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="step-item">
-                                <div className="step-icon step-icon-4"><RiServiceLine /></div>
-                                <div className="step-info">
-                                    <h4>Step 4 – Get Care</h4>
-                                    <p>Consult online or visit clinic.</p>
+
+                            <div className="booking-step-item">
+                                <div className="step-number-node">04</div>
+                                <div className="booking-step-card">
+                                    <div className="step-icon-box"><RiServiceLine /></div>
+                                    <div className="step-text">
+                                        <h4>Receive Expert Care</h4>
+                                        <p>Visit the clinic or connect via video call for professional medical advice.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="booking-image">
-                        <img src="/appointment_page.png" alt="Booking Process" />
+
+                    <div className="booking-image-side animate-scale-in">
+                        <div className="booking-image-wrapper">
+                            <div className="image-blob-bg"></div>
+                            <div className="booking-image">
+                                <img src="/medical_appointment_new.png" alt="Booking Process" />
+                            </div>
+                            {/* Decorative Floating Badges */}
+                            <div className="floating-stat-badge top-stat">
+                                <FaCheckCircle />
+                                <span>100% Verified</span>
+                            </div>
+                            <div className="floating-stat-badge bottom-stat">
+                                <FiClock />
+                                <span>Instant Confirmation</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -283,7 +344,7 @@ const Home = () => {
             {/* Trusted Partner Section */}
             <section className="section partner-section">
                 <div className="image-side">
-                    <img src="/health_care_partner_page.png" alt="Trusted Partner" />
+                    <img src="/healthcare_partner_modern.png" alt="Trusted Partner" />
                 </div>
                 <div className="content-side">
                     <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '10px' }}>
@@ -311,7 +372,7 @@ const Home = () => {
             {/* Not Sure Selection */}
             <section className="section" id="symptoms">
                 <h2 className="section-title">Not Sure Which <span className="green-text">Doctor To Visit?</span></h2>
-                <p style={{ marginTop: '-40px', marginBottom: '60px', color: '#777' }}>Book appointments for any medical concern with verified specialists.</p>
+                <p style={{ marginTop: '-40px', marginBottom: '40px', color: '#777' }}>Book appointments for any medical concern with verified specialists.</p>
 
                 <div className="symptoms-grid">
                     <div className="symptom-card">
@@ -362,52 +423,52 @@ const Home = () => {
             {/* Top Doctors Section */}
             <section className="section" id="find-doctors">
                 <h2 className="section-title">Top Rated Doctors <span className="green-text">Near You</span></h2>
-                <p style={{ marginTop: '-40px', marginBottom: '60px', color: '#777' }}>Book with our highest-rated medical professionals trusted by the community.</p>
+                <p style={{ marginTop: '-40px', marginBottom: '40px', color: '#777' }}>Book with our highest-rated medical professionals trusted by the community.</p>
 
                 <div className="doctors-grid">
                     <div className="doctor-card">
                         <div className="doctor-img-container">
-                            <img src="/dr_sarah_johnson_1.png" alt="Dr. Sarah Johnson" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/dr_sarah_johnson.png" alt="Dr. Priya Sharma" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div className="rating-badge"><FaStar size={10} /> 4.8</div>
                         </div>
                         <div className="doctor-card-content">
-                            <h4>Dr. Sarah Johnson</h4>
+                            <h4>Dr. Priya Sharma</h4>
                             <span className="doctor-specialty">Cardiology Specialist</span>
                             <div className="doctor-meta">
-                                <span><FaMapMarkerAlt /> New York</span>
+                                <span className="loc-meta">📍 Mumbai</span>
                                 <span>12 Years Experience</span>
                             </div>
-                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Sarah Johnson', specialty: 'Cardiology Specialist', image: '/dr_sarah_johnson_1.png', location: 'New York', consultation_fee: '150' } } })}>Book Appointment</button>
+                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Priya Sharma', specialty: 'Cardiology Specialist', image: '/dr_sarah_johnson.png', location: 'Mumbai', consultation_fee: '1500' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     <div className="doctor-card">
                         <div className="doctor-img-container">
-                            <img src="/dr_sarah_johnson.png" alt="Dr. Mark Wilson" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/dr_sarah_johnson_1.png" alt="Dr. Amit Patel" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div className="rating-badge"><FaStar size={10} /> 4.9</div>
                         </div>
                         <div className="doctor-card-content">
-                            <h4>Dr. Mark Wilson</h4>
+                            <h4>Dr. Amit Patel</h4>
                             <span className="doctor-specialty">Dental Specialist</span>
                             <div className="doctor-meta">
-                                <span><FaMapMarkerAlt /> Seattle</span>
+                                <span className="loc-meta">📍 Delhi</span>
                                 <span>8 Years Experience</span>
                             </div>
-                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Mark Wilson', specialty: 'Dental Specialist', image: '/dr_sarah_johnson.png', location: 'Seattle', consultation_fee: '850' } } })}>Book Appointment</button>
+                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Amit Patel', specialty: 'Dental Specialist', image: '/dr_sarah_johnson_1.png', location: 'Delhi', consultation_fee: '850' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     <div className="doctor-card">
                         <div className="doctor-img-container">
-                            <img src="/dr_sarah_johnson_2.png" alt="Dr. Emily Jones" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/dr_sarah_johnson_2.png" alt="Dr. Sneha Reddy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div className="rating-badge"><FaStar size={10} /> 5.0</div>
                         </div>
                         <div className="doctor-card-content">
-                            <h4>Dr. Emily Jones</h4>
+                            <h4>Dr. Sneha Reddy</h4>
                             <span className="doctor-specialty">Orthopedic specialist</span>
                             <div className="doctor-meta">
-                                <span><FaMapMarkerAlt /> Miami</span>
+                                <span className="loc-meta">📍 Bangalore</span>
                                 <span>15 Years Experience</span>
                             </div>
-                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Emily Jones', specialty: 'Orthopedic specialist', image: '/dr_sarah_johnson_2.png', location: 'Miami', consultation_fee: '150' } } })}>Book Appointment</button>
+                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Sneha Reddy', specialty: 'Orthopedic specialist', image: '/dr_sarah_johnson_2.png', location: 'Bangalore', consultation_fee: '1500' } } })}>Book Appointment</button>
                         </div>
                     </div>
                 </div>
@@ -416,7 +477,7 @@ const Home = () => {
             {/* Testimonials Section */}
             <section className="section" id="testimonials">
                 <h2 className="section-title animate-fade-up">What Our Patients <span className="green-text">Say</span></h2>
-                <p className="animate-fade-up delay-1" style={{ marginTop: '-40px', marginBottom: '60px', color: '#777' }}>Real stories from our healthy community.</p>
+                <p className="animate-fade-up delay-1" style={{ marginTop: '-40px', marginBottom: '40px', color: '#777' }}>Real stories from our healthy community.</p>
                 
                 <div className="testimonials-wrapper">
                     <div className="testimonials-track">
@@ -481,35 +542,79 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
-
-            {/* Consultation Mode Section */}
-            <section className="section" id="consultation">
-                <div className="consultation-banner">
-                    <div className="consult-mode-card online">
-                        <div className="mode-icon"><FaVideo /></div>
-                        <h3>Online Consultation</h3>
-                        <p>Secure video calls from home with instant booking and direct prescription delivery.</p>
-                        <div className="mode-feature"><FaCheckCircle /> High Definition Video</div>
-                        <button 
-                            className="btn-mode online-btn" 
-                            onClick={() => navigate('/find-doctors', { state: { consultationType: 'Online' } })}
-                        >
-                            Start Consultation
-                        </button>
+            </section>            {/* Consultation Mode Section */}
+            <section className="section consultation-mode-section" id="consultation">
+                <div className="consultation-container">
+                    <div className="consult-panel online animate-fade-up">
+                        <div className="panel-content">
+                            <div className="panel-badge">Remote Care</div>
+                            <div className="panel-icon"><FaVideo /></div>
+                            <h3>Online Consultation</h3>
+                            <p>Connect with top specialists from the comfort of your home via secure, high-definition video calls.</p>
+                            <ul className="panel-features">
+                                <li><FaCheckCircle /> Instant Video Connect</li>
+                                <li><FaCheckCircle /> Digital Prescriptions</li>
+                                <li><FaCheckCircle /> 24/7 Availability</li>
+                            </ul>
+                            <button 
+                                className="btn-panel online-btn" 
+                                onClick={() => {
+                                    new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhAAABAAgAZAFBkYXRhAgAAAAEA').play();
+                                    navigate('/find-doctors', { state: { consultationType: 'Online' } });
+                                }}
+                            >
+                                Start Online Call
+                            </button>
+                        </div>
+                        <div className="panel-bg-glow"></div>
                     </div>
-                    <div className="consult-mode-card clinic">
-                        <div className="mode-icon"><FaMapMarkerAlt /></div>
-                        <h3>Clinic Visit</h3>
-                        <p>Prefer face-to-face? Book an appointment at one of our nearby modern medical clinics.</p>
-                        <div className="mode-feature"><FaCheckCircle /> Nearby Medical Facilities</div>
 
-                        <button 
-                            className="btn-mode clinic-btn"
-                            onClick={() => navigate('/find-doctors', { state: { consultationType: 'Clinic' } })}
-                        >
-                            Find Clinics
-                        </button>
+                    <div className="consult-panel audio animate-fade-up delay-1">
+                        <div className="panel-content">
+                            <div className="panel-badge">Voice Call</div>
+                            <div className="panel-icon"><FaPhoneAlt /></div>
+                            <h3>Audio Consultation</h3>
+                            <p>Talk to qualified doctors via high-quality audio calls for quick medical advice and follow-ups.</p>
+                            <ul className="panel-features">
+                                <li><FaCheckCircle /> Private & Secure</li>
+                                <li><FaCheckCircle /> Zero Waiting Time</li>
+                                <li><FaCheckCircle /> Budget Friendly</li>
+                            </ul>
+                            <button 
+                                className="btn-panel audio-btn"
+                                onClick={() => {
+                                    new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhAAABAAgAZAFBkYXRhAgAAAAEA').play();
+                                    navigate('/find-doctors', { state: { consultationType: 'Audio' } });
+                                }}
+                            >
+                                Start Audio Call
+                            </button>
+                        </div>
+                        <div className="panel-bg-glow"></div>
+                    </div>
+
+                    <div className="consult-panel clinic animate-fade-up delay-2">
+                        <div className="panel-content">
+                            <div className="panel-badge">In-Person</div>
+                            <div className="panel-icon"><FaMapMarkerAlt /></div>
+                            <h3>Clinic Visit</h3>
+                            <p>Prefer a face-to-face checkup? Book an appointment at our modern, fully-equipped medical clinics.</p>
+                            <ul className="panel-features">
+                                <li><FaCheckCircle /> Modern Facilities</li>
+                                <li><FaCheckCircle /> Expert Diagnosis</li>
+                                <li><FaCheckCircle /> Physical Checkup</li>
+                            </ul>
+                            <button 
+                                className="btn-panel clinic-btn"
+                                onClick={() => {
+                                    new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhAAABAAgAZAFBkYXRhAgAAAAEA').play();
+                                    navigate('/find-doctors', { state: { consultationType: 'Clinic' } });
+                                }}
+                            >
+                                Find Nearby Clinics
+                            </button>
+                        </div>
+                        <div className="panel-bg-glow"></div>
                     </div>
                 </div>
             </section>

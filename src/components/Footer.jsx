@@ -1,51 +1,77 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { FaLinkedinIn, FaFacebookF, FaInstagram, FaYoutube, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <div className="footer-grid">
-                <div className="footer-col">
-                    <div className="nav-logo" style={{ marginBottom: '24px', display: 'flex', flexDirection: 'column' }}>
-                        <img src="/zynrova_logo.svg" alt="Zynrova Logo" style={{ height: '85px', objectFit: 'contain', marginBottom: '16px', alignSelf: 'center' }} />
-                        <span className="nav-logo-text" style={{ color: '#ccc', fontSize: '13px', fontWeight: '500', letterSpacing: '0.5px', textTransform: 'lowercase', alignSelf: 'center', textAlign: 'center' }}>
-                            powered by zynrova software solutions
-                        </span>
+            <div className="footer-container">
+                <div className="footer-grid">
+                    <div className="footer-brand">
+                        <div className="footer-logo" style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <img src="/logo_doctor.png" alt="CareFlow Logo" style={{ width: '32px', height: 'auto', filter: 'brightness(0) invert(1)' }} />
+                            <h2 style={{ color: '#ffffff', fontSize: '20px', fontWeight: '800', margin: 0, letterSpacing: '-0.5px' }}>CareFlow AI</h2>
+                        </div>
+                        <p className="footer-tagline">
+                            Revolutionizing healthcare access with AI-driven intelligence and instant specialist connectivity.
+                        </p>
+                        <div className="social-links">
+                            <a href="#" className="social-link"><FaLinkedinIn /></a>
+                            <a href="#" className="social-link"><FaFacebookF /></a>
+                            <a href="#" className="social-link"><FaInstagram /></a>
+                            <a href="#" className="social-link"><FaYoutube /></a>
+                        </div>
                     </div>
-                    <p style={{ marginTop: '0', color: '#999', lineHeight: '1.6' }}>Building reliable digital solutions for modern businesses.</p>
-                </div>
-                <div className="footer-col">
-                    <h3>SERVICES</h3>
-                    <ul className="footer-links">
-                        <li><Link to="/specialties">Mobile Apps</Link></li>
-                        <li><Link to="/specialties">Web development</Link></li>
-                        <li><Link to="/specialties">UI/UX Design</Link></li>
-                        <li><Link to="/specialties">Digital Marketing</Link></li>
-                    </ul>
-                </div>
-                <div className="footer-col">
-                    <h3>QUICK LINKS</h3>
-                    <ul className="footer-links">
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/specialties">Services</Link></li>
-                        <li><Link to="/about">About us</Link></li>
-                        <li><Link to="/contact">Contact us</Link></li>
-                    </ul>
-                </div>
-                <div className="footer-col">
-                    <h3>QUICK CONTACT</h3>
-                    <div className="social-icons">
-                        <a href="#" className="social-icon-link"><FaLinkedinIn /></a>
-                        <a href="#" className="social-icon-link"><FaFacebookF /></a>
-                        <a href="#" className="social-icon-link"><FaInstagram /></a>
-                        <a href="#" className="social-icon-link"><FaYoutube /></a>
+
+                    <div className="footer-col">
+                        <h3>SERVICES</h3>
+                        <ul className="footer-links">
+                            <li><Link to="/specialties">Cardiology</Link></li>
+                            <li><Link to="/specialties">Dermatology</Link></li>
+                            <li><Link to="/specialties">Pediatrics</Link></li>
+                            <li><Link to="/specialties">Neurology</Link></li>
+                            <li><Link to="/specialties">Orthopedics</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer-col">
+                        <h3>Quick Links</h3>
+                        <ul className="footer-links">
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/find-doctors">Find Doctors</Link></li>
+                            <li><Link to="/about">About Us</Link></li>
+                            <li><Link to="/contact">Contact Support</Link></li>
+                            <li><Link to="/privacy">Privacy Policy</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer-col">
+                        <h3>Get In Touch</h3>
+                        <ul className="contact-info">
+                            <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                                <FaMapMarkerAlt style={{ color: 'var(--primary-color)', marginTop: '4px', fontSize: '16px' }} />
+                                <p>123 Medical Plaza, Wellness District, NY 10001</p>
+                            </li>
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <FaPhoneAlt style={{ color: 'var(--primary-color)', fontSize: '16px' }} />
+                                <p>+1 (800) 123-4567</p>
+                            </li>
+                            <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <FaEnvelope style={{ color: 'var(--primary-color)', fontSize: '16px' }} />
+                                <p>support@careflowai.com</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div className="footer-bottom">
-                <p>&copy; 2024 Zynrova. All rights reserved.</p>
+
+                <div className="footer-bottom">
+                    <p>&copy; {new Date().getFullYear()} CareFlow AI Healthcare Solutions. All rights reserved.</p>
+                    <div className="footer-bottom-links">
+                        <Link to="/terms">Terms of Service</Link>
+                        <Link to="/cookies">Cookie Policy</Link>
+                    </div>
+                </div>
             </div>
         </footer>
     );

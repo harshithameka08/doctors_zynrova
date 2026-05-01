@@ -3,8 +3,7 @@
 :root {
     --primary-color: #27B992;
     /* Teal color from image approximation */
-    --bg-color: #FFFFFF;
-    /* Changed to white as requested */
+    --bg-color: #f8fcfb; /* Off-white background to make card pop */
     --card-bg: #FFFFFF;
     --text-main: #1D1D1D;
     --text-secondary: #6c757d;
@@ -32,28 +31,32 @@ body {
 
 .auth-card {
     background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 20px; /* Slightly more rounded */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); /* Softer, wider shadow */
     overflow: hidden;
     width: 100%;
-    max-width: 860px;
+    max-width: 1000px; /* Increased to match wide aspect ratio in image */
     display: flex;
     flex-direction: row;
-    /* Default for split view (Login) */
 }
 
 .auth-card.signup-mode {
-    max-width: 1000px;
-    /* Further increased width as requested */
+    max-width: 480px; /* Reduced card size */
     flex-direction: column;
+    background: linear-gradient(145deg, #f0fcf9, #e6f8f3);
 }
 
 .auth-form-section {
-    flex: 1.1;
-    padding: 40px 50px;
+    flex: 1;
+    padding: 40px 50px; /* Reduced padding for smaller card */
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* Override padding for signup only */
+.auth-card.signup-mode .auth-form-section {
+    padding: 35px 45px;
 }
 
 .auth-image-section {
@@ -73,16 +76,16 @@ body {
 }
 
 .auth-header h1 {
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 32px; /* Larger title */
+    font-weight: 800;
     color: var(--text-main);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .auth-header p {
     color: var(--text-secondary);
-    font-size: 14px;
-    margin-bottom: 25px;
+    font-size: 15px;
+    margin-bottom: 35px; /* More space before form */
 }
 
 .form-group {
@@ -92,17 +95,17 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 600; /* Bolder label */
     font-size: 14px;
-    color: var(--text-main);
+    color: #444;
 }
 
 .form-group input {
     width: 100%;
-    padding: 14px 16px;
-    border: 1px solid transparent;
-    background-color: var(--input-bg);
-    border-radius: 8px;
+    padding: 16px 20px; /* Slightly taller inputs */
+    border: none; /* Removed border */
+    background-color: #f5f7f9; /* Soft solid grey */
+    border-radius: 12px; /* Smoother rounded corners */
     font-size: 14px;
     color: var(--text-main);
     font-family: inherit;
@@ -115,6 +118,28 @@ body {
     border-color: var(--primary-color);
     background-color: #fff;
     box-shadow: 0 0 0 3px rgba(39, 185, 146, 0.1);
+}
+
+/* Signup-specific overrides */
+.auth-card.signup-mode .form-group input {
+    background-color: #ffffff;
+    border: 1px solid #d8f3ec;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 8px rgba(39, 185, 146, 0.06);
+}
+
+.auth-card.signup-mode .form-group input:focus {
+    border-color: #27B992;
+    box-shadow: 0 0 0 3px rgba(39, 185, 146, 0.15);
+}
+
+.auth-card.signup-mode .auth-header h1 {
+    color: #1a5c4a;
+}
+
+.auth-card.signup-mode .auth-header p {
+    color: #3d9e80;
 }
 
 .form-options {
@@ -148,16 +173,16 @@ body {
 
 .auth-btn {
     width: 100%;
-    padding: 12px;
+    padding: 16px; /* Taller button */
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .auth-btn:hover {

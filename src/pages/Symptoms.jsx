@@ -21,10 +21,22 @@ const Symptoms = () => {
 
     const handleSearchSubmit = (e) => {
         if (e) e.preventDefault();
-        if (searchQuery.trim()) {
-            openChatWithMsg(searchQuery);
-            setSearchQuery('');
+        const query = searchQuery.trim().toLowerCase();
+        
+        // Find if the query matches any symptom exactly or partially
+        const match = Object.keys(symptomsData).find(s => 
+            s.toLowerCase().includes(query)
+        );
+
+        if (match) {
+            setActiveSymptom(match);
+            const el = document.querySelector('.sym-highlight-section');
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            // If no match found in data, maybe it's a general query for the AI
+            openChatWithMsg(`I am feeling ${searchQuery}. Who should I consult?`);
         }
+        setSearchQuery('');
     };
 
     const symptomsData = {
@@ -70,6 +82,10 @@ const Symptoms = () => {
         }
     };
 
+    const filteredQuickTags = Object.keys(symptomsData).filter(s => 
+        s.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     const bodyAreas = [
         { name: 'Head & Neck', icon: <FaHeadSideVirus />, color: '#fff', bg: '#1abc9c' }, /* Greenish */
         { name: 'Chest & Respiratory', icon: <FaLungs />, color: '#fff', bg: '#ff6b6b' }, /* Reddish/Pink */
@@ -97,7 +113,7 @@ const Symptoms = () => {
                 {/* Hero Section */}
                 <header className="sym-hero">
                     <div className="sym-hero-inner">
-                    <div className="health-assist-badge">Health Assistance</div>
+
                     <h1>Find The Right Doctor<br />Based On <span>Your Symptoms</span></h1>
                     <p>Tell us how you're feeling, and we'll guide you to the right medical specialist.</p>
 
@@ -114,15 +130,19 @@ const Symptoms = () => {
                 </div>
 
                 <div className="quick-tags">
-                    {Object.keys(symptomsData).map(symptom => (
-                        <div
-                            key={symptom}
-                            className={`sym-tag ${activeSymptom === symptom ? 'active' : ''}`}
-                            onClick={() => setActiveSymptom(symptom)}
-                        >
-                            {symptom}
-                        </div>
-                    ))}
+                    {filteredQuickTags.length > 0 ? (
+                        filteredQuickTags.map(symptom => (
+                            <div
+                                key={symptom}
+                                className={`sym-tag ${activeSymptom === symptom ? 'active' : ''}`}
+                                onClick={() => setActiveSymptom(symptom)}
+                            >
+                                {symptom}
+                            </div>
+                        ))
+                    ) : (
+                        <div style={{ color: '#999', fontSize: '13px', padding: '10px' }}>No matching symptoms found. Try searching for something else.</div>
+                    )}
                 </div>
             </header>
             </div>{/* end sym-hero-wrapper */}
@@ -139,7 +159,7 @@ const Symptoms = () => {
                             <div
                                 className="dept-pill"
                                 key={idx}
-                                onClick={() => navigate('/doctor-profile', { state: { doctor: dept.doctor } })}
+                                onClick={() => navigate('/find-doctors', { state: { specialty: dept.name } })}
                             >
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px', flex: 1 }}>
                                     <div>
@@ -158,8 +178,8 @@ const Symptoms = () => {
 
             {/* Body Area Section */}
             <section className="body-area-section">
-                <h2 className="section-head-center">Symptoms By <span style={{ color: '#27B992' }}>Body Area</span></h2>
-                <p style={{ textAlign: 'center', marginTop: '10px', marginBottom: '50px', color: '#888', fontSize: '16px' }}>Click on a region to narrow down your concerns.</p>
+                <h2 className="section-head-center" style={{ marginBottom: '5px' }}>Symptoms By <span style={{ color: '#27B992' }}>Body Area</span></h2>
+                <p style={{ textAlign: 'center', marginTop: '0', marginBottom: '50px', color: '#888', fontSize: '16px' }}>Click on a region to narrow down your concerns.</p>
 
                 <div className="body-area-container">
                     {/* Left Menu */}
@@ -198,54 +218,64 @@ const Symptoms = () => {
 
             {/* Condition Insights */}
             <section className="insights-section">
-                <h2 className="section-head-center" style={{ marginBottom: '10px' }}>Condition Insights</h2>
-                <p style={{ color: '#666' }}>In-depth looks at common symptoms and specialized pathways.</p>
+                <h2 className="section-head-center" style={{ marginBottom: '5px' }}>Condition Insights</h2>
+                <p style={{ color: '#666', marginTop: '0' }}>In-depth looks at common symptoms and specialized pathways.</p>
 
                 <div className="insight-grid">
                     <div className="insight-card bg-cream">
                         <div className="insight-icon" style={{ color: '#FF7F50' }}><FaBone /></div>
                         <h3>Chronic Back Pain</h3>
                         <p>Understanding potential spinal issues, posture-related strain, and when to consult Orthopedics.</p>
-                        <a href="#" className="link-find">Find Doctors</a>
+                        <span className="link-find" onClick={() => navigate('/find-doctors', { state: { specialty: 'Orthopedic' } })}>Find Doctors</span>
                     </div>
                     <div className="insight-card bg-lavender">
                         <div className="insight-icon" style={{ color: '#9B59B6' }}><GiStomach /></div>
                         <h3>Digestive Health</h3>
-                        <p>Identifying triggers for acidity and bloating, and exploring Gastroenterology solutions.</p>
-                        <a href="#" className="link-find">Find Doctors</a>
+                        <p>Identifying triggers for acidity and bloating, and exploring General Physician solutions.</p>
+                        <span className="link-find" onClick={() => navigate('/find-doctors', { state: { specialty: 'General Physician' } })}>Find Doctors</span>
                     </div>
                     <div className="insight-card bg-mint">
                         <div className="insight-icon" style={{ color: '#27B992' }}><FaBrain /></div>
                         <h3>Mental Wellness</h3>
                         <p>Signs of anxiety, fatigue, and burnout. Connecting you with our mental health specialists.</p>
-                        <a href="#" className="link-find">Find Doctors</a>
+                        <span className="link-find" onClick={() => navigate('/find-doctors', { state: { specialty: 'Psychiatrist' } })}>Find Doctors</span>
                     </div>
                 </div>
             </section>
 
             {/* What Happens Next? */}
             <section className="steps-section">
-                <h2 className="section-head-center">What Happens Next?</h2>
-                <div className="steps-container">
-                    <div className="step-box-center">
-                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 1" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
-                        <p>Step 01</p>
-                        <h4>Select Symptom</h4>
-                    </div>
-                    <div className="step-box-center">
-                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 2" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
-                        <p>Step 02</p>
-                        <h4>See Specialists</h4>
-                    </div>
-                    <div className="step-box-center">
-                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 3" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
-                        <p>Step 03</p>
-                        <h4>Choose Visit</h4>
-                    </div>
-                    <div className="step-box-center">
-                        <div className="step-icon-lg"><img src="/heartbox.png" alt="Step 4" style={{ width: '26px', height: '26px', objectFit: 'contain' }} /></div>
-                        <p>Step 04</p>
-                        <h4>Book Securely</h4>
+                <div className="steps-inner-wrapper">
+                    <h2 className="section-head-center" style={{ marginBottom: '5px' }}>What Happens Next?</h2>
+                    <p style={{ textAlign: 'center', color: '#666', marginTop: '0', marginBottom: '40px' }}>A simple, 4-step journey to feeling better.</p>
+                    <div className="steps-container">
+                        <div className="step-box-center">
+                            <div className="step-number">01</div>
+                            <div className="step-icon-lg"><FaSearch /></div>
+                            <h4>Select Symptom</h4>
+                            <p>Tell us what's bothering you</p>
+                        </div>
+                        <div className="step-connector"></div>
+                        <div className="step-box-center">
+                            <div className="step-number">02</div>
+                            <div className="step-icon-lg"><FaUserMd /></div>
+                            <h4>See Specialists</h4>
+                            <p>Get matched with experts</p>
+                        </div>
+                        <div className="step-connector"></div>
+                        <div className="step-box-center">
+                            <div className="step-number">03</div>
+                            <div className="step-icon-lg"><FaHeartbeat /></div>
+                            <h4>Choose Visit</h4>
+                            <p>Select clinic or online</p>
+                        </div>
+                        <div className="step-connector"></div>
+                        <div className="step-box-center">
+                            <div className="step-number">04</div>
+                            <div className="step-icon-lg"><FaCheckCircle /></div>
+                            <h4>Book Securely</h4>
+                            <p>Instant confirmation</p>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -63,7 +63,7 @@ const About = () => {
                     <button className="btn-primary-about" onClick={() => navigate('/find-doctors')}>Find Doctors</button>
                 </div>
                 <div className="about-hero-image">
-                    <img src="/about_image_1.png" alt="Doctors Team" />
+                    <img src="/about_hero_modern.png" alt="Medical Team" />
                 </div>
             </section>
 
@@ -100,11 +100,16 @@ const About = () => {
                     <h2>Who We <span>Are</span></h2>
                     <p>We are a healthcare technology platform focused on simplifying how patients find doctors, book appointments, and access medical care. Our goal is to remove confusion and create a seamless healthcare experience for everyone.</p>
 
-                    <div className="who-tabs">
-                        <div className={`who-tab ${activeTab === 'Vision' ? 'active' : ''}`} onClick={() => setActiveTab('Vision')}>Vision</div>
-                        <div className={`who-tab ${activeTab === 'Goal' ? 'active' : ''}`} onClick={() => setActiveTab('Goal')}>Goal</div>
+                    <div className="who-traits-box">
+                        <div className="who-trait">
+                            <strong>Visionary</strong>
+                            <span>Leadership</span>
+                        </div>
+                        <div className="who-trait">
+                            <strong>Smart</strong>
+                            <span>Technology</span>
+                        </div>
                     </div>
-                    {/* Content could change based on tab, but static text used for visual match */}
                 </div>
             </section>
 
@@ -115,22 +120,22 @@ const About = () => {
 
                 <div className="features-grid">
                     <div className="feature-card">
-                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
+                        <div className="feature-icon"><FaUserMd /></div>
                         <h4>Verified Medical Network</h4>
                         <p>Every doctor is carefully verified for credentials and experience.</p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
+                        <div className="feature-icon"><FaSearch /></div>
                         <h4>Smart Discovery</h4>
                         <p>Find doctors by specialty, symptoms, or location effortlessly.</p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
+                        <div className="feature-icon"><FaCalendarCheck /></div>
                         <h4>Flexible Consultations</h4>
                         <p>Book in-clinic or online consultations with ease.</p>
                     </div>
                     <div className="feature-card">
-                        <div className="feature-icon"><img src="/cardiologist.png" alt="icon" style={{ width: '38px', height: '38px', objectFit: 'contain' }} /></div>
+                        <div className="feature-icon"><FaShieldAlt /></div>
                         <h4>Secure & Private</h4>
                         <p>Your health data is protected with industry-grade security.</p>
                     </div>
@@ -140,7 +145,7 @@ const About = () => {
             {/* Trusted By Professionals */}
             <section className="trusted-section">
                 <h2 className="trusted-title">Trusted By <span>Professionals</span></h2>
-                <p style={{ color: '#888', marginBottom: '40px' }}>Connecting patients with the top medical minds.</p>
+                <p style={{ color: '#888', marginTop: '0', marginBottom: '40px' }}>Connecting patients with the top medical minds.</p>
 
                 <div className="trusted-grid">
                     {/* Card 1 */}
@@ -150,13 +155,13 @@ const About = () => {
                             <div className="verified-badge">4.5 ★</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Sarah Johnson</div>
+                            <div className="doc-name">Dr. Priya Sharma</div>
                             <div className="doc-spec">Cardiology Specialist</div>
                             <div className="doc-meta">
-                                <span>📍 New York</span>
+                                <span>📍 Mumbai</span>
                                 <span>12 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Sarah Johnson', specialty: 'Cardiology Specialist', image: '/dr_sarah_johnson.png', location: 'New York', consultation_fee: '150' } } })}>Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Priya Sharma', specialty: 'Cardiology Specialist', image: '/dr_sarah_johnson.png', location: 'Mumbai', consultation_fee: '150' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     {/* Card 2 */}
@@ -166,13 +171,13 @@ const About = () => {
                             <div className="verified-badge">4.9 ★</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. James Wilson</div>
+                            <div className="doc-name">Dr. Amit Patel</div>
                             <div className="doc-spec">Dermatology Expert</div>
                             <div className="doc-meta">
-                                <span>📍 London</span>
+                                <span>📍 Delhi</span>
                                 <span>15 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. James Wilson', specialty: 'Dermatology Expert', image: '/dr_sarah_johnson_1.png', location: 'London', consultation_fee: '180' } } })}>Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Amit Patel', specialty: 'Dermatology Expert', image: '/dr_sarah_johnson_1.png', location: 'Delhi', consultation_fee: '180' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     {/* Card 3 */}
@@ -182,13 +187,13 @@ const About = () => {
                             <div className="verified-badge">4.6 ★</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Emily Davis</div>
+                            <div className="doc-name">Dr. Sneha Reddy</div>
                             <div className="doc-spec">Pediatric Specialist</div>
                             <div className="doc-meta">
-                                <span>📍 Chicago</span>
+                                <span>📍 Bangalore</span>
                                 <span>10 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Emily Davis', specialty: 'Pediatric Specialist', image: '/dr_sarah_johnson_2.png', location: 'Chicago', consultation_fee: '130' } } })}>Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Sneha Reddy', specialty: 'Pediatric Specialist', image: '/dr_sarah_johnson_2.png', location: 'Bangalore', consultation_fee: '130' } } })}>Book Appointment</button>
                         </div>
                     </div>
                 </div>
@@ -196,24 +201,24 @@ const About = () => {
 
             {/* How It Works */}
             <section className="how-it-works">
-                <h2 className="section-head-center">How It <span style={{ color: '#27B992' }}>Works</span></h2>
-                <p style={{ color: '#888' }}>A simple path to better health.</p>
+                <h2 className="section-head-center" style={{ marginBottom: '5px' }}>How It <span style={{ color: '#27B992' }}>Works</span></h2>
+                <p style={{ color: '#888', marginTop: '0' }}>A simple path to better health.</p>
 
                 <div className="how-steps">
                     <div className="how-step">
-                        <img src="/orthopedic.png" alt="icon" style={{ width: '36px', height: '36px', objectFit: 'contain' }} className="step-icon-img" />
-                        <h4>Search Doctor Or Symptom</h4>
-                        <p>Find specialized care in seconds.</p>
+                        <div className="how-step-icon"><FaSearch /></div>
+                        <h4>Search Doctor</h4>
+                        <p>Find specialized care by doctor or symptom in seconds.</p>
                     </div>
                     <div className="how-step">
-                        <img src="/orthopedic.png" alt="icon" style={{ width: '36px', height: '36px', objectFit: 'contain' }} className="step-icon-img" />
-                        <h4>Compare Availability</h4>
-                        <p>Pick a time that works for you.</p>
+                        <div className="how-step-icon"><FaCalendarCheck /></div>
+                        <h4>Pick a Time</h4>
+                        <p>Compare availability and pick a slot that works for you.</p>
                     </div>
                     <div className="how-step">
-                        <img src="/orthopedic.png" alt="icon" style={{ width: '36px', height: '36px', objectFit: 'contain' }} className="step-icon-img" />
+                        <div className="how-step-icon"><FaUserMd /></div>
                         <h4>Book & Consult</h4>
-                        <p>Consult with confidence and ease.</p>
+                        <p>Consult with confidence in-clinic or online with ease.</p>
                     </div>
                 </div>
             </section>

@@ -3,7 +3,7 @@
     width: 100%;
     min-height: 100vh;
     background-color: #fff;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 
 :root {
@@ -13,40 +13,65 @@
     --text-gray: #666;
 }
 
+@keyframes fadeSlideRight {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
 .spec-hero {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-between;
-    padding: 140px 10% 80px; /* Increased top padding to fix Navbar overlap */
-    background: #f0fbf9;
-    max-width: 100%;
-    margin: 0 auto;
+    padding: 160px 0 60px;
+    background: linear-gradient(135deg, #c8e6c9 0%, #ffffff 50%, #b2dfdb 100%);
+    position: relative;
+    overflow: hidden;
 }
 
 .spec-hero-content {
-    flex: 1;
-    padding-right: 50px;
+    padding-left: 10%;
+    padding-right: 40px;
 }
 
 .spec-hero-content h1 {
-    font-size: 42px;
+    font-size: 36px; /* Reduced font size from 42px */
     font-weight: 800;
     color: var(--text-dark);
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    animation: fadeSlideRight 0.8s ease-out forwards;
 }
 
 .spec-hero-content p {
-    font-size: 16px;
+    font-size: 15px; /* Reduced slightly */
     color: var(--text-gray);
-    line-height: 1.6;
-    margin-bottom: 30px;
-    max-width: 500px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    max-width: 480px;
+    animation: fadeSlideRight 0.8s ease-out 0.2s backwards;
 }
 
 .spec-tags {
     display: flex;
     gap: 10px;
+    animation: fadeSlideRight 0.8s ease-out 0.4s backwards;
 }
 
 .spec-tag-pill {
@@ -59,32 +84,50 @@
 }
 
 .spec-hero-image {
-    flex: 1;
     position: relative;
-    border-radius: 20px;
+    border-radius: 30px; /* Added rounding for a premium feel */
     overflow: hidden;
-    max-width: 600px;
+    width: 85%; /* Reduced from 100% */
+    height: 400px; /* Fixed height to keep it consistent */
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Added shadow for depth */
 }
 
 .spec-hero-image img {
     width: 100%;
-    height: auto;
-    border-radius: 20px;
+    height: 100%;
+    object-fit: cover;
     display: block;
+    animation: fadeSlideLeft 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 /* Browse By Section */
 .browse-section {
     text-align: center;
-    padding: 60px 10%;
+    padding: 60px 0;
     background: #fff;
 }
 
 .section-head {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-top: 0;
+    margin-bottom: 45px;
     color: #333;
+}
+
+.featured-section .section-head {
+    margin-bottom: 10px; /* Reduced for subtitle proximity */
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-top: 0;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .browse-grid {
@@ -96,25 +139,31 @@
 }
 
 .browse-card {
-    background: #FAFAFA;
-    /* Light clean gray */
-    border: none;
-    /* No border as per image */
+    background: #f0fbf9; /* More visible light teal background */
+    border: 1px solid #e0f2f1; /* Added subtle border for definition */
     padding: 35px 30px;
     border-radius: 20px;
-    /* More rounded */
     text-align: left;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
 }
 
+.browse-card:nth-child(1) { animation-delay: 0.1s; }
+.browse-card:nth-child(2) { animation-delay: 0.2s; }
+.browse-card:nth-child(3) { animation-delay: 0.3s; }
+
 .browse-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transform: translateY(-8px);
+    background: #ffffff;
+    border-color: #27B992;
+    box-shadow: 0 12px 30px rgba(39, 185, 146, 0.1);
 }
+
 
 .browse-icon-box {
     margin-bottom: 20px;
@@ -146,8 +195,9 @@
 
 /* Featured Excellence - Staggered Layout Update */
 .featured-section {
-    padding: 60px 10%;
+    padding: 30px 5% 60px;
     background: #ffffff;
+    text-align: center;
 }
 
 .featured-grid {
@@ -171,7 +221,13 @@
     position: relative;
     transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
     cursor: pointer;
+    animation: fadeSlideUp 0.8s ease-out backwards;
 }
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
 
 .feature-card:hover {
     background: #ffffff;
@@ -244,7 +300,7 @@
 
 /* Care Stages */
 .stage-section {
-    padding: 60px 10%;
+    padding: 30px 0 20px;
     background: #fcfcfc;
 }
 
@@ -277,7 +333,7 @@
     gap: 20px;
     padding-bottom: 15px;
     width: max-content;
-    animation: infiniteScroll 25s linear infinite;
+    animation: infiniteScroll 60s linear infinite; /* Slowed down from 25s */
 }
 
 .stage-scroll:hover {
@@ -336,7 +392,7 @@
 
 /* Directory */
 .directory-section {
-    padding: 80px 10%;
+    padding: 40px 10% 80px; /* Kept 10% for the list to be centered and readable */
     background: #fff;
 }
 
@@ -404,7 +460,11 @@
     cursor: pointer;
     font-weight: 500;
     transition: all 0.2s ease;
+    animation: fadeSlideUp 0.6s ease-out backwards;
 }
+
+.directory-item:nth-child(even) { animation-delay: 0.1s; }
+.directory-item:nth-child(odd) { animation-delay: 0.2s; }
 
 .directory-item:hover {
     color: var(--primary-color);
@@ -441,12 +501,88 @@
     text-align: center;
 }
 
-/* Footer styles moved to components/Footer.css */
+/* Trust Banner Animations */
+.trust-banner {
+    background: #d1f1e9;
+    border-radius: 24px;
+    margin: 50px auto;
+    max-width: 950px;
+    padding: 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    animation: slideUpFade 0.8s ease-out forwards;
+}
+
+.trust-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    padding: 15px;
+    border-radius: 16px;
+}
+
+.trust-item:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(39, 185, 146, 0.1);
+}
+
+.trust-icon-box {
+    width: 36px;
+    height: 36px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #27B992;
+    font-size: 16px;
+    margin-bottom: 14px;
+    opacity: 1; /* Visible by default */
+    transform: scale(1); /* Normal size by default */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.trust-item:hover .trust-icon-box {
+    opacity: 1;
+    transform: scale(1);
+    background: #27B992;
+    color: white;
+}
+
+.trust-item h4 {
+    margin: 0 0 7px 0;
+    font-size: 15px;
+    color: #333;
+    font-weight: 700;
+}
+
+.trust-item p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* Responsive */
 @media (max-width: 900px) {
     .spec-hero {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         padding-top: 100px;
         text-align: center;
     }
@@ -465,11 +601,13 @@
         flex-direction: column;
     }
 
-    .featured-col.col-right {
-        margin-top: 0;
-    }
-
     .directory-list {
         grid-template-columns: 1fr;
+    }
+
+    .trust-banner {
+        flex-direction: column;
+        padding: 30px;
+        gap: 15px;
     }
 }

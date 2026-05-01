@@ -1,9 +1,35 @@
-/* Contact Page Styles */
 .contact-page {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     color: #333;
     background-color: #f8fcfb;
     overflow-x: hidden;
+}
+
+@keyframes fadeSlideRight {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3); }
+    50% { opacity: 1; transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+@keyframes revealIn {
+    from { opacity: 0; clip-path: inset(0 0 100% 0); }
+    to { opacity: 1; clip-path: inset(0 0 0 0); }
 }
 
 /* Reusing Navbar Pill from About/Symptoms */
@@ -26,8 +52,8 @@
     max-width: 1200px;
     margin: 140px auto 80px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: 1.2fr 0.8fr; /* Standardized with About page */
+    gap: 40px;
     align-items: center;
     padding: 0 20px;
 }
@@ -38,6 +64,7 @@
     color: #222;
     line-height: 1.2;
     margin-bottom: 20px;
+    animation: fadeSlideRight 0.8s ease-out forwards;
 }
 
 .contact-hero-content span {
@@ -49,11 +76,20 @@
     line-height: 1.6;
     max-width: 450px;
     font-size: 16px;
+    animation: fadeSlideRight 0.8s ease-out 0.2s backwards;
+}
+
+.contact-hero-image {
+    display: flex;
+    justify-content: flex-end; /* Align the image to the right */
 }
 
 .contact-hero-image img {
     width: 100%;
+    max-width: 420px; /* Standardized with About page */
     border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06); /* Premium shadow */
+    animation: fadeSlideLeft 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 /* Support Cards */
@@ -72,7 +108,12 @@
     border-radius: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.03);
     transition: transform 0.2s;
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) backwards;
 }
+
+.support-card:nth-child(1) { animation-delay: 0.1s; }
+.support-card:nth-child(2) { animation-delay: 0.2s; }
+.support-card:nth-child(3) { animation-delay: 0.3s; }
 
 .support-card:hover {
     transform: translateY(-5px);
@@ -113,6 +154,7 @@
     padding: 30px 40px;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    animation: fadeSlideUp 0.8s ease-out backwards;
 }
 
 .contact-form-section h2 {
@@ -205,6 +247,7 @@
     font-weight: 800;
     margin-bottom: 20px;
     color: #222;
+    animation: fadeSlideRight 0.8s ease-out backwards;
 }
 
 .office-info {
@@ -222,7 +265,11 @@
     display: flex;
     gap: 20px;
     margin-bottom: 30px;
+    animation: fadeSlideRight 0.8s ease-out backwards;
 }
+
+.office-detail-item:nth-child(2) { animation-delay: 0.2s; }
+.office-detail-item:nth-child(3) { animation-delay: 0.4s; }
 
 .office-icon-box {
     width: 50px;
@@ -272,6 +319,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: revealIn 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .map-placeholder-img {
@@ -307,17 +355,20 @@
 
 .contact-page .faq-item {
     background: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     border-radius: 15px;
-    padding: 38px 40px;
+    padding: 24px 35px;
     text-align: left;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     transition: all 0.2s;
-    box-sizing: border-box;
-    display: block;
-    width: 100%;
+    animation: fadeSlideUp 0.6s ease-out backwards;
 }
+
+.contact-page .faq-item:nth-child(1) { animation-delay: 0.1s; }
+.contact-page .faq-item:nth-child(2) { animation-delay: 0.2s; }
+.contact-page .faq-item:nth-child(3) { animation-delay: 0.3s; }
+.contact-page .faq-item:nth-child(4) { animation-delay: 0.4s; }
 
 .contact-page .faq-header {
     display: flex;
