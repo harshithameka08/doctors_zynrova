@@ -1829,6 +1829,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    text-align: left;
 }
 
 .faq-header {
@@ -1857,3 +1858,167 @@
         flex-direction: column;
     }
 }
+
+/* --- Small Mobile Refinements (Remove Excess Space) --- */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 100px 15px 40px;
+        min-height: auto;
+    }
+
+    .section {
+        padding: 40px 15px;
+    }
+
+    .hero-title {
+        font-size: 28px !important;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .hero-search-bar {
+        padding: 6px 6px 6px 15px;
+    }
+
+    .hero-search-bar input {
+        font-size: 15px;
+    }
+
+    .btn-search-hero {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .specialties-grid, .symptoms-grid, .doctors-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    .specialty-card, .symptom-card, .doctor-card {
+        padding: 15px;
+    }
+
+    .careflow-ai-section {
+        padding: 40px 15px;
+    }
+
+    .careflow-grid {
+        gap: 20px;
+    }
+
+    .booking-section {
+        padding: 40px 15px;
+    }
+
+    .booking-step-card {
+        margin-left: 45px;
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .step-text h4 {
+        font-size: 15px;
+    }
+
+    .step-text p {
+        font-size: 12px;
+    }
+
+    .consultation-mode-section {
+        padding: 40px 15px;
+    }
+
+    .consult-panel {
+        padding: 30px 20px;
+    }
+
+    .consult-panel h3 {
+        font-size: 20px;
+    }
+
+    .partner-section {
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 15px;
+    }
+
+    .testimonial-card {
+        width: 280px;
+        padding: 20px;
+    }
+
+    .faq-item {
+        padding: 15px 20px;
+    }
+
+    .faq-header {
+        font-size: 14px;
+    }
+
+    /* Fixed floating elements causing overflow or clutter */
+    .hero-bg-elements {
+        display: none;
+    }
+
+    .floating-badge, .floating-stat-badge, .hero-grid .floating-badge {
+        display: none !important;
+    }
+
+    /* Bento Grid for Mobile */
+    .hero-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        gap: 15px;
+    }
+
+    .doctor-card-large, .top-right-img, .bottom-right-img {
+        grid-column: 1 / 2 !important;
+        grid-row: auto !important;
+        height: 250px !important;
+        margin-top: 0 !important;
+    }
+
+    .stats-card-dark {
+        grid-column: 1 / 2 !important;
+        grid-row: auto !important;
+        height: auto !important;
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+        border-radius: 20px;
+    }
+
+    .stat-group h2 {
+        font-size: 18px;
+    }
+
+    .hero-content-right {
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .careflow-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .careflow-grid::before {
+        display: none;
+    }
+
+    .careflow-card {
+        padding: 20px;
+    }
+
+    .careflow-title {
+        font-size: 24px !important;
+    }
+
+    .careflow-subtitle {
+        font-size: 14px;
+    }
+}
+

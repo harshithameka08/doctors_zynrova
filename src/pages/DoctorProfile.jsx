@@ -335,7 +335,7 @@ const DoctorProfile = () => {
             </div>
 
             {/* Footer Trust Banner */}
-            <div className="trust-banner" style={{ maxWidth: '1300px', margin: '0 auto 50px' }}>
+            <div className="trust-banner">
                 <div className="trust-item">
                     <div className="trust-icon-box"><FaShieldAlt /></div> {/* Using ShieldAlt for verified */}
                     <h4>Verified Doctors Only</h4>

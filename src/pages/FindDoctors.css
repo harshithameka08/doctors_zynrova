@@ -477,30 +477,33 @@
 }
 
 .doctor-card-horizontal {
-    background: white;
-    border: 1px solid #f0f0f0;
-    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #f1f5f9;
+    border-radius: 24px;
     display: flex;
-    align-items: center; /* Center content vertically */
-    padding: 20px;
-    max-width: 500px; /* Reduced width */
-    gap: 20px;
-    transition: all 0.2s ease;
+    align-items: center;
+    padding: 24px;
+    max-width: 520px;
+    gap: 24px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .doctor-card-horizontal:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    border-color: #e0e0e0;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #e2e8f0;
 }
 
 .card-image-left {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
     flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #f0f0f0;
-    transform: translateY(-20px); /* Shift upward */
+    border: 4px solid #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    background: #f0fdfa;
 }
 
 .doctor-card-horizontal.compact .card-image-left {
@@ -535,15 +538,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 8px;
-    padding-left: 15px; /* Shift content slightly to the right */
+    gap: 6px; /* Tighter, equalized gap */
+    padding-left: 5px;
 }
 
 .card-info-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2px;
+    margin-bottom: 0; /* Removed margin */
 }
 
 .name-qual-group h3 {
@@ -556,45 +559,57 @@
 .doc-qualifications {
     font-size: 13px;
     color: #718096;
-    margin-top: 2px;
+    margin-top: 0; /* Removed margin */
 }
 
 .fee-box-right {
     text-align: right;
     display: flex;
     flex-direction: column;
-    margin-right: 35px; /* Move left away from the edge */
-    margin-top: 10px;   /* Move down from the top corner */
 }
 
 .fee-box-right .fee-label {
-    font-size: 9px;
-    color: #a0aec0;
+    font-size: 10px;
+    color: #94a3b8;
     text-transform: uppercase;
     font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .fee-box-right .fee-value {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 800;
-    color: #2563EB; /* Vibrant Royal Blue */
+    color: #2563EB; /* Vibrant Blue */
 }
 
 .doc-stats-mini {
     display: flex;
-    gap: 15px;
-    font-size: 13px;
-    color: #4a5568;
-    font-weight: 600;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.doc-stats-mini span {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.doc-stats-mini span:first-child {
+    background: #fff8eb;
+    color: #b45309;
 }
 
 .doc-stats-mini span:first-child svg {
-    color: #FF9800; /* Orange Star */
-    margin-right: 5px;
+    color: #f59e0b;
 }
 
 .doc-stats-mini span:last-child {
-    color: #27B992; /* Teal Experience */
+    background: #f0fdf4;
+    color: #15803d;
 }
 
 .doc-stats-mini span:last-child svg {
@@ -602,7 +617,7 @@
 }
 
 .doc-specialties-list {
-    margin: 4px 0;
+    margin: 0;
 }
 
 .doc-specialties-list strong {
@@ -621,27 +636,27 @@
 }
 
 .doc-specialties-list ul li {
+    font-family: 'Outfit', sans-serif;
     font-size: 13px;
     color: #4a5568;
     padding: 0;
+    font-weight: 500;
 }
 
 .doc-specialties-list ul li::before {
-    display: none; /* Remove bullet for horizontal list */
+    display: none;
 }
 
 .doc-specialties-list ul li:not(:last-child)::after {
-    content: "•";
-    margin-left: 10px;
-    color: #cbd5e0;
+    content: ""; /* Removed separator completely */
 }
 
 .card-horizontal-footer {
     display: flex;
     justify-content: flex-start;
-    margin-top: 5px;
-    padding-top: 10px;
-    border-top: 1px solid #f7fafc;
+    margin-top: -18px; /* Adjusted to prevent overlap while staying compact */
+    padding-top: 0;
+    border-top: none; /* Removed the divider causing the strike-through effect */
 }
 
 .view-profile-link {
@@ -653,16 +668,12 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    transform: translateY(-40px); /* Move upward */
+    transition: all 0.2s;
 }
 
-.view-profile-link::after {
-    content: "→";
-    transition: transform 0.2s;
-}
-
-.view-profile-link:hover::after {
-    transform: translateX(3px);
+.view-profile-link:hover {
+    gap: 8px;
+    color: #1a8e6f;
 }
 
 
@@ -760,5 +771,122 @@
     .trust-banner {
         flex-direction: column;
         padding: 40px;
+    }
+}
+
+/* --- Small Mobile Refinements --- */
+@media (max-width: 480px) {
+    .finder-header-classic {
+        padding: 100px 15px 30px;
+    }
+
+    .finder-title-classic {
+        font-size: 36px;
+    }
+
+    .finder-subtitle-classic {
+        font-size: 15px;
+    }
+
+    .finder-header-new {
+        padding: 20px 15px;
+    }
+
+    .header-top-row {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .header-search-actions {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .filters-panel-inline {
+        flex-direction: column;
+        padding: 20px;
+        gap: 25px;
+        border-radius: 20px;
+    }
+
+    .filter-pills-dark {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .category-pills-row {
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .category-pill {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .finder-content {
+        padding: 0 15px;
+        margin: 30px auto;
+    }
+
+    .list-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .sort-options {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .doctors-grid-horizontal {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .doctor-card-horizontal {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .card-image-left {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto;
+    }
+
+    .card-info-right {
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .card-info-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .fee-box-right {
+        text-align: center;
+    }
+
+    .doc-stats-mini {
+        justify-content: center;
+    }
+
+    .doc-specialties-list ul {
+        justify-content: center;
+    }
+
+    .card-horizontal-footer {
+        justify-content: center;
+        margin-top: 10px;
     }
 }

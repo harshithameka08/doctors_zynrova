@@ -31,36 +31,45 @@ body {
 
 .auth-card {
     background: var(--card-bg);
-    border-radius: 20px; /* Slightly more rounded */
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); /* Softer, wider shadow */
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     width: 100%;
-    max-width: 1000px; /* Increased to match wide aspect ratio in image */
+    max-width: 880px; /* Standardized width */
     display: flex;
     flex-direction: row;
+    margin: 40px auto;
 }
 
 .auth-card.signup-mode {
-    max-width: 480px; /* Reduced card size */
-    flex-direction: column;
-    background: linear-gradient(145deg, #f0fcf9, #e6f8f3);
+    max-width: 880px;
+    flex-direction: row;
+    background: var(--card-bg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin: 40px auto;
+}
+
+.auth-card.signup-mode .auth-image-section {
+    flex: 1.3;
+}
+
+.auth-card.signup-mode .auth-form-section {
+    flex: 1;
+    background: transparent;
+    padding: 30px 50px;
 }
 
 .auth-form-section {
     flex: 1;
-    padding: 40px 50px; /* Reduced padding for smaller card */
+    padding: 30px 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* Override padding for signup only */
-.auth-card.signup-mode .auth-form-section {
-    padding: 35px 45px;
-}
-
 .auth-image-section {
-    flex: 1;
+    flex: 1.3; /* Increased presence for professional visual */
     background-color: #e9fbf6;
     display: flex;
     justify-content: center;
@@ -73,19 +82,20 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center; /* Ensure doctors are perfectly centered */
 }
 
 .auth-header h1 {
-    font-size: 32px; /* Larger title */
+    font-size: 28px; /* Slightly smaller to fit compact card */
     font-weight: 800;
     color: var(--text-main);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .auth-header p {
     color: var(--text-secondary);
-    font-size: 15px;
-    margin-bottom: 35px; /* More space before form */
+    font-size: 14px;
+    margin-bottom: 25px; /* Reduced from 35px */
 }
 
 .form-group {
@@ -94,8 +104,9 @@ body {
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600; /* Bolder label */
+    margin-bottom: 6px; /* Moved slightly upward/closer to input */
+    margin-left: 20px; /* Align start line with placeholder text */
+    font-weight: 600;
     font-size: 14px;
     color: #444;
 }
@@ -120,26 +131,13 @@ body {
     box-shadow: 0 0 0 3px rgba(39, 185, 146, 0.1);
 }
 
-/* Signup-specific overrides */
-.auth-card.signup-mode .form-group input {
-    background-color: #ffffff;
-    border: 1px solid #d8f3ec;
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: 0 2px 8px rgba(39, 185, 146, 0.06);
-}
-
-.auth-card.signup-mode .form-group input:focus {
-    border-color: #27B992;
-    box-shadow: 0 0 0 3px rgba(39, 185, 146, 0.15);
-}
-
+/* Removing specific signup color overrides for consistency */
 .auth-card.signup-mode .auth-header h1 {
-    color: #1a5c4a;
+    color: var(--text-main);
 }
 
 .auth-card.signup-mode .auth-header p {
-    color: #3d9e80;
+    color: var(--text-secondary);
 }
 
 .form-options {
@@ -173,7 +171,7 @@ body {
 
 .auth-btn {
     width: 100%;
-    padding: 16px; /* Taller button */
+    padding: 14px; /* Slightly shorter button */
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -182,7 +180,7 @@ body {
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s;
-    margin-bottom: 25px;
+    margin-bottom: 15px; /* Reduced from 25px */
 }
 
 .auth-btn:hover {
@@ -218,7 +216,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 15px; /* Reduced from 25px */
 }
 
 .social-btn {
@@ -272,5 +270,42 @@ body {
 
     .auth-form-section {
         padding: 30px;
+    }
+}
+
+/* --- Small Mobile Refinements --- */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 10px;
+    }
+
+    .auth-card, .auth-card.signup-mode {
+        border-radius: 15px;
+        margin: 10px auto;
+    }
+
+    .auth-form-section, .auth-card.signup-mode .auth-form-section {
+        padding: 30px 20px;
+    }
+
+    .auth-header h1 {
+        font-size: 22px;
+    }
+
+    .form-group label {
+        margin-left: 5px;
+    }
+
+    .form-group input {
+        padding: 12px 15px;
+    }
+
+    .auth-btn {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .social-login {
+        gap: 10px;
     }
 }

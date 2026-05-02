@@ -1,11 +1,12 @@
 /* Footer Styles */
 .footer {
-    background-color: #121212;
-    color: #fff;
-    padding: 40px 0 20px;
+    background-color: #fafafa;
+    color: #475569;
+    padding: 60px 0 30px;
     font-family: 'Outfit', sans-serif;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid #eeeeee;
 }
 
 /* Subtle medical pattern background */
@@ -87,20 +88,22 @@
 .social-link {
     width: 36px;
     height: 36px;
-    background: #fff;
-    color: #121212;
+    background: #ffffff;
+    color: #475569;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
     transition: all 0.3s ease;
+    border: 1px solid #eeeeee;
 }
 
 .social-link:hover {
     transform: translateY(-3px);
     background: var(--primary-color);
     color: #fff;
+    border-color: var(--primary-color);
 }
 
 .footer-grid {
@@ -116,7 +119,7 @@
 
 .footer-col h3 {
     font-size: 16px;
-    color: #fff;
+    color: #1a1a1a;
     margin-bottom: 20px;
     font-weight: 800;
     text-transform: uppercase;
@@ -166,12 +169,12 @@
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 15px;
+    border-top: 1px solid #eeeeee;
+    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #64748b;
+    color: #94a3b8;
     font-size: 13px;
 }
 
@@ -181,13 +184,13 @@
 }
 
 .footer-bottom-links a {
-    color: #64748b;
+    color: #94a3b8;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer-bottom-links a:hover {
-    color: white;
+    color: var(--primary-color);
 }
 
 @media (max-width: 1024px) {
@@ -211,5 +214,48 @@
         flex-direction: column;
         gap: 20px;
         text-align: center;
+    }
+}
+
+/* --- Small Mobile Refinements --- */
+@media (max-width: 480px) {
+    .footer {
+        padding: 40px 15px 20px;
+    }
+
+    .footer-container {
+        padding: 0 15px;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .footer-main {
+        gap: 30px;
+    }
+
+    .footer-brand {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-tagline {
+        margin: 0 auto 20px;
+    }
+
+    .footer-grid {
+        text-align: center;
+    }
+
+    .footer-col h3 {
+        margin-bottom: 15px;
+    }
+
+    .footer-bottom-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 }

@@ -703,3 +703,93 @@
         font-size: 32px;
     }
 }
+
+/* --- Small Mobile Refinements --- */
+@media (max-width: 480px) {
+    .sym-hero {
+        padding: 80px 15px 40px;
+    }
+
+    .sym-hero h1 {
+        font-size: 28px;
+    }
+
+    .sym-hero p {
+        font-size: 14px;
+    }
+
+    .sym-search-box {
+        height: 55px;
+        padding: 0 5px 0 15px;
+    }
+
+    .btn-find-spec {
+        padding: 0 15px;
+        font-size: 14px;
+    }
+
+    .quick-tags {
+        padding: 15px;
+        gap: 8px;
+    }
+
+    .sym-tag {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+
+    .sym-highlight-section {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .rec-depts {
+        flex-direction: column;
+    }
+
+    .section-head-center {
+        font-size: 24px;
+    }
+
+    .body-area-section {
+        padding: 20px 15px;
+    }
+
+    .body-menu-item {
+        padding: 12px 15px;
+    }
+
+    .body-icon-circle {
+        width: 35px;
+        height: 35px;
+        margin-right: 15px;
+        font-size: 16px;
+    }
+
+    .body-detail-panel {
+        padding: 20px;
+        min-height: unset;
+    }
+
+    .insight-card {
+        padding: 30px 20px;
+    }
+
+    .steps-section {
+        padding: 40px 15px;
+    }
+
+    .emergency-banner {
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .emerg-icon {
+        margin-top: 0;
+    }
+
+    .emerg-content p {
+        font-size: 14px;
+    }
+}

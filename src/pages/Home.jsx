@@ -36,10 +36,11 @@ const Home = () => {
     };
 
     const faqs = [
-        { q: "How do I book an appointment with a doctor?", a: "Simply search for a doctor by specialty or symptom, choose a convenient time slot, and confirm your booking instantly." },
-        { q: "Are the doctors on CareFlow verified?", a: "Yes, all doctors on our platform undergo a rigorous verification process, including background checks and medical license validation." },
-        { q: "Can I have a video consultation from home?", a: "Absolutely! Many of our specialists offer secure video consultations. Just select the 'Online' option when booking." },
-        { q: "How do I know which specialist to visit?", a: "You can use our CareFlow AI symptom analyzer on the home page. Just describe how you feel, and it will recommend the right specialist." }
+        { q: "How do I choose the best doctor for my needs?", a: "Patients can browse through verified profiles, check specialized experience, read genuine patient reviews, and use our AI analyzer to find the perfect match for their specific health concerns." },
+        { q: "Can doctors see my previous medical history?", a: "With your permission, doctors can access your shared medical records on Zynrova, allowing for more accurate diagnoses and personalized treatment plans during your consultation." },
+        { q: "What happens if I need to cancel or reschedule?", a: "Patients can easily reschedule or cancel their appointments up to 4 hours before the scheduled time directly through the dashboard, notifying the doctor instantly." },
+        { q: "How do doctors provide follow-up care?", a: "Doctors can schedule follow-up appointments and send secure chat messages or digital health plans to patients to ensure continuous care after the initial consultation." },
+        { q: "Are my conversations with the doctor private?", a: "Yes, all doctor-patient interactions, including video calls and chat messages, are end-to-end encrypted and comply with global healthcare privacy standards." }
     ];
 
     return (
@@ -207,10 +208,10 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* CareFlow AI Section */}
+            {/* Zynrova AI Section */}
             <section className="section careflow-ai-section">
                 <div className="section-header animate-fade-up">
-                    <h2 className="careflow-title">How CareFlow <span className="green-text">AI Helps You</span></h2>
+                    <h2 className="careflow-title">Smart Healthcare <span className="green-text">Guided by AI</span></h2>
                     <p className="careflow-subtitle" style={{ marginTop: '-18px' }}>A seamless, AI-powered path from describing symptoms to receiving professional care.</p>
                 </div>
                 
@@ -428,7 +429,7 @@ const Home = () => {
                 <div className="doctors-grid">
                     <div className="doctor-card">
                         <div className="doctor-img-container">
-                            <img src="/dr_sarah_johnson.png" alt="Dr. Priya Sharma" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/dr_priya_sharma.png" alt="Dr. Priya Sharma" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div className="rating-badge"><FaStar size={10} /> 4.8</div>
                         </div>
                         <div className="doctor-card-content">
@@ -438,12 +439,12 @@ const Home = () => {
                                 <span className="loc-meta">📍 Mumbai</span>
                                 <span>12 Years Experience</span>
                             </div>
-                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Priya Sharma', specialty: 'Cardiology Specialist', image: '/dr_sarah_johnson.png', location: 'Mumbai', consultation_fee: '1500' } } })}>Book Appointment</button>
+                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Priya Sharma', specialization: 'Cardiology Specialist', image: '/dr_priya_sharma.png', location: 'Mumbai', fees: '1500', experience: '12', bio: 'Dr. Priya Sharma is a highly experienced cardiologist specializing in advanced heart care and preventive medicine. She has successfully treated thousands of patients over her 12-year career.' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     <div className="doctor-card">
                         <div className="doctor-img-container">
-                            <img src="/dr_sarah_johnson_1.png" alt="Dr. Amit Patel" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/dr_amit_patel.png" alt="Dr. Amit Patel" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div className="rating-badge"><FaStar size={10} /> 4.9</div>
                         </div>
                         <div className="doctor-card-content">
@@ -453,12 +454,12 @@ const Home = () => {
                                 <span className="loc-meta">📍 Delhi</span>
                                 <span>8 Years Experience</span>
                             </div>
-                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Amit Patel', specialty: 'Dental Specialist', image: '/dr_sarah_johnson_1.png', location: 'Delhi', consultation_fee: '850' } } })}>Book Appointment</button>
+                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Amit Patel', specialization: 'Dental Specialist', image: '/dr_amit_patel.png', location: 'Delhi', fees: '850', experience: '8', bio: 'Dr. Amit Patel is known for his gentle touch and expertise in modern dental procedures. He specializes in cosmetic dentistry and restorative treatments.' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     <div className="doctor-card">
                         <div className="doctor-img-container">
-                            <img src="/dr_sarah_johnson_2.png" alt="Dr. Sneha Reddy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <img src="/dr_sneha_reddy.png" alt="Dr. Sneha Reddy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             <div className="rating-badge"><FaStar size={10} /> 5.0</div>
                         </div>
                         <div className="doctor-card-content">
@@ -468,7 +469,7 @@ const Home = () => {
                                 <span className="loc-meta">📍 Bangalore</span>
                                 <span>15 Years Experience</span>
                             </div>
-                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/booking', { state: { doctor: { name: 'Dr. Sneha Reddy', specialty: 'Orthopedic specialist', image: '/dr_sarah_johnson_2.png', location: 'Bangalore', consultation_fee: '1500' } } })}>Book Appointment</button>
+                            <button className="btn-primary" style={{ width: '100%', borderRadius: '8px', justifyContent: 'center' }} onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Sneha Reddy', specialization: 'Orthopedic specialist', image: '/dr_sneha_reddy.png', location: 'Bangalore', fees: '1500', experience: '15', bio: 'Dr. Sneha Reddy is a premier orthopedic surgeon with 15 years of experience in joint replacements and sports injuries. She is dedicated to helping patients regain their mobility.' } } })}>Book Appointment</button>
                         </div>
                     </div>
                 </div>
@@ -485,56 +486,56 @@ const Home = () => {
                             <React.Fragment key={i}>
                                 <div className="testimonial-card">
                                     <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                                    <p className="testimonial-text">"LuxeService completely transformed our brand perception. Their attention to detail and premium approach is unmatched in the industry."</p>
+                                    <p className="testimonial-text">"The AI symptom checker was spot on! It recommended exactly the right specialist when I was feeling uneasy, and the booking was seamless. Truly a lifesaver."</p>
                                     <div className="testimonial-user">
-                                        <div className="user-avatar">R</div>
+                                        <div className="user-avatar" style={{ background: '#e6fcf5', color: '#27B992' }}>A</div>
                                         <div className="user-info">
-                                            <h4>Richard James</h4>
-                                            <span>CEO, TechCorp</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="testimonial-card">
-                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                                    <p className="testimonial-text">"The level of care and professionalism displayed by the doctors here is outstanding. I felt heard and well taken care of throughout my visit."</p>
-                                    <div className="testimonial-user">
-                                        <div className="user-avatar">S</div>
-                                        <div className="user-info">
-                                            <h4>Sarah Williams</h4>
+                                            <h4>Anita Sharma</h4>
                                             <span>Patient</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="testimonial-card">
                                     <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                                    <p className="testimonial-text">"Booking an appointment was seamless, and the clinic's atmosphere is so calming. Highly recommend this healthcare provider to everyone."</p>
+                                    <p className="testimonial-text">"I was skeptical about online consultations, but the experience was fantastic. The doctor was very patient and explained everything in detail. Highly recommend!"</p>
                                     <div className="testimonial-user">
-                                        <div className="user-avatar">M</div>
+                                        <div className="user-avatar" style={{ background: '#f0f7ff', color: '#007bff' }}>R</div>
                                         <div className="user-info">
-                                            <h4>Michael Brown</h4>
-                                            <span>Entrepreneur</span>
+                                            <h4>Rajesh Kumar</h4>
+                                            <span>Patient</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="testimonial-card">
                                     <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                                    <p className="testimonial-text">"The doctors are extremely knowledgeable and patient. They took the time to explain everything clearly. Highly satisfied with the service."</p>
+                                    <p className="testimonial-text">"Finding a verified specialist used to be a nightmare. Zynrova made it so easy to find a top-rated pediatrician for my daughter in minutes. Outstanding service!"</p>
                                     <div className="testimonial-user">
-                                        <div className="user-avatar">A</div>
+                                        <div className="user-avatar" style={{ background: '#fff5f5', color: '#ff6b6b' }}>M</div>
                                         <div className="user-info">
-                                            <h4>Anjali Gupta</h4>
-                                            <span>Software Engineer</span>
+                                            <h4>Meera Patel</h4>
+                                            <span>Parent</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="testimonial-card">
                                     <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
-                                    <p className="testimonial-text">"Excellent experience! The telemedicine feature is a lifesaver. I could consult with a specialist without leaving my house. 5 stars!"</p>
+                                    <p className="testimonial-text">"Excellent interface! I love how I can see all my appointments and medical follow-ups in one place. It saves me so much time and effort in my busy schedule."</p>
                                     <div className="testimonial-user">
-                                        <div className="user-avatar">D</div>
+                                        <div className="user-avatar" style={{ background: '#fef3c7', color: '#d97706' }}>V</div>
                                         <div className="user-info">
-                                            <h4>David Miller</h4>
-                                            <span>Freelancer</span>
+                                            <h4>Vikram Singh</h4>
+                                            <span>Professional</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="testimonial-card">
+                                    <div className="testimonial-stars"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></div>
+                                    <p className="testimonial-text">"The level of professionalism is outstanding. My clinic visit was perfectly organized with zero waiting time. The best healthcare platform I've used so far."</p>
+                                    <div className="testimonial-user">
+                                        <div className="user-avatar" style={{ background: '#ede9fe', color: '#7c3aed' }}>S</div>
+                                        <div className="user-info">
+                                            <h4>Sanjay Gupta</h4>
+                                            <span>Patient</span>
                                         </div>
                                     </div>
                                 </div>

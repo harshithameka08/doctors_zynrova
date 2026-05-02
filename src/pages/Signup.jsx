@@ -36,7 +36,9 @@ const Signup = () => {
     return (
         <div className="auth-container">
             <div className="auth-card signup-mode">
-                {/* Form Section - Full Width for Signup */}
+                <div className="auth-image-section">
+                    <img src="/login_page_image.png" alt="Doctors Team" />
+                </div>
                 <div className="auth-form-section">
                     <div className="auth-header">
                         <h1>Create Your Account</h1>
@@ -58,12 +60,12 @@ const Signup = () => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="emailOrPhone">Email Or Phone Number</label>
+                            <label htmlFor="emailOrPhone">Email</label>
                             <input
                                 type="text"
                                 id="emailOrPhone"
                                 name="emailOrPhone"
-                                placeholder="Enter email or phone"
+                                placeholder="Enter email"
                                 value={formData.emailOrPhone}
                                 onChange={handleChange}
                                 required

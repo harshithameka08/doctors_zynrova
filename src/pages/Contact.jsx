@@ -36,10 +36,11 @@ const Contact = () => {
     };
 
     const faqs = [
-        { q: "What should I do if I need to cancel an appointment?", a: "You can cancel or reschedule your appointment through the 'My Bookings' section in your account profile, or by contacting our support team at least 24 hours in advance." },
-        { q: "How do I contact a doctor after my consultation?", a: "Post-consultation follow-ups can be managed through our secure messaging system or by booking a quick follow-up slot as recommended by your physician." },
-        { q: "What information do I need to provide for a booking?", a: "You just need to provide basic details like your name, age, contact information, and a brief description of your symptoms to help the doctor prepare." },
-        { q: "Is there an emergency number for immediate help?", a: "For life-threatening emergencies, please call your local emergency services (like 108 or 102) immediately. CareFlow is for non-emergency medical consultations." }
+        { q: "How do I choose the best doctor for my needs?", a: "Patients can browse through verified profiles, check specialized experience, read genuine patient reviews, and use our AI analyzer to find the perfect match for their specific health concerns." },
+        { q: "Can doctors see my previous medical history?", a: "With your permission, doctors can access your shared medical records on Zynrova, allowing for more accurate diagnoses and personalized treatment plans during your consultation." },
+        { q: "What happens if I need to cancel or reschedule?", a: "Patients can easily reschedule or cancel their appointments up to 4 hours before the scheduled time directly through the dashboard, notifying the doctor instantly." },
+        { q: "How do doctors provide follow-up care?", a: "Doctors can schedule follow-up appointments and send secure chat messages or digital health plans to patients to ensure continuous care after the initial consultation." },
+        { q: "Are my conversations with the doctor private?", a: "Yes, all doctor-patient interactions, including video calls and chat messages, are end-to-end encrypted and comply with global healthcare privacy standards." }
     ];
 
     return (
@@ -51,11 +52,13 @@ const Contact = () => {
             <section className="contact-hero">
                 <div className="contact-hero-content">
                     <h1>We're Here To<br /><span>Help You</span></h1>
-                    <p>Have a question, need support, or want to partner with us? Our team is ready to assist you at every step.</p>
+                    <p>Have a question, need support, or interested in a partnership?<br />
+                    Our dedicated team is ready to provide expert guidance and assistance.<br />
+                    We're here to support you at every step of your health journey.</p>
                 </div>
                 <div className="contact-hero-image">
                     {/* Assuming contact_page_image is the hero image based on request */}
-                    <img src="/health_care_partner_page.png" alt="Support Team" />
+                    <img src="/contact_hero_new.png" alt="Support Team" />
                 </div>
             </section>
 
@@ -65,19 +68,19 @@ const Contact = () => {
                     <div className="support-icon"><FaSearch color="#ff6b6b" /></div> {/* Orange/Red icon */}
                     <h3>Customer Support</h3>
                     <p>Get help with bookings and consultations.</p>
-                    <a href="#" className="support-email">support@medicalsite.com</a>
+                    <span className="support-email">support@medicalsite.com</span>
                 </div>
                 <div className="support-card">
                     <div className="support-icon"><FaRegFolderOpen color="#feca57" /></div> {/* Yellow icon */}
                     <h3>Doctor Support</h3>
                     <p>For doctors & clinics using our platform.</p>
-                    <a href="#" className="support-email">doctors@medicalsite.com</a>
+                    <span className="support-email">doctors@medicalsite.com</span>
                 </div>
                 <div className="support-card">
                     <div className="support-icon"><FaRegClock color="#ff9f43" /></div> {/* Orange icon */}
                     <h3>Partnerships</h3>
                     <p>Collaborate or integrate with our network.</p>
-                    <a href="#" className="support-email">partners@medicalsite.com</a>
+                    <span className="support-email">partners@medicalsite.com</span>
                 </div>
             </section>
 
@@ -123,15 +126,19 @@ const Contact = () => {
                                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                             >
                                 <option>General Inquiry</option>
-                                <option>Support</option>
-                                <option>Partnership</option>
+                                <option>Technical Support</option>
+                                <option>Billing Issue</option>
+                                <option>Doctor Verification</option>
+                                <option>Partnership Opportunity</option>
+                                <option>Feedback & Suggestions</option>
+                                <option>Career Opportunity</option>
                             </select>
                         </div>
                     </div>
                     <div className="form-group" style={{ marginBottom: '30px' }}>
                         <label>Message</label>
                         <textarea 
-                            placeholder="How we can help you ?"
+                            placeholder="How can we help you?"
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         ></textarea>

@@ -9,9 +9,8 @@ const Footer = () => {
             <div className="footer-container">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <div className="footer-logo" style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <img src="/logo_doctor.png" alt="CareFlow Logo" style={{ width: '32px', height: 'auto', filter: 'brightness(0) invert(1)' }} />
-                            <h2 style={{ color: '#ffffff', fontSize: '20px', fontWeight: '800', margin: 0, letterSpacing: '-0.5px' }}>CareFlow AI</h2>
+                        <div className="footer-logo" style={{ marginBottom: '15px', display: 'flex', alignItems: 'center' }}>
+                            <img src="/zyn_care-removebg-preview.png" alt="Zyn Care Logo" style={{ width: '180px', height: 'auto' }} />
                         </div>
                         <p className="footer-tagline">
                             Revolutionizing healthcare access with AI-driven intelligence and instant specialist connectivity.
@@ -59,14 +58,14 @@ const Footer = () => {
                             </li>
                             <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                 <FaEnvelope style={{ color: 'var(--primary-color)', fontSize: '16px' }} />
-                                <p>support@careflowai.com</p>
+                                <p>support@zynrova.com</p>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} CareFlow AI Healthcare Solutions. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Zynrova Healthcare Solutions. All rights reserved.</p>
                     <div className="footer-bottom-links">
                         <Link to="/terms">Terms of Service</Link>
                         <Link to="/cookies">Cookie Policy</Link>

@@ -6,7 +6,7 @@ import { useChat } from '../context/ChatContext';
 import './Chatbot.css';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const SYSTEM_PROMPT = "You are CareFlow Support, a helpful healthcare assistant for CareFlow. You help patients find doctors, understand specialties, and guide them through booking appointments. Keep your responses concise, professional, and friendly. If you don't know something, suggest they contact our human support team.";
+const SYSTEM_PROMPT = "You are Zynrova Support, a helpful healthcare assistant for Zynrova. You help patients find doctors, understand specialties, and guide them through booking appointments. Keep your responses concise, professional, and friendly. If you don't know something, suggest they contact our human support team.";
 
 const Chatbot = () => {
   const { isOpen, setIsOpen, externalMessage, setExternalMessage } = useChat();
@@ -15,7 +15,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      text: "Hi! I'm CareFlow Support. How can I help you with our services, doctor specialties, or booking procedures today?",
+      text: "Hi! I'm Zynrova Support. How can I help you with our services, doctor specialties, or booking procedures today?",
       sender: 'bot',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
@@ -138,7 +138,7 @@ const Chatbot = () => {
             <HiSparkles size={26} />
           </div>
           <div className="chatbot-header-info">
-            <h3>CareFlow Support <span className={`status-dot ${apiKey ? 'online' : 'offline'}`}></span></h3>
+            <h3>Zynrova Support <span className={`status-dot ${apiKey ? 'online' : 'offline'}`}></span></h3>
             <p>{apiKey ? 'Always Online' : 'Connecting...'}</p>
           </div>
           <button

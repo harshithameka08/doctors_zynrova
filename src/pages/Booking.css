@@ -563,7 +563,7 @@
 }
 
 .icon-teal {
-    color: #1e293b; /* Professional Navy Blue instead of Green */
+    color: #27B992; /* Brand Green */
     font-size: 16px;
     background: transparent !important;
 }
@@ -941,4 +941,93 @@
     from { transform: translateY(30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
+
+/* --- Mobile Refinements --- */
+@media (max-width: 900px) {
+    .booking-body {
+        flex-direction: column;
+    }
+    
+    .booking-sidebar-col {
+        order: -1; /* Summary on top on tablets/mobile */
+    }
+
+    .booking-stepper {
+        display: none; /* Hide stepper on medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-top-bar {
+        padding: 0 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .booking-top-bar h2 {
+        font-size: 18px;
+        margin-right: 0;
+    }
+
+    .booking-stepper {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .step-label {
+        display: none;
+    }
+
+    .step-line {
+        width: 30px;
+        margin-bottom: 0;
+        align-self: center;
+    }
+
+    .booking-content-wrapper {
+        padding: 0 15px;
+    }
+
+    .booking-card, .booking-card-lg {
+        padding: 20px 15px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-group.half {
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .btn-back-light, .form-actions .btn-continue {
+        width: 100% !important;
+    }
+
+    .review-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-row {
+        padding: 12px;
+    }
+
+    .pay-label-grp {
+        gap: 10px;
+    }
+
+    .success-card {
+        width: 90%;
+        padding: 30px 20px;
+    }
+}
+
 

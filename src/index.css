@@ -48,8 +48,8 @@ h1, h2, h3, h4, h5, h6 {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    width: 1350px;
-    max-width: 95%;
+    width: 95%;
+    max-width: 1350px;
     height: 70px;
     border-radius: 40px;
     box-sizing: border-box;
@@ -147,4 +147,146 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
     background: #20a07d;
     /* Darker teal */
+}
+
+/* --- Mobile Responsive Styles --- */
+.mobile-toggle {
+    display: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-only-login {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .navbar {
+        width: 92%;
+        padding: 0 25px;
+        top: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .nav-actions {
+        gap: 15px;
+    }
+
+    .login-link {
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        padding: 6px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        z-index: 1000;
+        border-radius: 30px 0 0 30px;
+    }
+
+    .nav-links.show {
+        right: 0;
+    }
+
+    .mobile-only-login {
+        display: block;
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        width: 80%;
+        text-align: center;
+    }
+
+    .nav-actions {
+        display: none; /* Hide on mobile in favor of menu or bottom bar */
+    }
+
+    .navbar {
+        height: 60px;
+        border-radius: 20px;
+        padding: 0 20px;
+    }
+
+    .nav-logo img {
+        width: 120px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        width: 95%;
+        top: 10px;
+        height: 55px;
+    }
+    
+    .nav-logo img {
+        width: 100px !important;
+    }
+}
+
+/* Global Reset for Excess Space */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    max-width: 100vw;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Global Section Padding Reset for Mobile --- */
+@media (max-width: 480px) {
+    section, .section {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .container, .wrapper {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        width: 100% !important;
+    }
+
+    /* Force hide any potential overflow items */
+    .floating-element, .bg-decoration, .decorative-blob {
+        display: none !important;
+    }
 }
