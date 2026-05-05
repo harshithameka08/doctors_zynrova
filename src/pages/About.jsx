@@ -116,7 +116,7 @@ const About = () => {
             {/* Different Section */}
             <section className="features-section">
                 <h2>What Makes Us <span>Different</span></h2>
-                <p>Excellence built into every step of your health journey.</p>
+                <p style={{ marginTop: '-10px', marginBottom: '40px', color: '#777' }}>Excellence built into every step of your health journey.</p>
 
                 <div className="features-grid">
                     <div className="feature-card">
@@ -145,55 +145,55 @@ const About = () => {
             {/* Trusted By Professionals */}
             <section className="trusted-section">
                 <h2 className="section-title">Top Rated Doctors <span style={{ color: '#27B992' }}>Near You</span></h2>
-                <p style={{ marginTop: '-40px', marginBottom: '40px', color: '#777' }}>Book with our highest-rated medical professionals trusted by the community.</p>
+                <p style={{ marginTop: '-50px', marginBottom: '40px', color: '#777' }}>Book with our highest-rated medical professionals trusted by the community.</p>
 
                 <div className="trusted-grid">
                     {/* Card 1 */}
                     <div className="doc-card-about">
                         <div className="doc-img-about">
-                            <img src="/dr_priya_sharma.png" alt="Dr. Priya Sharma" />
+                            <img src="/first_doctor.jpg" alt="Dr. Satish Mehra" />
                             <div className="rating-badge"><FaStar size={10} /> 4.8</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Priya Sharma</div>
+                            <div className="doc-name">Dr. Satish Mehra</div>
                             <div className="doc-spec">Cardiology Specialist</div>
                             <div className="doc-meta">
                                 <span>📍 Mumbai</span>
                                 <span>12 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm" onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Priya Sharma', specialization: 'Cardiology Specialist', image: '/dr_priya_sharma.png', location: 'Mumbai', fees: '1500', experience: '12', bio: 'Dr. Priya Sharma is a highly experienced cardiologist specializing in advanced heart care and preventive medicine.' } } })}>Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Satish Mehra', specialization: 'Cardiology Specialist', image: '/first_doctor.jpg', location: 'Mumbai', fees: '1500', experience: '12', bio: 'Dr. Satish Mehra is a highly experienced cardiologist specializing in advanced heart care and preventive medicine.' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     {/* Card 2 */}
                     <div className="doc-card-about">
                         <div className="doc-img-about">
-                            <img src="/dr_amit_patel.png" alt="Dr. Amit Patel" />
+                            <img src="/second_doctor.jpg" alt="Dr. Anjali Gupta" />
                             <div className="rating-badge"><FaStar size={10} /> 4.9</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Amit Patel</div>
+                            <div className="doc-name">Dr. Anjali Gupta</div>
                             <div className="doc-spec">Dental Specialist</div>
                             <div className="doc-meta">
                                 <span>📍 Delhi</span>
                                 <span>8 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm" onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Amit Patel', specialization: 'Dental Specialist', image: '/dr_amit_patel.png', location: 'Delhi', fees: '850', experience: '8', bio: 'Dr. Amit Patel is known for his gentle touch and expertise in modern dental procedures.' } } })}>Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Anjali Gupta', specialization: 'Dental Specialist', image: '/second_doctor.jpg', location: 'Delhi', fees: '850', experience: '8', bio: 'Dr. Anjali Gupta is known for her gentle touch and expertise in modern dental procedures.' } } })}>Book Appointment</button>
                         </div>
                     </div>
                     {/* Card 3 */}
                     <div className="doc-card-about">
                         <div className="doc-img-about">
-                            <img src="/dr_sneha_reddy.png" alt="Dr. Sneha Reddy" />
+                            <img src="/third_doctor.jpg" alt="Dr. Aryan Khanna" />
                             <div className="rating-badge"><FaStar size={10} /> 5.0</div>
                         </div>
                         <div className="doc-info-about">
-                            <div className="doc-name">Dr. Sneha Reddy</div>
+                            <div className="doc-name">Dr. Aryan Khanna</div>
                             <div className="doc-spec">Orthopedic Specialist</div>
                             <div className="doc-meta">
                                 <span>📍 Bangalore</span>
                                 <span>15 Years Experience</span>
                             </div>
-                            <button className="btn-book-sm" onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Sneha Reddy', specialization: 'Orthopedic Specialist', image: '/dr_sneha_reddy.png', location: 'Bangalore', fees: '2000', experience: '15', bio: 'Dr. Sneha Reddy is a senior orthopedic specialist focused on sports injuries and joint health.' } } })}>Book Appointment</button>
+                            <button className="btn-book-sm" onClick={() => navigate('/doctor-profile', { state: { doctor: { full_name: 'Dr. Aryan Khanna', specialization: 'Orthopedic Specialist', image: '/third_doctor.jpg', location: 'Bangalore', fees: '2000', experience: '15', bio: 'Dr. Aryan Khanna is a senior orthopedic specialist focused on sports injuries and joint health.' } } })}>Book Appointment</button>
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@ const About = () => {
             {/* How It Works */}
             <section className="how-it-works">
                 <h2 className="section-head-center" style={{ marginBottom: '5px' }}>How It <span style={{ color: '#27B992' }}>Works</span></h2>
-                <p style={{ color: '#888', marginTop: '0' }}>A simple path to better health.</p>
+                <p style={{ color: '#888', marginTop: '-5px' }}>A simple path to better health.</p>
 
                 <div className="how-steps">
                     <div className="how-step">

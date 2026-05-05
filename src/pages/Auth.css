@@ -105,7 +105,7 @@ body {
 .form-group label {
     display: block;
     margin-bottom: 6px; /* Moved slightly upward/closer to input */
-    margin-left: 20px; /* Align start line with placeholder text */
+    margin-left: 8px; /* Align strictly with the start of the box */
     font-weight: 600;
     font-size: 14px;
     color: #444;
@@ -113,8 +113,8 @@ body {
 
 .form-group input {
     width: 100%;
-    padding: 16px 20px; /* Slightly taller inputs */
-    border: none; /* Removed border */
+    padding: 16px 8px; /* Reduced side padding to move text strictly to the edge */
+    border: 1px solid #f0f0f0; /* Soft border for alignment consistency */
     background-color: #f5f7f9; /* Soft solid grey */
     border-radius: 12px; /* Smoother rounded corners */
     font-size: 14px;

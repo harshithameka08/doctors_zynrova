@@ -1354,6 +1354,7 @@
 
 .image-side img {
     width: 100%;
+    transform: scale(1.18);
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
     /* Added shadow */
@@ -1412,12 +1413,27 @@
 }
 
 .symptom-icon {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
+    background: #f0fdfa;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.symptom-card:hover .symptom-icon {
+    background: var(--primary-color, #27B992);
+}
+
+.symptom-icon img {
+    transition: all 0.3s ease;
+}
+
+.symptom-card:hover .symptom-icon img {
+    filter: brightness(0) invert(1);
 }
 
 /* Icon specific colors */

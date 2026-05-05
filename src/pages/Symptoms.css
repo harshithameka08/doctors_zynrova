@@ -479,6 +479,12 @@
     padding: 40px 30px;
     border-radius: 20px;
     animation: fadeSlideUp 0.8s ease-out backwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .insight-card:nth-child(1) { animation-delay: 0.2s; }
@@ -643,7 +649,8 @@
     padding: 25px 35px; /* Reduced padding */
     display: flex;
     gap: 30px; /* Slightly reduced gap */
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     animation: fadeSlideUp 1s ease-out;
 }
 
@@ -658,13 +665,14 @@
     font-size: 20px; /* Slightly reduced icon size */
     color: #FF7F50;
     flex-shrink: 0;
-    margin-top: 6px; /* Moved down to align with the text title */
+    margin-top: 0; /* Reset margin top */
 }
 
 .emerg-content h4 {
     color: #D35400;
     margin-bottom: 10px;
     font-size: 18px;
+    margin-top: 0; /* Remove default browser margin to fix alignment */
 }
 
 .emerg-content p {
