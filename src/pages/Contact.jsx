@@ -57,8 +57,8 @@ const Contact = () => {
                     We're here to support you at every step of your health journey.</p>
                 </div>
                 <div className="contact-hero-image">
-                    {/* Assuming contact_page_image is the hero image based on request */}
-                    <img src="/contact_hero_new.png" alt="Support Team" />
+                    {/* Updated to the provided contact us image */}
+                    <img src="/contact_us.jpeg" alt="Support Team" />
                 </div>
             </section>
 

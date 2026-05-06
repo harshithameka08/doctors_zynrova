@@ -63,7 +63,7 @@ const About = () => {
                     <button className="btn-primary-about" onClick={() => navigate('/find-doctors')}>Find Doctors</button>
                 </div>
                 <div className="about-hero-image">
-                    <img src="/about_hero_new.png" alt="Medical Team" />
+                    <img src="/ModernHealthcare.jpg" alt="Medical Team" />
                 </div>
             </section>
 
@@ -94,7 +94,7 @@ const About = () => {
             {/* Who We Are */}
             <section className="who-we-are">
                 <div className="who-image">
-                    <img src="/about_who_we_are_v2.png" alt="Patient-Doctor Interaction" />
+                    <img src="/WhoWeAre.jpg" alt="Patient-Doctor Interaction" />
                 </div>
                 <div className="who-content">
                     <h2>Who We <span>Are</span></h2>

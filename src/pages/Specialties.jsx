@@ -56,8 +56,8 @@ const Specialties = () => {
                     </div>
                 </div>
                 <div className="spec-hero-image">
-                    {/* Updated to a premium high-resolution healthcare hero image */}
-                    <img src="/explore_specialities.jpg" alt="Medical Specialists" />
+                    {/* Updated to the provided specialties page image */}
+                    <img src="/Specialties_page.jpg" alt="Medical Specialists" />
                 </div>
             </header>
 
