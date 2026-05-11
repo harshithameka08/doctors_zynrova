@@ -340,7 +340,7 @@ const DoctorProfile = () => {
                     <div className="trust-icon-box"><FaShieldAlt /></div> {/* Using ShieldAlt for verified */}
                     <h4>Verified Doctors Only</h4>
                     <p>Stringent background checks for your peace of mind.</p>
-                </div>
+                </div> 
                 <div className="trust-item">
                     <div className="trust-icon-box"><FaCheckCircle /></div>
                     <h4>Instant Booking</h4>

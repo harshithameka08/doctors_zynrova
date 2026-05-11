@@ -470,215 +470,226 @@
 
 .doctors-grid-horizontal {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 500px));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
+    gap: 25px;
     margin-bottom: 60px;
-    justify-content: center; /* Ensures equal space on left and right */
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.doctor-card-horizontal {
+/* --- Premium Doctor Card --- */
+.doctor-card-horizontal.premium {
     background: #fff;
-    border: 1px solid #f1f5f9;
     border-radius: 24px;
     display: flex;
+    padding: 15px 20px;
+    gap: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: visible;
     align-items: center;
-    padding: 24px;
-    max-width: 520px;
-    gap: 24px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.doctor-card-horizontal:hover {
+.doctor-card-horizontal.premium:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #e2e8f0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
-.card-image-left {
-    width: 140px;
-    height: 140px;
+/* Left Section: Image */
+.card-left-section {
     flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid #fff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-    background: #f0fdfa;
 }
 
-.doctor-card-horizontal.compact .card-image-left {
-    width: 150px;
-    height: 150px;
+.image-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
 }
 
-.card-image-left img {
+.image-wrapper img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
-    background: transparent;
+    border: 3.5px solid #005E7C; /* Darker teal/blue border as seen in image */
+    padding: 3.5px;
+    background: white;
 }
 
-.card-info-right {
-    flex: 1;
+.doctor-card-horizontal.premium .premium-verified-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -10px; /* Adjusted for 110px image */
+    top: auto;
+    width: 32px; /* Slightly smaller to match 110px image */
+    height: 32px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    outline: none !important;
 }
 
-.doctor-card-horizontal.compact {
-    padding: 15px;
-    gap: 15px;
-    border-radius: 12px;
-    align-items: center; /* Center image and content vertically */
+.premium-verified-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+    border: none !important;
+    background: transparent !important;
 }
 
 
 
-.card-info-right {
+/* Middle Section: Info */
+.card-middle-section {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 6px; /* Tighter, equalized gap */
-    padding-left: 5px;
+    gap: 8px; /* Reduced vertical gap */
 }
 
-.card-info-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0; /* Removed margin */
-}
-
-.name-qual-group h3 {
-    font-size: 16px;
-    margin: 0;
-    color: #1a202c;
-    font-weight: 700;
-}
-
-.doc-qualifications {
-    font-size: 13px;
-    color: #718096;
-    margin-top: 0; /* Removed margin */
-}
-
-.fee-box-right {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-}
-
-.fee-box-right .fee-label {
-    font-size: 10px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.fee-box-right .fee-value {
-    font-size: 18px;
+.doc-main-info h3 {
+    font-size: 22px;
     font-weight: 800;
-    color: #2563EB; /* Vibrant Blue */
+    color: #0f172a;
+    margin: 0 0 2px 0;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.doc-stats-mini {
+.doc-meta {
+    font-size: 15px;
+    color: #64748b;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.doc-badges {
     display: flex;
-    gap: 10px;
-    margin-bottom: 5px;
+    gap: 12px;
 }
 
-.doc-stats-mini span {
-    padding: 6px 12px;
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 700;
+.badge-rating, .badge-experience {
     display: flex;
     align-items: center;
     gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
-.doc-stats-mini span:first-child {
-    background: #fff8eb;
-    color: #b45309;
+.badge-rating {
+    background: #FFF7ED;
+    color: #C2410C;
 }
 
-.doc-stats-mini span:first-child svg {
-    color: #f59e0b;
+.badge-rating svg {
+    color: #F59E0B;
 }
 
-.doc-stats-mini span:last-child {
-    background: #f0fdf4;
-    color: #15803d;
+.badge-experience {
+    background: #F0FDF4;
+    color: #166534;
 }
 
-.doc-stats-mini span:last-child svg {
-    margin-right: 5px;
-}
-
-.doc-specialties-list {
-    margin: 0;
-}
-
-.doc-specialties-list strong {
-    font-size: 12px;
-    color: #a0aec0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.doc-specialties-list ul {
+.doc-tags {
     display: flex;
     gap: 10px;
-    margin-top: 4px;
-    padding-left: 0;
-    list-style: none;
 }
 
-.doc-specialties-list ul li {
-    font-family: 'Outfit', sans-serif;
+.tag {
+    padding: 5px 14px;
+    border: 1.5px solid #BFDBFE; /* Light blue border */
+    background: #EFF6FF; /* Very light blue background */
+    color: #1E40AF; /* Deep blue text */
+    border-radius: 8px;
     font-size: 13px;
-    color: #4a5568;
-    padding: 0;
-    font-weight: 500;
-}
-
-.doc-specialties-list ul li::before {
-    display: none;
-}
-
-.doc-specialties-list ul li:not(:last-child)::after {
-    content: ""; /* Removed separator completely */
-}
-
-.card-horizontal-footer {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: -18px; /* Adjusted to prevent overlap while staying compact */
-    padding-top: 0;
-    border-top: none; /* Removed the divider causing the strike-through effect */
-}
-
-.view-profile-link {
-    font-size: 13px;
-    color: #27B992;
     font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
+}
+
+/* Right Section: Booking */
+.card-right-section {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-left: 1px solid #F1F5F9;
+    padding-left: 20px;
+}
+
+.fee-container {
+    text-align: right;
+    width: 100%;
+}
+
+.fee-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: #94A3B8;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0px;
+}
+
+.fee-amount {
+    font-size: 28px;
+    font-weight: 900;
+    color: #005E7C;
+}
+
+.availability-status {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #E6FFFA;
+    color: #0F766E;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 800;
+    width: 100%;
+    justify-content: center;
+    white-space: nowrap; /* Force single line */
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: #0F766E;
+    border-radius: 50%;
+}
+
+.book-now-btn {
+    width: 100%;
+    padding: 14px;
+    background: #27B992;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
     transition: all 0.2s;
 }
 
-.view-profile-link:hover {
-    gap: 8px;
-    color: #1a8e6f;
-}
-
-
-.view-profile-btn:hover {
-    color: #27B992;
+.book-now-btn:hover {
+    background: #1f9475;
+    transform: scale(1.02);
 }
 
 /* --- Trust Banner --- */
@@ -848,33 +859,35 @@
         gap: 20px;
     }
 
-    .doctor-card-horizontal {
+    .doctor-card-horizontal.premium {
         flex-direction: column;
-        text-align: center;
         padding: 20px;
-        width: 100%;
-        box-sizing: border-box;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
     }
 
-    .card-image-left {
-        width: 100px !important;
-        height: 100px !important;
+    .image-wrapper {
+        width: 100px;
+        height: 100px;
         margin: 0 auto;
     }
 
-    .card-info-right {
-        padding-left: 0;
+    .card-middle-section {
         align-items: center;
-    }
-
-    .card-info-header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .fee-box-right {
         text-align: center;
+    }
+
+    .doc-badges, .doc-tags {
+        justify-content: center;
+    }
+
+    .card-right-section {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #f1f5f9;
+        padding-left: 0;
+        padding-top: 20px;
     }
 
     .doc-stats-mini {
@@ -885,8 +898,14 @@
         justify-content: center;
     }
 
-    .card-horizontal-footer {
+    .doc-stats-mini, .doc-specialties-list ul {
         justify-content: center;
-        margin-top: 10px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .doctors-grid-horizontal {
+        grid-template-columns: 1fr;
+        max-width: 800px;
     }
 }

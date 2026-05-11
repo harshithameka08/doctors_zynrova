@@ -283,11 +283,11 @@ const Symptoms = () => {
             {/* Emergency Banner */}
             <div className="emergency-banner-container">
                 <div className="emergency-banner">
-                    <div className="emerg-icon"><FaAmbulance /></div>
-                    <div className="emerg-content">
+                    <div className="emerg-header">
+                        <div className="emerg-icon"><FaAmbulance /></div>
                         <h4>Emergency Medical Care</h4>
-                        <p>If your symptoms are severe or life-threatening (e.g., severe chest pain, extreme difficulty breathing, sudden paralysis), please seek emergency medical care immediately by calling your local emergency services.</p>
                     </div>
+                    <p>If your symptoms are severe or life-threatening (e.g., severe chest pain, extreme difficulty breathing, sudden paralysis), please seek emergency medical care immediately by calling your local emergency services.</p>
                 </div>
             </div>
 

@@ -50,7 +50,7 @@ const Footer = () => {
                         <ul className="contact-info">
                             <li style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                                 <FaMapMarkerAlt style={{ color: 'var(--primary-color)', marginTop: '4px', fontSize: '16px' }} />
-                                <p>Plot No. 12, Attapur Main Rd, Hyderabad, Telangana 500048</p>
+                                <p>C162, Road No 45, Allwyn Colony, Kukatpally, Hyderabad, 500072</p>
                             </li>
                             <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                 <FaPhoneAlt style={{ color: 'var(--primary-color)', fontSize: '16px' }} />

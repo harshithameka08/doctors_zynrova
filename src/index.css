@@ -8,6 +8,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Fluid scaling for high-density UI */
+  font-size: 16px;
+  @media screen and (min-width: 1440px) {
+    font-size: clamp(16px, 1.1vw, 20px);
+  }
+  @media screen and (max-width: 1439px) {
+    font-size: clamp(13px, 1vw, 16px);
+  }
 }
 
 body {
@@ -17,6 +26,8 @@ body {
   background-color: #ffffff;
   color: #333;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 a {

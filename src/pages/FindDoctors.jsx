@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import {
     FaSearch, FaMapMarkerAlt, FaVideo, FaStar, FaFilter,
     FaCheckCircle, FaHeart, FaUserMd, FaShieldAlt, FaRegStar, FaBriefcase,
-    FaUserCheck, FaCalendarCheck, FaLock
+    FaUserCheck, FaCalendarCheck, FaLock, FaCheck, FaCertificate
 } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../lib/api';
@@ -503,39 +503,53 @@ const FindDoctors = () => {
                             const docExp = doctor.experience || getDocExp(doctor.bio);
 
                             return (
-                                <div className="doctor-card-horizontal compact" key={doctor.id}>
-                                    <div className="card-image-left">
-                                        <img src={doctor.image || '/dr_sarah_johnson_1.png'} alt={doctor.full_name} />
+                                <div className="doctor-card-horizontal premium" key={doctor.id}>
+                                    <div className="card-left-section">
+                                        <div className="image-wrapper">
+                                            <img src={doctor.image || '/dr_sarah_johnson_1.png'} alt={doctor.full_name} />
+                                            <div className="premium-verified-badge">
+                                                <img src="/verified_symbol.png" alt="Verified" />
+                                            </div>
+                                        </div>
                                     </div>
                                     
-                                    <div className="card-info-right">
-                                        <div className="card-info-header">
-                                            <div className="name-qual-group">
-                                                <h3>{doctor.full_name}</h3>
-                                                <p className="doc-qualifications">MD, {doctor.specialization}</p>
-                                            </div>
-                                            <div className="fee-box-right">
-                                                <span className="fee-label">Fee</span>
-                                                <span className="fee-value">₹{docFee}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="doc-stats-mini">
-                                            <span><FaStar /> {docRating}</span>
-                                            <span><FaBriefcase /> {docExp} Yrs</span>
+                                    <div className="card-middle-section">
+                                        <div className="doc-main-info">
+                                            <h3>{doctor.full_name}</h3>
+                                            <p className="doc-meta">Senior {doctor.specialization} • MBBS, MD</p>
                                         </div>
                                         
-                                        <div className="doc-specialties-list">
-                                            <strong>Specialties:</strong>
-                                            <ul>
-                                                <li>{doctor.specialization}</li>
-                                                <li>Patient Care</li>
-                                            </ul>
+                                        <div className="doc-badges">
+                                            <span className="badge-rating">
+                                                <FaStar /> {docRating}
+                                            </span>
+                                            <span className="badge-experience">
+                                                <FaBriefcase /> {docExp} Yrs
+                                            </span>
                                         </div>
                                         
-                                        <div className="card-horizontal-footer">
-                                            <span onClick={() => navigate('/doctor-profile', { state: { doctor } })} className="view-profile-link">View Profile</span>
+                                        <div className="doc-tags">
+                                            <span className="tag">Cardiology</span>
+                                            <span className="tag">Surgery</span>
                                         </div>
+                                    </div>
+                                    
+                                    <div className="card-right-section">
+                                        <div className="fee-container">
+                                            <span className="fee-label">FEE</span>
+                                            <span className="fee-amount">₹{docFee}</span>
+                                        </div>
+                                        
+                                        <div className="availability-status">
+                                            <span className="status-dot"></span> Available Today
+                                        </div>
+                                        
+                                        <button 
+                                            className="book-now-btn"
+                                            onClick={() => navigate('/doctor-profile', { state: { doctor } })}
+                                        >
+                                            Book Now
+                                        </button>
                                     </div>
                                 </div>
                             );

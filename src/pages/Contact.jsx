@@ -151,13 +151,13 @@ const Contact = () => {
             <section className="office-section">
                 <div className="office-info">
                     <h2>Our Office</h2>
-                    <p>We are conveniently located in the heart of Attapur to serve our local community.</p>
+                    <p>We are conveniently located in Kukatpally to serve our local community.</p>
 
                     <div className="office-detail-item">
                         <div className="office-icon-box bg-light-teal"><FaMapMarkerAlt /></div>
                         <div className="office-text">
                             <h4>Our Address</h4>
-                            <p>Attapur, Inner Ring Rd, Pillar No 143,<br />Hyderabad, Telangana 500048</p>
+                            <p>C162, Road No 45, Allwyn Colony,<br />Kukatpally, Hyderabad, 500072</p>
                         </div>
                     </div>
 
@@ -177,7 +177,7 @@ const Contact = () => {
                         height="100%"
                         frameBorder="0"
                         style={{ border: 0, opacity: 0.8 }}
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15229.82393845927!2d78.4238!3d17.3916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb970868732d8f%3A0x6331899131d9266a!2sAttapur%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1625634567890!5m2!1sen!2sin"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60886.137724477165!2d78.3635926855813!3d17.489192204072523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91ec0162f43d%3A0x3288c6fe4358cf48!2sKukatpally%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1778057629040!5m2!1sen!2sin"
                         allowFullScreen
                     ></iframe>
                 </div>
