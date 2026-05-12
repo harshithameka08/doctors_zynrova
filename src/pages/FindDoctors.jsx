@@ -541,7 +541,7 @@ const FindDoctors = () => {
                                         </div>
                                         
                                         <div className="availability-status">
-                                            <span className="status-dot"></span> Available Today
+                                            <span className="status-dot" style={{ background: '#22c55e', width: '9px', height: '9px', borderRadius: '50%', display: 'inline-block', flexShrink: 0 }}></span> Available Today
                                         </div>
                                         
                                         <button 
